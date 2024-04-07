@@ -29,7 +29,7 @@ class Level {
     Tile tile = getTile(p);
     if (tile == null) return new PVector();
     return tile.getCenter();
-  } 
+  }
   boolean isPassable(Point p) {
     Tile tile = getTile(p);
     if (tile == null) return false;
@@ -45,7 +45,7 @@ class Level {
     level = layout; // cache the layout (to enable reloading levels)
 
 
-    //TODO: Build the level from the level data.    
+    //TODO: Build the level from the level data.
     //1. Build a 2D tiles array to hold all of the tiles.
     int  ROWS = layout.length;
     int COL = layout[0].length;
@@ -61,43 +61,21 @@ class Level {
     //3. Add all neighbors to each tile. (this varies with grid type: square / type; AND this varies with whether or not we allow diagonal movement)
     for (int Y = 0; Y < ROWS; Y++) {
       for (int X = 0; X < COL; X++) {
-        if (TileHelper.isHex) {
-          if (X % 2 == 0) {
-            //HEX TILE NIEGHBOR CALC
-            tiles[Y][X].addNeighbors(new Tile[] {
-              getTile(X-1, Y), 
-              getTile(X-1, Y+1), 
-              getTile(X, Y-1), 
-              getTile(X, Y+1), 
-              getTile(X+1, Y), 
-              getTile(X+1, Y+1)
-              });
-          } else {  
-            tiles[Y][X].addNeighbors(new Tile[] {
-              getTile(X-1, Y-1), 
-              getTile(X-1, Y), 
-              getTile(X, Y-1), 
-              getTile(X, Y+1), 
-              getTile(X+1, Y-1), 
-              getTile(X+1, Y)
-              });
-          }
-        } else {
-          //SQUARE MOVEMENT
+
+        //SQUARE MOVEMENT
+        tiles[Y][X].addNeighbors(new Tile[] {
+          getTile(X-1, Y),
+          getTile(X+1, Y),
+          getTile(X, Y-1),
+          getTile(X, Y+1)
+          });
+        if (useDiagonals) {
           tiles[Y][X].addNeighbors(new Tile[] {
-            getTile(X-1, Y), 
-            getTile(X+1, Y), 
-            getTile(X, Y-1), 
-            getTile(X, Y+1)         
+            getTile(X-1, Y-1),
+            getTile(X+1, Y+1),
+            getTile(X+1, Y-1),
+            getTile(X-1, Y+1)
             });
-          if (useDiagonals) {
-            tiles[Y][X].addNeighbors(new Tile[] {
-              getTile(X-1, Y-1), 
-              getTile(X+1, Y+1), 
-              getTile(X+1, Y-1), 
-              getTile(X-1, Y+1)         
-              });
-          }
         }
       }
     }

@@ -1,7 +1,8 @@
 static class TileHelper {
+Pathfinder pathfinder;
+Level level;
+  static DAGD420TowerDefense app;
 
-  static PathfindingActivity app;
-  static boolean isHex = true;
   final static int W = 32;
   final static int H = 32;
   final static int halfW = W / 2;
@@ -10,7 +11,7 @@ static class TileHelper {
   static PVector gridToPixel(Point p) {
     return gridToPixel(p.x, p.y);
   }
-  static PVector gridToPixel(int X, int Y){
+  static PVector gridToPixel(int X, int Y) {
     PVector v = new PVector(X * W, Y * H);
     if (isHex && X % 2 == 0) v.y += 16;
     return v;
@@ -18,8 +19,8 @@ static class TileHelper {
   static Point pixelToGrid(PVector v) {
 
     int x = (int)(v.x / W);
-    if (isHex && x % 2 == 0) v.y -= halfH;
-    int y = (int)(v.y / H);    
+
+    int y = (int)(v.y / H);
 
     return app.new Point(x, y);
   }
@@ -39,22 +40,18 @@ class Tile {
   // DRAW THIS TILE:
   void draw() {
     if (TERRAIN == 0) {
-      if (TileHelper.isHex) fill(127);
-      else if(hover) {}
-      else return; // don't draw empty tiles
+
+      if (hover) {
+      } else return; // don't draw empty tiles
     }
     if (TERRAIN == 1) fill(200);
     if (TERRAIN == 2) fill(255);
-    if(hover) fill(255, 255, 0);
-    
-    if (TileHelper.isHex) {
-      PVector p = getCenter();
-      ellipse(p.x, p.y, TileHelper.W, TileHelper.H);
-    } 
-    else {
-      PVector p = TileHelper.gridToPixel(X, Y);
-      rect(p.x, p.y, TileHelper.W, TileHelper.H);
-    }
+    if (hover) fill(255, 255, 0);
+
+
+    PVector p = TileHelper.gridToPixel(X, Y);
+    rect(p.x, p.y, TileHelper.W, TileHelper.H);
+
     hover = false;
   }
   // GET THE CENTER POINT OF THIS TILE IN PIXEL-SPACE:
@@ -64,8 +61,8 @@ class Tile {
     p.y += TileHelper.halfH;
     return p;
   }
-  boolean isPassable(){
-    return (TERRAIN != 2); 
+  boolean isPassable() {
+    return (TERRAIN != 2);
   }
 
   ///////////////////////////////////////////////////
