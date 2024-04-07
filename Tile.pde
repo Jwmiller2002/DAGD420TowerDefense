@@ -13,7 +13,7 @@ Level level;
   }
   static PVector gridToPixel(int X, int Y) {
     PVector v = new PVector(X * W, Y * H);
-    if (isHex && X % 2 == 0) v.y += 16;
+    
     return v;
   }
   static Point pixelToGrid(PVector v) {
@@ -97,7 +97,7 @@ class Tile {
   }
   // RETURN THE COST OF MOVING INTO THIS TILE:
   float getTerrainCost() {
-    if (TERRAIN >= 0 && TERRAIN < LevelDefs.MOVECOST.length) return LevelDefs.MOVECOST[TERRAIN];
+    if (TERRAIN >= 0 && TERRAIN < PCGMAP.MOVECOST.length) return PCGMAP.MOVECOST[TERRAIN];
     return 0;
   }
   // HEURISTICS CALULATIONS:

@@ -5,7 +5,7 @@ class Level {
   boolean useDiagonals = false;
 
   Level() {
-    loadLevel(LevelDefs.LEVEL4);
+    loadLevel(PCGMAP.LEVEL1);
   }
   void draw() {
     noStroke();
