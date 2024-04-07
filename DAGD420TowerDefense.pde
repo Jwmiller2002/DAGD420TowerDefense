@@ -14,10 +14,16 @@ void setup(){
 }
 
 void init(){
+  //Switch this code to choose the scene that first appears when booting the program up
   switchToTitle();
 }
 
 void draw(){
+  /* This is the Scene manager code. 
+   * It checks the update to see if any scenes switching should happen.
+   * Then it draws the scene
+   */
+  
   if(title != null){
     title.update();
     if(title != null){
