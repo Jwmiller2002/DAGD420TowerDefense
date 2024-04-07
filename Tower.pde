@@ -1,12 +1,14 @@
 class Tower{
   private float health;
   private float towerType;
+  private float x,y =500;
  Tower(float pointOnGrid){
-   
+   x= mouseX;
+   y = mouseY;
  }
  void draw(){
    fill(200,20,130);
-   rect(mouseY,mouseX,20,20);
+   rect(x,y,20,20);
  }
   
 }
