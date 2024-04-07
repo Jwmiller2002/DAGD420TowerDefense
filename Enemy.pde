@@ -4,11 +4,14 @@ class Enemy{
   float healthMax;
   float damage;
   float speed;
-  PVector pos;
+  PVector pos;//pixel position
   ArrayList<Tile> path; 
   Tile goalT;
   Tile nextTile;
   boolean findPath = false;
+  
+  Point gridP = new Point(); // current position
+  Point gridT = new Point();
 
   
   Enemy(float h,float d, float s, PVector p){
@@ -17,6 +20,9 @@ class Enemy{
     damage= d;
     speed = s;
     pos=p;
+    findPath = false;
+    gridP = new Point();
+    gridT = new Point();
   }
   
   void update(){
@@ -47,13 +53,13 @@ class Enemy{
   
   void findPathAndSetNextStep(){
     findPath = false;
-    Tile start = level.getTile(pos);
-    Tile end = level.getTile(goalT);
+    Tile start = game.level.getTile(gridP);
+    Tile end = game.level.getTile(gridT);
     if (start == end) {
       path = null;
       return;
     }
-    path = pathfinder.findPath(start, end);
+    path = game.pathfinder.findPath(start, end);
 
     if (path != null && path.size() > 1) { 
       nextTile = path.get(1);
@@ -64,15 +70,15 @@ class Enemy{
   void updateMove() {
     
     float snapThreshold = 1;
-    PVector pixlT = level.getTileCenterAt(pos);
+    PVector pixlT = game.level.getTileCenterAt(gridP);
     PVector diff = PVector.sub(pixlT, pos);
-    if(nextTile.type == goal||nextTile.type == tower){
-     //attack thing 
+    //if(nextTile.type == goal||nextTile.type == tower){
+    //attack thing 
       
-    }else{
+   // }else{
       pos.x += diff.x * .2;
       pos.y += diff.y * .2;
-    }
+    //}
     if (abs(diff.x) < snapThreshold) pos.x = pixlT.x;
     if (abs(diff.y) < snapThreshold) pos.y = pixlT.y;
 

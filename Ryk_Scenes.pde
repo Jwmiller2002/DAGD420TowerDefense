@@ -598,6 +598,14 @@ class Help{
 
 class Game{
   
+  Level level;
+  Pathfinder pathfinder;
+  
+  Game(){
+    pathfinder = new Pathfinder();
+    level = new Level();
+  }
+  
   void update(){
     
   }
