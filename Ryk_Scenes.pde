@@ -594,12 +594,15 @@ class Help{
   }
 }
 
-
-
+//GAME CLASS---------------------------------------------------------
 class Game{
   
   Level level;
   Pathfinder pathfinder;
+  float ram = 20;
+  float ramMax = 20;
+  float energy;
+  float energyMax;
   
   Game(){
     pathfinder = new Pathfinder();
@@ -623,9 +626,6 @@ class Game{
 
 
 //END CLASS---------------------------------------------------------
-
-
-
 class End{
   
   void update(){
