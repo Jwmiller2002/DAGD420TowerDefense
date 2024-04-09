@@ -7,12 +7,15 @@ End end; //Game Over
 
 boolean prevMouse;
 
+Tower testTower;
 
 void setup(){
   //fullScreen();
   init();
   size(1080, 1080);
   TileHelper.app = this;
+  
+  testTower = new Tower(500,0);
 }
 
 void init(){
@@ -21,6 +24,7 @@ void init(){
 }
 
 void draw(){
+  testTower.draw();
   /* This is the Scene manager code. 
    * It checks the update to see if any scenes switching should happen.
    * Then it draws the scene
@@ -56,6 +60,7 @@ void draw(){
       end.draw();
     }
   }
+  
 }
 
 void switchToTitle(){
