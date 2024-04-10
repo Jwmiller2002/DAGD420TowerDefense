@@ -11,6 +11,9 @@ class Tower {
   private float decayDelay=10;
 
   private float x, y =500;
+
+  public boolean isDead = false;
+  private boolean foundEnemy =false;
   Tower(float pointOnGrid, int type) {
     x= pointOnGrid;
     y = pointOnGrid;
@@ -64,8 +67,13 @@ class Tower {
 
       if (doOnce) health = maxHealth;
       takeDamage();
-      chooseEnemy();
+      if (!foundEnemy) chooseEnemy();
+
+      if (timeTilNextFire <=firerate && foundEnemy) { //shootEnemy
+      }
     }
+
+
     //tower shooting and supoort
   }
   private void takeDamage() { //checkingDamage and decay damage/repairHealth
@@ -73,9 +81,14 @@ class Tower {
 
     if (decayDelay <=0) health--;
     else decayDelay -= towerDecayRate;
+
+    if (health <=0)isDead = true;
   }
   private float chooseEnemy() { //get array of enemies and shoot neerest or the most leathal one
-
-    return 1;
+    if (foundEnemy) {
+      foundEnemy =true;
+      return 1; //return enemy to shoot
+    }
+    return 0;
   }
 }

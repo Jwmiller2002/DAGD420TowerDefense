@@ -7,7 +7,7 @@ End end; //Game Over
 
 boolean prevMouse;
 
-Tower testTower;
+ArrayList<Tower> towers;
 
 void setup(){
   //fullScreen();
@@ -15,7 +15,7 @@ void setup(){
   size(1080, 1080);
   TileHelper.app = this;
   
-  testTower = new Tower(500,0);
+  towers = new ArrayList<Tower>();
 }
 
 void init(){
@@ -24,7 +24,11 @@ void init(){
 }
 
 void draw(){
-  testTower.draw();
+  for(int i=0;i<towers.size()-1;i++){
+    Tower t = towers.get(i);
+    t.draw();
+    if(t.isDead) towers.remove(i);
+  }
   /* This is the Scene manager code. 
    * It checks the update to see if any scenes switching should happen.
    * Then it draws the scene
