@@ -2,10 +2,14 @@ class Tiles{
   float x, y, w, h;
   int property;
   
+  PImage basicTile;
+  PImage overClock;
   
   Tiles(float x, float y){
     this.x = x;
     this.y = y;
+    basicTile = loadImage("BaseTile.png");
+    overClock = loadImage("Overclock.png");
   }
   
   void setProperty(int p){
