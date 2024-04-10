@@ -594,12 +594,15 @@ class Help{
   }
 }
 
-
-
+//GAME CLASS---------------------------------------------------------
 class Game{
   
   Level level;
   Pathfinder pathfinder;
+  float ram = 20;
+  float ramMax = 20;
+  float energy;
+  float energyMax;
   
   Game(){
     pathfinder = new Pathfinder();
@@ -613,6 +616,17 @@ class Game{
   void draw(){
     background(128);
     text("Game", 100, 100);
+    
+    //Shop
+    fill(80);
+    rectMode(CORNER);
+    rect(800,0,280,1080);
+    fill(0);
+    textAlign(CENTER,CENTER);
+    text("TOWERS", 940,50);
+    text("UPGRADES", 940,500);
+    
+    
   }
   
   void buttons(){
@@ -623,9 +637,6 @@ class Game{
 
 
 //END CLASS---------------------------------------------------------
-
-
-
 class End{
   
   void update(){
