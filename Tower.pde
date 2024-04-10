@@ -9,6 +9,7 @@ class Tower {
   private int towerType;
   private float towerDecayRate =5;
   private float decayDelay=10;
+  public float towerCost=10;
 
   private float x, y =500;
 
