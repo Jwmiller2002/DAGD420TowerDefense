@@ -12,6 +12,9 @@ class Tower {
 
   private float x, y =500;
 
+  private float ramCost;
+  private float energyCost;
+
   public boolean isDead = false;
   private boolean foundEnemy =false;
   Tower(float pointOnGrid, int type) {
@@ -26,6 +29,8 @@ class Tower {
       maxHealth =50;
       firerate =3;
       towerDecayRate =5;
+      ramCost = 2;
+      energyCost = 5;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -34,6 +39,8 @@ class Tower {
       firerate = 6;
       maxHealth =25;
       towerDecayRate =5;
+      ramCost = 2;
+      energyCost = 5;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -42,6 +49,8 @@ class Tower {
       firerate =1;
       maxHealth =75;
       towerDecayRate =5;
+      ramCost = 2;
+      energyCost = 5;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -50,6 +59,8 @@ class Tower {
       firerate = 4;
       maxHealth =100;
       towerDecayRate =5;
+      ramCost = 2;
+      energyCost = 5;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -58,6 +69,8 @@ class Tower {
       firerate = 10;
       maxHealth =100;
       towerDecayRate =5;
+      ramCost = 2;
+      energyCost = 5;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
