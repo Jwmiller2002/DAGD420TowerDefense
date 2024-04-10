@@ -33,6 +33,8 @@ class Tiles{
       
       //Enemy.movement *= 0.8
       //Tower.dead deals 'c' Pixel area 'b' damage
+      
+      image(overClock, x, y);
     } else if (p == 2){
       //Deals 'b' damage per tick on tile to enemies and towers
       //
@@ -45,6 +47,7 @@ class Tiles{
       //enemy health += enemy.Maxhelath * 1.2
     } else {
       //No special effect
+      image(basicTile, x, y);
     }
   }
 }
