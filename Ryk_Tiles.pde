@@ -12,7 +12,10 @@ class Tiles{
     //Property 0 is Overclocked
     //Property 1 is Oil
     //Property 2 is Electric
+    //Property 3 is Collant
+    //Property E is Base tile
     property = p;
+    
     if(p == 0){
       //Increase the towers ability
       //increase the Enemy ability
