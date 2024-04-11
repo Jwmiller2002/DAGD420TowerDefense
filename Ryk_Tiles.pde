@@ -2,8 +2,12 @@ class Tiles{
   float x, y, w, h;
   int property;
   
+  boolean emenyOnTile;
+  
   PImage basicTile;
   PImage overClock;
+  
+  ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   
   Tiles(float x, float y){
     this.x = x;
@@ -27,6 +31,12 @@ class Tiles{
       //Tower.Ability *= 1.15
       //Enemy.Ability *= 1.15
       
+      for(int i = 0; i < enemies.size(); i++){
+        //Enemy enemies = new Enemy();
+      }
+      
+      image(overClock, x, y);
+      
     } else if (p == 1){
       //If an enemy is over the tile, slow the enemy movement
       //If a tower is over the tile, When the Tower is destroyed, cause a burst Damage effect
@@ -34,7 +44,6 @@ class Tiles{
       //Enemy.movement *= 0.8
       //Tower.dead deals 'c' Pixel area 'b' damage
       
-      image(overClock, x, y);
     } else if (p == 2){
       //Deals 'b' damage per tick on tile to enemies and towers
       //
