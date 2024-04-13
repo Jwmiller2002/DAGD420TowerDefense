@@ -31,10 +31,6 @@ class Tiles{
       //Tower.Ability *= 1.15
       //Enemy.Ability *= 1.15
       
-      for(int i = 0; i < enemies.size(); i++){
-        //Enemy enemies = new Enemy();
-      }
-      
       image(overClock, x, y);
       
     } else if (p == 1){
