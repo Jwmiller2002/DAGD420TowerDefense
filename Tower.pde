@@ -16,6 +16,7 @@ class Tower {
   public boolean supportBuff =false;
 
   private float x, y =500;
+  private float enemyX,enemyY;
 
   private float ramCost;
   private float energyCost;
@@ -57,7 +58,7 @@ class Tower {
       ramCost = 2;
       energyCost = 5;
       supportTower =true;
-       bulletSpeed =10;
+      bulletSpeed =10;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -68,7 +69,7 @@ class Tower {
       towerDecayRate =5;
       ramCost = 2;
       energyCost = 5;
-       bulletSpeed =5;
+      bulletSpeed =5;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -103,7 +104,7 @@ class Tower {
       if (!foundEnemy) foundEnemy = chooseEnemy();
 
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
-        bullets.add(new TowerBullet(x, y, towerType, enemyToShoot,bulletSpeed));
+        bullets.add(new TowerBullet(x, y, enemyX, enemyY, towerType, enemyToShoot, bulletSpeed));
         timeTilNextFire =firerate;
       } else if (timeTilNextFire <=0 && supportTower) {
         helpNearTowers();
@@ -131,6 +132,8 @@ class Tower {
       float enemyDistanceFromTower = sqrt(sq(this.x + e.pos.x) + sq(this.y + e.pos.y));
       if (enemyDistanceFromTower <= fireRange) {
         enemyToShoot = i;
+        enemyX =e.pos.x;
+        enemyY =e.pos.y;
         return true; //return enemy to shoot
       }
     }
@@ -141,7 +144,7 @@ class Tower {
       Tower e = towers.get(i);
       float DistanceFromOtherTower = sqrt(sq(this.x + e.x) + sq(this.y + e.y));
       if (DistanceFromOtherTower <=fireRange) {
-        bullets.add(new TowerBullet(x, y, towerType, i,bulletSpeed));
+        bullets.add(new TowerBullet(x, y, e.x, e.y, towerType, i, bulletSpeed));
       }
     }
   }

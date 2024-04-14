@@ -7,14 +7,17 @@ class TowerBullet {
   private float bulletSpeed;
   private boolean hit=true;
   private float velocityX,velocityY =1;
+  private float targetX,targetY;
 
 
-  TowerBullet(float towerType, float towerX, float towerY, int enemyNum, float bulletSpeed) {
+  TowerBullet(float towerType, float towerX, float towerY,float targetX,float targetY, int enemyNum, float bulletSpeed) {
     this.x=towerX;
     this.y=towerY;
     target = enemyNum;
     this.towerType = towerType;
     this.bulletSpeed = bulletSpeed;
+    this.targetX=targetX;
+    this.targetY=targetY;
   }
   void draw() {
     if(towerType ==3) rect(x, y, 20, 20);
