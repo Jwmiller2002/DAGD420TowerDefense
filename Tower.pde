@@ -5,6 +5,7 @@ class Tower {
 
   private float firerate;
   private float timeTilNextFire;
+  private float fireRange;
 
   private int towerType;
   private float towerDecayRate =5;
@@ -18,10 +19,15 @@ class Tower {
 
   public boolean isDead = false;
   private boolean foundEnemy =false;
+
+  public ArrayList<Enemy> enemies;
+
+
   Tower(float pointOnGrid, int type) {
     x= pointOnGrid;
     y = pointOnGrid;
     towerType = type;
+    enemies = new ArrayList<Enemy>();
   }
   void draw() {
     println(health);
@@ -99,10 +105,14 @@ class Tower {
     if (health <=0)isDead = true;
   }
   private float chooseEnemy() { //get array of enemies and shoot neerest or the most leathal one
-    if (foundEnemy) {
-      foundEnemy =true;
-      return 1; //return enemy to shoot
+    for (int i=0; i<enemies.size()-1; i++) {
+      Enemy e = enemies.get(i);
+      float enemyDistanceFromTower = sqrt(sq(this.x + e.pos.x) + sq(this.y + e.pos.y));
+      if (enemyDistanceFromTower <= fireRange) {
+        foundEnemy =true;
+        return i; //return enemy to shoot
+      }
     }
-    return 0;
+    return -1;
   }
 }
