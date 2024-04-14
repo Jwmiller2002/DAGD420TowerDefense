@@ -19,8 +19,9 @@ class Tower {
 
   public boolean isDead = false;
   private boolean foundEnemy =false;
-
+  private float enemyToShoot;
   public ArrayList<Enemy> enemies;
+
 
 
   Tower(float pointOnGrid, int type) {
@@ -86,10 +87,12 @@ class Tower {
       // Code that works for all towers(checking health shooting ect.)
 
       if (doOnce) health = maxHealth;
+
       takeDamage();
-      if (!foundEnemy) chooseEnemy();
+      if (!foundEnemy) foundEnemy = chooseEnemy();
 
       if (timeTilNextFire <=firerate && foundEnemy) { //shootEnemy
+      
       }
     }
 
@@ -102,17 +105,20 @@ class Tower {
     if (decayDelay <=0) health--;
     else decayDelay -= towerDecayRate;
 
-    if (health <=0)isDead = true;
+    if (health <=0){
+      isDead = true;
+      foundEnemy =false;
+    }
   }
-  private float chooseEnemy() { //get array of enemies and shoot neerest or the most leathal one
+  private boolean chooseEnemy() { //get array of enemies and shoot neerest or the most leathal one
     for (int i=0; i<enemies.size()-1; i++) {
       Enemy e = enemies.get(i);
       float enemyDistanceFromTower = sqrt(sq(this.x + e.pos.x) + sq(this.y + e.pos.y));
       if (enemyDistanceFromTower <= fireRange) {
-        foundEnemy =true;
-        return i; //return enemy to shoot
+        enemyToShoot = i;
+        return true; //return enemy to shoot
       }
     }
-    return -1;
+    return false;
   }
 }
