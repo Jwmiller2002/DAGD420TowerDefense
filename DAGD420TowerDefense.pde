@@ -6,8 +6,8 @@ Game game;
 End end; //Game Over 
 
 boolean prevMouse;
-
 ArrayList<Tower> towers;
+
 
 void setup(){
   //fullScreen();
@@ -15,7 +15,7 @@ void setup(){
   size(1080, 1080);
   TileHelper.app = this;
   
-  towers = new ArrayList<Tower>();
+  
 }
 
 void init(){

@@ -21,10 +21,13 @@ class Tower {
   private boolean foundEnemy =false;
   private float enemyToShoot;
   public ArrayList<Enemy> enemies;
+  public ArrayList<TowerBullet> bullets;
+
+  public
 
 
 
-  Tower(float pointOnGrid, int type) {
+    Tower(float pointOnGrid, int type) {
     x= pointOnGrid;
     y = pointOnGrid;
     towerType = type;
@@ -92,8 +95,10 @@ class Tower {
       if (!foundEnemy) foundEnemy = chooseEnemy();
 
       if (timeTilNextFire <=firerate && foundEnemy) { //shootEnemy
-      
+        bullets.add(new TowerBullet(x, y, towerType, enemyToShoot));
+        firerate =10;
       }
+      else firerate -=1;//*dt;
     }
 
 
@@ -105,7 +110,7 @@ class Tower {
     if (decayDelay <=0) health--;
     else decayDelay -= towerDecayRate;
 
-    if (health <=0){
+    if (health <=0) {
       isDead = true;
       foundEnemy =false;
     }
@@ -120,5 +125,14 @@ class Tower {
       }
     }
     return false;
+  }
+  private boolean findNeerTowers() {
+    for (int i=0; i<towers.size(); i++) {
+      Tower e = towers.get(i);
+      float DistanceFromOtherTower = sqrt(sq(this.x + e.x) + sq(this.y + e.y));
+      if (DistanceFromOtherTower <=fireRange) {
+        bullets.add(new TowerBullet(x, y, towerType, i));
+      }
+    }
   }
 }

@@ -604,9 +604,12 @@ class Game{
   float energy;
   float energyMax;
   
+  
+  
   Game(){
     pathfinder = new Pathfinder();
     level = new Level();
+    towers = new ArrayList<Tower>();
   }
   
   void update(){
