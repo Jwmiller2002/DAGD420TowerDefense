@@ -6,11 +6,14 @@ class Tower {
   private float firerate;
   private float timeTilNextFire;
   private float fireRange;
+  public float bulletSpeed;
 
   private int towerType;
+  private boolean supportTower =false;
   private float towerDecayRate =5;
   private float decayDelay=10;
   public float towerCost=10;
+  public boolean supportBuff =false;
 
   private float x, y =500;
 
@@ -19,7 +22,7 @@ class Tower {
 
   public boolean isDead = false;
   private boolean foundEnemy =false;
-  private float enemyToShoot;
+  private int enemyToShoot;
   public ArrayList<Enemy> enemies;
   public ArrayList<TowerBullet> bullets;
 
@@ -42,6 +45,7 @@ class Tower {
       towerDecayRate =5;
       ramCost = 2;
       energyCost = 5;
+      bulletSpeed =10;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -52,6 +56,8 @@ class Tower {
       towerDecayRate =5;
       ramCost = 2;
       energyCost = 5;
+      supportTower =true;
+       bulletSpeed =10;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -62,6 +68,7 @@ class Tower {
       towerDecayRate =5;
       ramCost = 2;
       energyCost = 5;
+       bulletSpeed =5;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -82,6 +89,7 @@ class Tower {
       towerDecayRate =5;
       ramCost = 2;
       energyCost = 5;
+      supportTower = true;
 
       fill(50, 255, 100);
       rect(x, y, 20, 20);
@@ -94,11 +102,13 @@ class Tower {
       takeDamage();
       if (!foundEnemy) foundEnemy = chooseEnemy();
 
-      if (timeTilNextFire <=firerate && foundEnemy) { //shootEnemy
-        bullets.add(new TowerBullet(x, y, towerType, enemyToShoot));
-        firerate =10;
-      }
-      else firerate -=1;//*dt;
+      if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
+        bullets.add(new TowerBullet(x, y, towerType, enemyToShoot,bulletSpeed));
+        timeTilNextFire =firerate;
+      } else if (timeTilNextFire <=0 && supportTower) {
+        helpNearTowers();
+        timeTilNextFire =firerate;
+      } else timeTilNextFire -=1;//*dt;
     }
 
 
@@ -126,12 +136,12 @@ class Tower {
     }
     return false;
   }
-  private boolean findNeerTowers() {
+  private void helpNearTowers() {
     for (int i=0; i<towers.size(); i++) {
       Tower e = towers.get(i);
       float DistanceFromOtherTower = sqrt(sq(this.x + e.x) + sq(this.y + e.y));
       if (DistanceFromOtherTower <=fireRange) {
-        bullets.add(new TowerBullet(x, y, towerType, i));
+        bullets.add(new TowerBullet(x, y, towerType, i,bulletSpeed));
       }
     }
   }
