@@ -6,6 +6,8 @@ Game game;
 End end; //Game Over 
 
 boolean prevMouse;
+float prevMillis;
+float DeltaTime;
 
 
 void setup(){
@@ -13,6 +15,8 @@ void setup(){
   init();
   size(1080, 1080);
   TileHelper.app = this;
+  prevMillis=0;
+  DeltaTime=0;
 }
 
 void init(){
@@ -25,6 +29,7 @@ void draw(){
    * It checks the update to see if any scenes switching should happen.
    * Then it draws the scene
    */
+   CalcDeltaTime();
   
   if(title != null){
     title.update();
@@ -100,6 +105,11 @@ void switchToEnd(){
   help = null;
   game = null;
   end = new End();
+}
+
+void CalcDeltaTime(){
+ DeltaTime=(millis()-prevMillis)/1000f;
+ prevMillis = millis();
 }
 
 /*  
