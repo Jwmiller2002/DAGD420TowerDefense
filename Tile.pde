@@ -47,7 +47,6 @@ class Tile {
     if (TERRAIN == 1) fill(200);
     if (TERRAIN == 2) fill(255);
     if (hover) fill(255, 255, 0);
-    
 
     PVector p = TileHelper.gridToPixel(X, Y);
     rect(p.x, p.y, TileHelper.W, TileHelper.H);
