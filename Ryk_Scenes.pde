@@ -604,9 +604,12 @@ class Game{
   float energy;
   float energyMax;
   
+  
+  
   Game(){
     pathfinder = new Pathfinder();
     level = new Level();
+    towers = new ArrayList<Tower>();
   }
   
   void update(){
@@ -615,6 +618,7 @@ class Game{
   
   void draw(){
     background(128);
+    level.draw();
     text("Game", 100, 100);
     
     //Shop
