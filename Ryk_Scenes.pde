@@ -619,7 +619,6 @@ class Game{
   void draw(){
     background(128);
     level.draw();
-    text("Game", 100, 100);
     
     //Shop
     fill(80);

@@ -2,7 +2,7 @@ static class TileHelper {
 Pathfinder pathfinder;
 Level level;
   static DAGD420TowerDefense app;
-
+  
   final static int W = 32;
   final static int H = 32;
   final static int halfW = W / 2;
@@ -47,7 +47,7 @@ class Tile {
     if (TERRAIN == 1) fill(200);
     if (TERRAIN == 2) fill(255);
     if (hover) fill(255, 255, 0);
-
+    
 
     PVector p = TileHelper.gridToPixel(X, Y);
     rect(p.x, p.y, TileHelper.W, TileHelper.H);

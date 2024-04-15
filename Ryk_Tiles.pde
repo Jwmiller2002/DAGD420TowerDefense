@@ -52,11 +52,16 @@ class Tiles{
       //Enemy.movement *= 0.8
       //Tower.dead deals 'c' Pixel area 'b' damage
       
+      enemy.speed *= 0.8;
+      
       image(oil, x, y);
       
     } else if (p == 2){
       //Deals 'b' damage per tick on tile to enemies and towers
       //
+      
+      enemy.health -= 0.02 * enemy.healthMax;
+      tower.health -= 0.02 * tower.maxHealth;
       
       image(electric, x, y);
       
@@ -68,7 +73,13 @@ class Tiles{
       //tower.attackspeed *= .9
       //enemy health += enemy.Maxhelath * 1.2
       
+      tower.health += tower.maxHealth * 1.1;
+      tower.firerate *= 0.9;
+      
+      enemy.health += enemy.healthMax;
+      
       image(coolant, x, y);
+      
     } else {
       //No special effect
       image(basicTile, x, y);
