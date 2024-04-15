@@ -32,7 +32,9 @@ class Tile {
   int Y; // GRID Y
   int TERRAIN = 0; // TERRAIN TYPE
   boolean hover = false;
-
+  
+  TileProperty property;
+  
   Tile(int X, int Y) {
     this.X = X;
     this.Y = Y;
@@ -47,7 +49,11 @@ class Tile {
     if (TERRAIN == 1) fill(200);
     if (TERRAIN == 2) fill(255);
     if (hover) fill(255, 255, 0);
-
+    
+    if(TERRAIN == 1){
+      
+    }
+    
     PVector p = TileHelper.gridToPixel(X, Y);
     rect(p.x, p.y, TileHelper.W, TileHelper.H);
 

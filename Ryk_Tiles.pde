@@ -1,4 +1,4 @@
-class Tiles{
+class TileProperty{
   private float x, y, w, h;
   private int property;
   
@@ -19,7 +19,7 @@ class Tiles{
   Enemy enemy;
   Tower tower;
   
-  Tiles(float x, float y){
+  TileProperty(float x, float y){
     this.x = x;
     this.y = y;
     basicTile = loadImage("BaseTile.png");
