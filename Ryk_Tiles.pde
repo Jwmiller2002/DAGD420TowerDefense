@@ -1,19 +1,28 @@
 class Tiles{
-  float x, y, w, h;
-  int property;
+  private float x, y, w, h;
+  private int property;
   
-  boolean emenyOnTile;
+  boolean enemyOnTile;
   
   PImage basicTile;
   PImage overClock;
+  PImage oil;
+  PImage electric;
+  PImage coolant;
   
   ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+  
+  Enemy enemy;
+  Tower tower;
   
   Tiles(float x, float y){
     this.x = x;
     this.y = y;
     basicTile = loadImage("BaseTile.png");
     overClock = loadImage("Overclock.png");
+    oil = loadImage("OilTile.png");
+    electric = loadImage("Electric.png");
+    coolant = loadImage("Coolant.png");
   }
   
   void setProperty(int p){
