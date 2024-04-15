@@ -3,12 +3,16 @@ class Tiles{
   private int property;
   
   boolean enemyOnTile;
+  boolean towerOnTile;
+  boolean goalTarget;
   
   PImage basicTile;
   PImage overClock;
   PImage oil;
   PImage electric;
   PImage coolant;
+  PImage spawner;
+  PImage goal;
   
   ArrayList<Enemy> enemies = new ArrayList<Enemy>();
   
@@ -23,6 +27,8 @@ class Tiles{
     oil = loadImage("OilTile.png");
     electric = loadImage("Electric.png");
     coolant = loadImage("Coolant.png");
+    spawner = loadImage("SpawnTile.png");
+    goal = loadImage("GoalTile.png");
   }
   
   void setProperty(int p){
@@ -80,7 +86,16 @@ class Tiles{
       
       image(coolant, x, y);
       
-    } else {
+    } else if (p == 4){
+      
+      image(spawner, x, y);
+    } else if (p == 5){
+      
+      image(goal, x, y);
+      
+      goalTarget = true;
+    }
+    else {
       //No special effect
       image(basicTile, x, y);
     }
