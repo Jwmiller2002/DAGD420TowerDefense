@@ -41,6 +41,7 @@ class Tiles{
       //Enemy.Ability *= 1.15
       
       tower.firerate *= 1.2;
+      enemy.speed *= 1.2;
       
       image(overClock, x, y);
       
