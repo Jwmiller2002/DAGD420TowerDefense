@@ -40,6 +40,8 @@ class Tiles{
       //Tower.Ability *= 1.15
       //Enemy.Ability *= 1.15
       
+      tower.firerate *= 1.2;
+      
       image(overClock, x, y);
       
     } else if (p == 1){
@@ -49,9 +51,14 @@ class Tiles{
       //Enemy.movement *= 0.8
       //Tower.dead deals 'c' Pixel area 'b' damage
       
+      image(oil, x, y);
+      
     } else if (p == 2){
       //Deals 'b' damage per tick on tile to enemies and towers
       //
+      
+      image(electric, x, y);
+      
     } else if (p == 3){
       //Heals tower over time, tower attack speed slightly decreased
       //Heals enemies
@@ -59,6 +66,8 @@ class Tiles{
       //tower.health += tower.maxHealth * 1.1
       //tower.attackspeed *= .9
       //enemy health += enemy.Maxhelath * 1.2
+      
+      image(coolant, x, y);
     } else {
       //No special effect
       image(basicTile, x, y);
