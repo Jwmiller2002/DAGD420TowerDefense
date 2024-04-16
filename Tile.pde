@@ -38,6 +38,8 @@ class Tile {
   Tile(int X, int Y) {
     this.X = X;
     this.Y = Y;
+    
+    property = new TileProperty(X, Y);
   }
   // DRAW THIS TILE:
   void draw() {
@@ -46,12 +48,12 @@ class Tile {
       if (hover) {
       } else return; // don't draw empty tiles
     }
-    if (TERRAIN == 1) fill(200);
-    if (TERRAIN == 2) fill(255);
-    if (hover) fill(255, 255, 0);
-    
+    /*if (TERRAIN == 1) fill(200);
+    *if (TERRAIN == 2) fill(255);
+    *if (hover) fill(255, 255, 0);
+    */
     if(TERRAIN == 1){
-      
+      property.setProperty(10);
     }
     
     PVector p = TileHelper.gridToPixel(X, Y);

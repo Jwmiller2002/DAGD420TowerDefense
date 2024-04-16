@@ -1,6 +1,6 @@
 class TileProperty{
   private float x, y, w, h;
-  private int property;
+  int property;
   
   boolean enemyOnTile;
   boolean towerOnTile;
