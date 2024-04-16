@@ -7,6 +7,8 @@ Level level;
   final static int H = 32;
   final static int halfW = W / 2;
   final static int halfH = H / 2;
+  
+  public boolean isESpawner =false;
 
   static PVector gridToPixel(Point p) {
     return gridToPixel(p.x, p.y);
@@ -32,6 +34,8 @@ class Tile {
   int Y; // GRID Y
   int TERRAIN = 0; // TERRAIN TYPE
   boolean hover = false;
+  boolean isESpawner=false;
+  boolean isTower =false;
 
   Tile(int X, int Y) {
     this.X = X;
@@ -44,8 +48,17 @@ class Tile {
       if (hover) {
       } else return; // don't draw empty tiles
     }
-    if (TERRAIN == 1) fill(200);
-    if (TERRAIN == 2) fill(255);
+    if (TERRAIN == 1) fill(50,205,50);
+    if (TERRAIN == 2) fill(88,59,39);
+    if(TERRAIN ==4) fill(33);
+    if(TERRAIN == 64){
+      fill(200,0,0);
+      isESpawner =true;
+    }
+    if(TERRAIN == 70){
+      fill(0,255,0);
+      isTower =true;
+    }
     if (hover) fill(255, 255, 0);
     
 

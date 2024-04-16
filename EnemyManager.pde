@@ -7,7 +7,7 @@ class EnemyManager{
   float MaxSpawnTimer;
   float spawnLeft;
   
-  EnemyManager(){
+  EnemyManager(){                           //isESpawner is the variable you need
    enemies = new ArrayList<Enemy>();
    SpawnTiles = new ArrayList<EnemySpawnTile>();
    totalRate=0;

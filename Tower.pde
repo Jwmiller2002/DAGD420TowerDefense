@@ -84,7 +84,7 @@ class Tower {
       fill(50, 255, 100);
       rect(x, y, 20, 20);
       ;
-    case 4: //Repair tower,  Limited Lifetime?
+    case 4: //SUNFLOWER/MONEY,  Limited Lifetime?
       firerate = 10;
       maxHealth =100;
       towerDecayRate =5;
