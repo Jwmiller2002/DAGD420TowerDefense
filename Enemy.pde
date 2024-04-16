@@ -14,15 +14,16 @@ class Enemy{
   Point gridT = new Point();
 
   
-  Enemy(float h,float d, float s, PVector p){
+  Enemy(float h,float d, float s, PVector p, Tile go){
     healthMax=h;
     health=healthMax;
     damage= d;
     speed = s;
     pos=p;
     findPath = false;
-    gridP = new Point();
-    gridT = new Point();
+    goalT = go;
+    gridP = new Point(int(pos.x),int(pos.y));
+    gridT = new Point(goalT.X,goalT.Y);
   }
   
   void update(){

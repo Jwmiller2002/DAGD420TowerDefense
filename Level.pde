@@ -3,6 +3,7 @@ class Level {
   int[][] level;
   Tile[][] tiles;
   boolean useDiagonals = false;
+  private boolean randomizeOnce =true;
 
   Level() {
     loadLevel(PCGMAP.LEVEL1);
@@ -50,6 +51,27 @@ class Level {
     int  ROWS = layout.length;
     int COL = layout[0].length;
     tiles = new Tile[ROWS][COL];
+
+    if (randomizeOnce) {                    //RANDOMIZER
+      for (int Y = 0; Y < ROWS; Y++) {
+        for (int X = 0; X < COL; X++) {
+          if (Y != 16 && X!=13) {
+            float randomPiece = random(0, 9);
+            int setPiece =0;
+            if (randomPiece >7) setPiece =2;
+            else if (randomPiece >4) setPiece =1;
+            else if (randomPiece >0) setPiece =0;
+
+            level[Y][X] = setPiece;
+          }
+          if (Y == 16 && X==13) {
+            level[Y][X] = 1000; //home base
+          }
+        }
+      }
+      randomizeOnce =false;
+    }
+
     //2. Instantiate all tiles, add to the tiles array.
     for (int Y = 0; Y < ROWS; Y++) {
       for (int X = 0; X < COL; X++) {
