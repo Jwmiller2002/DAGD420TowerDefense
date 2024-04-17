@@ -30,8 +30,8 @@ class TileProperty{
     spawner = loadImage("SpawnTile.png");
     goal = loadImage("GoalTile.png");
     
-    enemy = new Enemy(x, y);
-    tower = new Tower();
+    //enemy = new Enemy(x, y);
+    //tower = new Tower();
   }
   
   void setProperty(int p){
