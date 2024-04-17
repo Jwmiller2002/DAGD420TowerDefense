@@ -3,7 +3,7 @@ Title title;
 Options options;
 Help help;
 Game game;
-End end; //Game Over 
+End end; //Game Over
 
 boolean prevMouse;
 
@@ -16,60 +16,56 @@ boolean leftMouseHeld = false;
 boolean leftMouseClick = false;
 boolean leftMouseRelease = false;
 boolean prevLeftMouseClick = false;
+ 
 
-void setup(){
+void setup() {
   //fullScreen();
   init();
   size(1080, 1080);
   TileHelper.app = this;
-
   
+  towers = new ArrayList<Tower>();
 
   prevMillis=0;
   DeltaTime=0;
-
 }
 
-void init(){
+void init() {
   //Switch this code to choose the scene that first appears when booting the program up
   switchToTitle();
 }
 
-void draw(){
-  
-  /* This is the Scene manager code. 
+void draw() {
+
+  /* This is the Scene manager code.
    * It checks the update to see if any scenes switching should happen.
    * Then it draws the scene
    */
-   CalcDeltaTime();
-  
-  if(title != null){
+  CalcDeltaTime();
+
+  if (title != null) {
     title.update();
-    if(title != null){
+    if (title != null) {
       title.draw();
     }
-  }
-  else if(options != null){
+  } else if (options != null) {
     options.update();
-    if(options != null){
+    if (options != null) {
       options.draw();
     }
-  }
-  else if(help != null){
+  } else if (help != null) {
     help.update();
-    if(help != null){
+    if (help != null) {
       help.draw();
     }
-  }
-  else if(game != null){
+  } else if (game != null) {
     game.update();
-    if(game != null){
+    if (game != null) {
       game.draw();
     }
-  }
-  else if(end != null){
+  } else if (end != null) {
     end.update();
-    if(end != null){
+    if (end != null) {
       end.draw();
     }
   }
@@ -86,7 +82,7 @@ void mouseReleased() {
 }
 
 //SCENES
-void switchToTitle(){
+void switchToTitle() {
   title = new Title();
   options = null;
   help = null;
@@ -94,7 +90,7 @@ void switchToTitle(){
   end = null;
 }
 
-void switchToOptions(){
+void switchToOptions() {
   title = null;
   options = new Options();
   help = null;
@@ -102,7 +98,7 @@ void switchToOptions(){
   end = null;
 }
 
-void switchToHelp(){
+void switchToHelp() {
   title = null;
   options = null;
   help = new Help();
@@ -110,11 +106,11 @@ void switchToHelp(){
   end = null;
 }
 
-void closeApp(){
+void closeApp() {
   exit();
 }
 
-void switchToGame(){
+void switchToGame() {
   title = null;
   options = null;
   help = null;
@@ -122,7 +118,7 @@ void switchToGame(){
   end = null;
 }
 
-void switchToEnd(){
+void switchToEnd() {
   title = null;
   options = null;
   help = null;
@@ -131,7 +127,7 @@ void switchToEnd(){
 }
 
 
-void CalcDeltaTime(){
- DeltaTime=(millis()-prevMillis)/1000f;
- prevMillis = millis();
+void CalcDeltaTime() {
+  DeltaTime=(millis()-prevMillis)/1000f;
+  prevMillis = millis();
 }

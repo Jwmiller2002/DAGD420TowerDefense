@@ -58,7 +58,6 @@ class Level {
       for (int Y = 0; Y < ROWS; Y++) {
         for (int X = 0; X < COL; X++) {
           if (Y != 16 && X!=13) {
-            
             float randomPiece = random(0, 9);
             int setPiece =0;
             if (randomPiece >8 && Y<7 && X<5 || randomPiece >8 && Y>28 && X<5 || randomPiece >8 && Y<7 && X>20 || randomPiece >8 && Y>28 && X>20) setPiece =64; //ENEMY SPAWNER PLACEMENT

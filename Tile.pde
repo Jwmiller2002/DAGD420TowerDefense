@@ -44,7 +44,8 @@ class Tile {
   }
   // DRAW THIS TILE:
   void draw() {
-    if (TERRAIN == 0) {
+    if (TERRAIN == 1000) fill(73);
+    if (TERRAIN == 0) { //Main Path
 
       if (hover) {
       } else return; // don't draw empty tiles
@@ -88,7 +89,7 @@ class Tile {
     return p;
   }
   boolean isPassable() {
-    return (TERRAIN != 2);
+    return (TERRAIN != 1000);
   }
 
   ///////////////////////////////////////////////////

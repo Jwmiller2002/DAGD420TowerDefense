@@ -32,9 +32,9 @@ class Tower {
 
 
 
-    Tower(float pointOnGrid, int type) {
-    x= pointOnGrid;
-    y = pointOnGrid;
+    Tower(float pointOnGridX,float pointOnGridY, int type) {
+    x= pointOnGridX;
+    y = pointOnGridY;
     towerType = type;
     enemies = new ArrayList<Enemy>();
   }
@@ -50,7 +50,7 @@ class Tower {
       bulletSpeed =10;
 
       fill(50, 255, 100);
-      rect(x, y, 20, 20);
+      rect(x, y, 32, 32);
       ;
     case 1: //Support Tower
       firerate = 6;
@@ -62,7 +62,7 @@ class Tower {
       bulletSpeed =10;
 
       fill(50, 255, 100);
-      rect(x, y, 20, 20);
+      rect(x, y, 32,32);
       ;
     case 2: // Oil/slow enemy tower
       firerate =1;
@@ -73,8 +73,7 @@ class Tower {
       bulletSpeed =5;
 
       fill(50, 255, 100);
-      rect(x, y, 20, 20);
-      ;
+      rect(x, y,32,32);
     case 3: // electric/aoe tower
       firerate = 4;
       maxHealth =100;
@@ -83,7 +82,7 @@ class Tower {
       energyCost = 5;
 
       fill(50, 255, 100);
-      rect(x, y, 20, 20);
+      rect(x, y,32,32);
       ;
     case 4: //SUNFLOWER/MONEY,  Limited Lifetime?
       firerate = 10;
@@ -94,7 +93,7 @@ class Tower {
       supportTower = true;
 
       fill(50, 255, 100);
-      rect(x, y, 20, 20);
+      rect(x, y, 32,32);
       ;
 
       // Code that works for all towers(checking health shooting ect.)

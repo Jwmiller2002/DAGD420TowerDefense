@@ -24,14 +24,14 @@ class Title {
     sharedW = 200;
     sharedH = 100;
 
-    exitX = 25; 
-    exitY = 25; 
+    exitX = 25;
+    exitY = 25;
     exitW = 50;
     exitH = 50;
 
     gameX = width/2;
     gameY = height/4;
-    gameW = sharedW; 
+    gameW = sharedW;
     gameH = sharedH;
 
     optionsX = width/2;
@@ -160,9 +160,9 @@ class Title {
   }
 
   boolean mouseOverButton(AABB other) {
-    return mouseX > other.x && 
-      mouseX < other.x+other.w && 
-      mouseY > other.y && 
+    return mouseX > other.x &&
+      mouseX < other.x+other.w &&
+      mouseY > other.y &&
       mouseY < other.y+other.h;
   }
 
@@ -324,9 +324,9 @@ class Options {
   }
 
   boolean mouseOverButton(AABB other) {
-    return mouseX > other.x && 
-      mouseX < other.x+other.w && 
-      mouseY > other.y && 
+    return mouseX > other.x &&
+      mouseX < other.x+other.w &&
+      mouseY > other.y &&
       mouseY < other.y+other.h;
   }
 
@@ -551,9 +551,9 @@ class Help {
   }
 
   boolean mouseOverButton(AABB other) {
-    return mouseX > other.x && 
-      mouseX < other.x+other.w && 
-      mouseY > other.y && 
+    return mouseX > other.x &&
+      mouseX < other.x+other.w &&
+      mouseY > other.y &&
       mouseY < other.y+other.h;
   }
 
@@ -577,6 +577,7 @@ class Help {
 class Game {
 
   Level level;
+  
   Pathfinder pathfinder;
   float ram = 20;
   float ramMax = 20;
@@ -588,7 +589,7 @@ class Game {
   Game() {
     pathfinder = new Pathfinder();
     level = new Level();
-    towers = new ArrayList<Tower>();
+    
   }
 
   void update() {
@@ -597,19 +598,23 @@ class Game {
   void draw() {
     background(128);
     level.draw();
+    for(Tower tower : towers){
+     tower.draw(); 
+    }
 
     //Shop
     shop();
     button(825, 100, 75, 75, "BASIC");
     button(975, 100, 75, 75, "SUPPORT");
     button(825, 200, 75, 75, "ELECTRIC");
-    button(975, 200, 75, 75, "REPAIR");
+    button(975, 200, 75, 75, "POWER");
     //UI
     UI();
   }
 
   void button(float x, float y, float w, float h, String type) {
     boolean isHovered = false;
+    boolean wasHeld =false;
     //UPDATE
     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
       isHovered = true;
@@ -626,18 +631,23 @@ class Game {
       if (type == "BASIC") {
         if (energy >= 10) {
           energy -=10;
+         
+          towers.add(new Tower (mouseX, mouseY, 0));
         }
       } else if (type == "SUPPORT") {
         if (energy >= 10) {
           energy -=10;
+          towers.add(new Tower(mouseX, mouseY, 1));
         }
       } else if (type == "ELECTRIC") {
         if (energy >= 10) {
           energy -=10;
+          towers.add(new Tower(mouseX, mouseY, 2));
         }
       } else if (type == "ELECTRIC") {
         if (energy >= 10) {
           energy -=10;
+          towers.add(new Tower(mouseX, mouseY, 3));
         }
       }
     }
@@ -657,6 +667,7 @@ class Game {
       strokeWeight(3);
       stroke(0);
       rect(mouseX, mouseY, 29, 29, 3);
+      wasHeld =true;
     }
   }
 
