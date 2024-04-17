@@ -605,7 +605,7 @@ class Game {
     button(825, 200, 75, 75, "ELECTRIC");
     button(975, 200, 75, 75, "REPAIR");
     //UI
-    UI(energy, ram, ramMax);
+    UI();
   }
 
   void button(float x, float y, float w, float h, String type) {
@@ -623,6 +623,23 @@ class Game {
     }
     if (leftMouseRelease && isHeld == true) {
       isHeld = false;
+      if (type == "BASIC") {
+        if (energy >= 10) {
+          energy -=10;
+        }
+      } else if (type == "SUPPORT") {
+        if (energy >= 10) {
+          energy -=10;
+        }
+      } else if (type == "ELECTRIC") {
+        if (energy >= 10) {
+          energy -=10;
+        }
+      } else if (type == "ELECTRIC") {
+        if (energy >= 10) {
+          energy -=10;
+        }
+      }
     }
     //DRAW
     if (!isHovered) fill(0);
@@ -642,34 +659,34 @@ class Game {
       rect(mouseX, mouseY, 29, 29, 3);
     }
   }
-}
 
-void shop() {
-  fill(80);
-  rectMode(CORNER);
-  rect(800, 0, 280, 1080);
-  fill(0);
-  textAlign(CENTER, CENTER);
-  text("TOWERS", 940, 50);
-  text("UPGRADES", 940, 500);
-}
+  void shop() {
+    fill(80);
+    rectMode(CORNER);
+    rect(800, 0, 280, 1080);
+    fill(0);
+    textAlign(CENTER, CENTER);
+    text("TOWERS", 940, 50);
+    text("UPGRADES", 940, 500);
+  }
 
-void UI(Float energy, float ram, float ramMax) {
-  float barPercent = (ram/ramMax) * 150;
-  fill(80);
-  rectMode(CORNER);
-  rect(0, 0, 200, 100);
-  fill(255, 255, 0);
-  textSize(20);
-  textAlign(LEFT, CENTER);
-  text("ENERGY: " + round(energy), 25, 25);
-  rectMode(CORNER);
-  strokeWeight(3);
-  stroke(0);
-  fill(0, 0, 0, 0);
-  rect(25, 50, 150, 20);
-  fill(5, 217, 255);
-  rect(25, 50, barPercent, 20);
+  void UI() {
+    float barPercent = (ram/ramMax) * 150;
+    fill(80);
+    rectMode(CORNER);
+    rect(0, 0, 200, 100);
+    fill(255, 255, 0);
+    textSize(20);
+    textAlign(LEFT, CENTER);
+    text("ENERGY: " + round(energy), 25, 25);
+    rectMode(CORNER);
+    strokeWeight(3);
+    stroke(0);
+    fill(0, 0, 0, 0);
+    rect(25, 50, 150, 20);
+    fill(5, 217, 255);
+    rect(25, 50, barPercent, 20);
+  }
 }
 
 //END CLASS---------------------------------------------------------
