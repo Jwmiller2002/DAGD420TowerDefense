@@ -7,13 +7,14 @@ class EnemyManager{
   float MaxSpawnTimer;
   float spawnLeft;
   
-  EnemyManager(){
+  EnemyManager(){                           //isESpawner is the variable you need
    enemies = new ArrayList<Enemy>();
    SpawnTiles = new ArrayList<EnemySpawnTile>();
    totalRate=0;
    spawnTimer=0;
    spawnLeft=0;
    MaxSpawnTimer=1;
+   
   }
   
   
@@ -48,7 +49,7 @@ class EnemyManager{
     
     for(int i = 0; i < SpawnTiles.size();i++){
       if(random(0,totalRate)<SpawnTiles.get(i).rate){
-        Enemy e = new Enemy(50,5,7,new PVector(SpawnTiles.get(i).X,SpawnTiles.get(i).Y));
+        Enemy e = new Enemy(50,5,7,new PVector(SpawnTiles.get(i).X,SpawnTiles.get(i).Y), game.level.tiles[6][6]);
         enemies.add(e);
         i = SpawnTiles.size()+1;
       }

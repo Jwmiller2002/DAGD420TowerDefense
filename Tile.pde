@@ -7,6 +7,8 @@ Level level;
   final static int H = 32;
   final static int halfW = W / 2;
   final static int halfH = H / 2;
+  
+  public boolean isESpawner =false;
 
   static PVector gridToPixel(Point p) {
     return gridToPixel(p.x, p.y);
@@ -35,6 +37,10 @@ class Tile {
   
   TileProperty property;
   
+  boolean isESpawner=false;
+  boolean isTower =false;
+  public boolean TowerInTile =false;
+
   Tile(int X, int Y) {
     this.X = X;
     this.Y = Y;
@@ -43,11 +49,13 @@ class Tile {
   }
   // DRAW THIS TILE:
   void draw() {
-    if (TERRAIN == 0) {
+    if (TERRAIN == 1000) fill(73);
+    if (TERRAIN == 0) { //Main Path
 
       if (hover) {
       } else return; // don't draw empty tiles
     }
+
     /*if (TERRAIN == 1) fill(200);
     *if (TERRAIN == 2) fill(255);
     *if (hover) fill(255, 255, 0);
@@ -55,6 +63,40 @@ class Tile {
     if(TERRAIN == 1){
       property.setProperty(10);
     }
+
+    if (TERRAIN == 1) fill(50,205,50);
+    if (TERRAIN == 2) fill(88,59,39);
+    if(TERRAIN ==4) fill(33);
+    if(TERRAIN == 64){
+      fill(200,0,0);
+      isESpawner =true;
+    }
+    if(TERRAIN == 70){ //TOWER SPOT
+      fill(0,255,0);
+      isTower =true;
+    }
+    if(TERRAIN == 71){//FirstTower
+      fill(0,200,0);
+      isTower =true;
+      
+       println("TOWER1");
+    }
+    if(TERRAIN == 72){//SecondTower
+      fill(10,200,0);
+      isTower =true;
+      println("TOWER2");
+    }
+    if(TERRAIN == 73){//thirdTower
+      fill(0,255,30);
+      isTower =true;
+       println("TOWER3");
+    }
+    if(TERRAIN == 74){//FourthTower
+      fill(10,255,10);
+      isTower =true;
+       println("TOWER3");
+    }
+    if (hover) fill(255, 255, 0);
     
     PVector p = TileHelper.gridToPixel(X, Y);
     rect(p.x, p.y, TileHelper.W, TileHelper.H);
@@ -69,7 +111,7 @@ class Tile {
     return p;
   }
   boolean isPassable() {
-    return (TERRAIN != 2);
+    return (TERRAIN != 1000);
   }
 
   ///////////////////////////////////////////////////

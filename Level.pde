@@ -2,6 +2,7 @@ class Level {
 
   int[][] level;
   Tile[][] tiles;
+  EnemySpawnTile [][] enemySpawnTile;
   boolean useDiagonals = false;
   private boolean randomizeOnce =true;
 
@@ -51,16 +52,18 @@ class Level {
     int  ROWS = layout.length;
     int COL = layout[0].length;
     tiles = new Tile[ROWS][COL];
-
+    
+    
     if (randomizeOnce) {                    //RANDOMIZER
       for (int Y = 0; Y < ROWS; Y++) {
         for (int X = 0; X < COL; X++) {
           if (Y != 16 && X!=13) {
             float randomPiece = random(0, 9);
             int setPiece =0;
-            if (randomPiece >7) setPiece =2;
-            else if (randomPiece >4) setPiece =1;
-            else if (randomPiece >0) setPiece =0;
+            if (randomPiece >8 && Y<7 && X<5 || randomPiece >8 && Y>28 && X<5 || randomPiece >8 && Y<7 && X>20 || randomPiece >8 && Y>28 && X>20) setPiece =64; //ENEMY SPAWNER PLACEMENT
+            else if (randomPiece >6) setPiece =2;
+            else if (randomPiece >3 && Y<26 && Y>7 && X<20 && X>5) setPiece =70; //TOWERSPOT
+            else if (randomPiece >0) setPiece =1;
 
             level[Y][X] = setPiece;
           }
@@ -78,6 +81,7 @@ class Level {
         Tile tile = new Tile(X, Y);
         tile.TERRAIN = layout[Y][X];
         tiles[Y][X] = tile;
+        
       }
     }
     //3. Add all neighbors to each tile. (this varies with grid type: square / type; AND this varies with whether or not we allow diagonal movement)

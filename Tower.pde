@@ -14,9 +14,10 @@ class Tower {
   private float decayDelay=10;
   public float towerCost=10;
   public boolean supportBuff =false;
+  private float EnergyChargeCooldown =2;
 
   private float x, y =500;
-  private float enemyX,enemyY;
+  private float enemyX, enemyY;
 
   private float ramCost;
   private float energyCost;
@@ -27,13 +28,14 @@ class Tower {
   public ArrayList<Enemy> enemies;
   public ArrayList<TowerBullet> bullets;
 
+
   public
 
 
 
-    Tower(float pointOnGrid, int type) {
-    x= pointOnGrid;
-    y = pointOnGrid;
+    Tower(float pointOnGridX, float pointOnGridY, int type) {
+    x= pointOnGridX;
+    y = pointOnGridY;
     towerType = type;
     enemies = new ArrayList<Enemy>();
   }
@@ -48,8 +50,7 @@ class Tower {
       energyCost = 5;
       bulletSpeed =10;
 
-      fill(50, 255, 100);
-      rect(x, y, 20, 20);
+     
       ;
     case 1: //Support Tower
       firerate = 6;
@@ -60,8 +61,7 @@ class Tower {
       supportTower =true;
       bulletSpeed =10;
 
-      fill(50, 255, 100);
-      rect(x, y, 20, 20);
+      
       ;
     case 2: // Oil/slow enemy tower
       firerate =1;
@@ -71,9 +71,7 @@ class Tower {
       energyCost = 5;
       bulletSpeed =5;
 
-      fill(50, 255, 100);
-      rect(x, y, 20, 20);
-      ;
+      
     case 3: // electric/aoe tower
       firerate = 4;
       maxHealth =100;
@@ -81,10 +79,9 @@ class Tower {
       ramCost = 2;
       energyCost = 5;
 
-      fill(50, 255, 100);
-      rect(x, y, 20, 20);
+      
       ;
-    case 4: //Repair tower,  Limited Lifetime?
+    case 4: //SUNFLOWER/MONEY,  Limited Lifetime?
       firerate = 10;
       maxHealth =100;
       towerDecayRate =5;
@@ -92,8 +89,7 @@ class Tower {
       energyCost = 5;
       supportTower = true;
 
-      fill(50, 255, 100);
-      rect(x, y, 20, 20);
+      
       ;
 
       // Code that works for all towers(checking health shooting ect.)
