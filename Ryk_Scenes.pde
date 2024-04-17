@@ -608,6 +608,9 @@ class Game {
       else energyChargeTimer -=1*DeltaTime;
       println(energyChargeTimer);
     }
+    for(int i =0;i<towers.size()-1;i++){
+     if(towers.get(i).isDead) towers.remove(i);
+    }
 
 
 
