@@ -49,9 +49,9 @@ class TileProperty{
       //Tower.Ability *= 1.15
       //Enemy.Ability *= 1.15
       
-      tower.firerate *= 1.2;
+      /*tower.firerate *= 1.2;
       enemy.speed *= 1.2;
-      
+      */
       image(overClock, x, y);
       
     } else if (p == 1){
@@ -61,7 +61,7 @@ class TileProperty{
       //Enemy.movement *= 0.8
       //Tower.dead deals 'c' Pixel area 'b' damage
       
-      enemy.speed *= 0.8;
+      //enemy.speed *= 0.8;
       
       image(oil, x, y);
       
@@ -69,8 +69,8 @@ class TileProperty{
       //Deals 'b' damage per tick on tile to enemies and towers
       //
       
-      enemy.health -= 0.02 * enemy.healthMax;
-      tower.health -= 0.02 * tower.maxHealth;
+      //enemy.health -= 0.02 * enemy.healthMax;
+      //tower.health -= 0.02 * tower.maxHealth;
       
       image(electric, x, y);
       
@@ -82,10 +82,10 @@ class TileProperty{
       //tower.attackspeed *= .9
       //enemy health += enemy.Maxhelath * 1.2
       
-      tower.health += tower.maxHealth * 1.1;
-      tower.firerate *= 0.9;
+      //tower.health += tower.maxHealth * 1.1;
+      //tower.firerate *= 0.9;
       
-      enemy.health += enemy.healthMax;
+      //enemy.health += enemy.healthMax;
       
       image(coolant, x, y);
       

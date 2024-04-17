@@ -52,7 +52,7 @@ class Title {
   }
 
   void draw() {
-    background(128);
+    background(0, 64, 0);
     backDrop();
     buttons();
   }
@@ -60,7 +60,7 @@ class Title {
   void buttons() {
 
     textSize(40);
-    fill(0);
+    fill(255);
     text("Title of Game Here", width/2, 75);
 
     rectMode(CORNER);
