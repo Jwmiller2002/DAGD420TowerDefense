@@ -582,6 +582,7 @@ class Game {
   float ram = 20;
   float ramMax = 20;
   float energy = 15;
+  float energyChargeTimer =2;
   boolean isHeld;
 
 
@@ -600,6 +601,12 @@ class Game {
     level.draw();
     for (Tower tower : towers) {
       tower.draw();
+      if (tower.towerType ==4 && energyChargeTimer <=0) {
+        energy +=1;
+        energyChargeTimer =2;
+      }
+      else energyChargeTimer -=1*DeltaTime;
+      println(energyChargeTimer);
     }
 
 
@@ -646,7 +653,7 @@ class Game {
           Tile tile = level.getTile(g);
           if (tile.TERRAIN ==70) {
             energy -=10;
-            towers.add(new Tower (mouseX-16, mouseY-16, 0));
+            towers.add(new Tower (mouseX-16, mouseY-16, 1));
             tile.TERRAIN = 72;
           }
         }
@@ -655,19 +662,18 @@ class Game {
           Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
           Tile tile = level.getTile(g);
           if (tile.TERRAIN ==70) {
-            energy -=10;
-            towers.add(new Tower (mouseX-16, mouseY-16, 0));
+            energy -=1;
+            towers.add(new Tower (tile.X-16, tile.Y-16, 2));
             tile.TERRAIN = 73;
-            
           }
         }
-      } else if (type == "ELECTRIC") {
+      } else if (type == "POWER") {
         if (energy >= 10) {
           Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
           Tile tile = level.getTile(g);
           if (tile.TERRAIN ==70) {
             energy -=10;
-            towers.add(new Tower (mouseX-16, mouseY-16, 0));
+            towers.add(new Tower (mouseX-16, mouseY-16, 4));
             tile.TERRAIN = 74;
           }
         }

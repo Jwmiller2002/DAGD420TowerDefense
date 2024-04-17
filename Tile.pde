@@ -57,28 +57,28 @@ class Tile {
       fill(200,0,0);
       isESpawner =true;
     }
-    if(TERRAIN == 70){ //firstTower
+    if(TERRAIN == 70){ //TOWER SPOT
       fill(0,255,0);
       isTower =true;
     }
-    if(TERRAIN == 71){//SecondTower
+    if(TERRAIN == 71){//FirstTower
       fill(0,0,255);
       isTower =true;
       
        println("TOWER1");
     }
     if(TERRAIN == 72){//SecondTower
-      fill(0,255,0);
+      fill(100,255,0);
       isTower =true;
       println("TOWER2");
     }
     if(TERRAIN == 73){//thirdTower
-      fill(0,255,0);
+      fill(0,255,100);
       isTower =true;
        println("TOWER3");
     }
     if(TERRAIN == 74){//FourthTower
-      fill(0,255,0);
+      fill(50,255,0);
       isTower =true;
        println("TOWER3");
     }

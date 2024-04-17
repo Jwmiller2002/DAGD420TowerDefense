@@ -38,9 +38,12 @@ class TowerBullet {
     e.supportBuff =true;
     } else if (towerType ==2) {//slow
     } else if (towerType ==3) {//AOE
-    } else if (towerType ==4) {//repair
-    Tower e = towers.get(target);
-    e.health +=20;
-    }
+    } 
   }
 }
+
+
+/*else if (towerType ==4) {//repair
+    Tower e = towers.get(target);
+    e.health +=20;
+    }*/

@@ -14,6 +14,7 @@ class Tower {
   private float decayDelay=10;
   public float towerCost=10;
   public boolean supportBuff =false;
+  private float EnergyChargeCooldown =2;
 
   private float x, y =500;
   private float enemyX, enemyY;
@@ -49,8 +50,7 @@ class Tower {
       energyCost = 5;
       bulletSpeed =10;
 
-      fill(50, 255, 100);
-      rect(x, y, 32, 32);
+     
       ;
     case 1: //Support Tower
       firerate = 6;
@@ -61,8 +61,7 @@ class Tower {
       supportTower =true;
       bulletSpeed =10;
 
-      fill(50, 255, 100);
-      rect(x, y, 32, 32);
+      
       ;
     case 2: // Oil/slow enemy tower
       firerate =1;
@@ -72,8 +71,7 @@ class Tower {
       energyCost = 5;
       bulletSpeed =5;
 
-      fill(50, 255, 100);
-      rect(x, y, 32, 32);
+      
     case 3: // electric/aoe tower
       firerate = 4;
       maxHealth =100;
@@ -81,8 +79,7 @@ class Tower {
       ramCost = 2;
       energyCost = 5;
 
-      fill(50, 255, 100);
-      rect(x, y, 32, 32);
+      
       ;
     case 4: //SUNFLOWER/MONEY,  Limited Lifetime?
       firerate = 10;
@@ -92,8 +89,7 @@ class Tower {
       energyCost = 5;
       supportTower = true;
 
-      fill(50, 255, 100);
-      rect(x, y, 32, 32);
+      
       ;
 
       // Code that works for all towers(checking health shooting ect.)
