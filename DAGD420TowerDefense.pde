@@ -14,6 +14,7 @@ float DeltaTime;
 //Inputs
 boolean leftMouseHeld = false;
 boolean leftMouseClick = false;
+boolean leftMouseRelease = false;
 boolean prevLeftMouseClick = false;
 
 void setup(){
@@ -73,6 +74,7 @@ void draw(){
     }
   }
   prevLeftMouseClick = leftMouseClick;
+  leftMouseRelease = false;
 }
 //INPUTS
 void mousePressed() {
@@ -80,6 +82,7 @@ void mousePressed() {
 }
 void mouseReleased() {
   leftMouseClick = false;
+  leftMouseRelease = true;
 }
 
 //SCENES

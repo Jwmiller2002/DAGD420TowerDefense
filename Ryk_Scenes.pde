@@ -580,7 +580,8 @@ class Game {
   Pathfinder pathfinder;
   float ram = 20;
   float ramMax = 20;
-  float energy;
+  float energy = 15;
+  boolean isHeld;
 
 
 
@@ -599,24 +600,26 @@ class Game {
 
     //Shop
     shop();
+    button(825, 100, 75, 75, "TEST");
     //UI
     UI(energy, ram, ramMax);
   }
 
   void button(float x, float y, float w, float h, String type) {
-    boolean isPressed = false;
     boolean isHovered = false;
     //UPDATE
-    isPressed = false;
     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
       isHovered = true;
     } else {
       isHovered = false;
     }
-    if (isHovered) {
-      if (leftMouseClick && !prevLeftMouseClick) {
-        isPressed = true;
+    if (isHovered || isHeld) {
+      if (leftMouseClick) {
+        isHeld = true;
       }
+    }
+    if (leftMouseRelease && isHeld == true) {
+      isHeld = false;
     }
     //DRAW
     if (!isHovered) fill(0);
@@ -626,8 +629,12 @@ class Game {
     rect(x, y, w, h, 3);
     fill(255);
     textAlign(CENTER, CENTER);
-    textSize(40);
+    textSize(15);
     text(type, x + (w/2), y + (h/2));
+    if (isHeld) {
+      rectMode(CENTER);
+      rect(mouseX, mouseY, w, h, 3);
+    }
   }
 }
 
@@ -653,11 +660,10 @@ void UI(Float energy, float ram, float ramMax) {
   rectMode(CORNER);
   strokeWeight(3);
   stroke(0);
-  fill(0,0,0, 0);
+  fill(0, 0, 0, 0);
   rect(25, 50, 150, 20);
   fill(5, 217, 255);
   rect(25, 50, barPercent, 20);
-  
 }
 
 //END CLASS---------------------------------------------------------
