@@ -36,6 +36,7 @@ class Tile {
   boolean hover = false;
   boolean isESpawner=false;
   boolean isTower =false;
+  public boolean TowerInTile =false;
 
   Tile(int X, int Y) {
     this.X = X;
@@ -55,7 +56,19 @@ class Tile {
       fill(200,0,0);
       isESpawner =true;
     }
-    if(TERRAIN == 70){
+    if(TERRAIN == 70){ //firstTower
+      fill(0,255,0);
+      isTower =true;
+    }
+    if(TERRAIN == 70){//SecondTower
+      fill(0,255,0);
+      isTower =true;
+    }
+    if(TERRAIN == 70){//thirdTower
+      fill(0,255,0);
+      isTower =true;
+    }
+    if(TERRAIN == 70){//FourthTower
       fill(0,255,0);
       isTower =true;
     }
