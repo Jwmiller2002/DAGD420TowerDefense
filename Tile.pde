@@ -61,17 +61,26 @@ class Tile {
       fill(0,255,0);
       isTower =true;
     }
-    if(TERRAIN == 70){//SecondTower
-      fill(0,255,0);
+    if(TERRAIN == 71){//SecondTower
+      fill(0,0,255);
       isTower =true;
+      
+       println("TOWER1");
     }
-    if(TERRAIN == 70){//thirdTower
+    if(TERRAIN == 72){//SecondTower
       fill(0,255,0);
       isTower =true;
+      println("TOWER2");
     }
-    if(TERRAIN == 70){//FourthTower
+    if(TERRAIN == 73){//thirdTower
       fill(0,255,0);
       isTower =true;
+       println("TOWER3");
+    }
+    if(TERRAIN == 74){//FourthTower
+      fill(0,255,0);
+      isTower =true;
+       println("TOWER3");
     }
     if (hover) fill(255, 255, 0);
     

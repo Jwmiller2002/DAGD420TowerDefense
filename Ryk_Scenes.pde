@@ -577,7 +577,7 @@ class Help {
 class Game {
 
   Level level;
-  
+
   Pathfinder pathfinder;
   float ram = 20;
   float ramMax = 20;
@@ -589,7 +589,6 @@ class Game {
   Game() {
     pathfinder = new Pathfinder();
     level = new Level();
-    
   }
 
   void update() {
@@ -597,10 +596,13 @@ class Game {
 
   void draw() {
     background(128);
+
     level.draw();
-    for(Tower tower : towers){
-     tower.draw(); 
+    for (Tower tower : towers) {
+      tower.draw();
     }
+
+
 
     //Shop
     shop();
@@ -630,24 +632,44 @@ class Game {
       isHeld = false;
       if (type == "BASIC") {
         if (energy >= 10) {
-          energy -=10;
-         
-          towers.add(new Tower (mouseX, mouseY, 0));
+          Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+          Tile tile = level.getTile(g);
+          if (tile.TERRAIN ==70) {
+            energy -=10;
+            towers.add(new Tower (mouseX-16, mouseY-16, 0));
+            tile.TERRAIN = 71;
+          }
         }
       } else if (type == "SUPPORT") {
         if (energy >= 10) {
-          energy -=10;
-          towers.add(new Tower(mouseX, mouseY, 1));
+          Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+          Tile tile = level.getTile(g);
+          if (tile.TERRAIN ==70) {
+            energy -=10;
+            towers.add(new Tower (mouseX-16, mouseY-16, 0));
+            tile.TERRAIN = 72;
+          }
         }
       } else if (type == "ELECTRIC") {
         if (energy >= 10) {
-          energy -=10;
-          towers.add(new Tower(mouseX, mouseY, 2));
+          Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+          Tile tile = level.getTile(g);
+          if (tile.TERRAIN ==70) {
+            energy -=10;
+            towers.add(new Tower (mouseX-16, mouseY-16, 0));
+            tile.TERRAIN = 73;
+            
+          }
         }
       } else if (type == "ELECTRIC") {
         if (energy >= 10) {
-          energy -=10;
-          towers.add(new Tower(mouseX, mouseY, 3));
+          Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+          Tile tile = level.getTile(g);
+          if (tile.TERRAIN ==70) {
+            energy -=10;
+            towers.add(new Tower (mouseX-16, mouseY-16, 0));
+            tile.TERRAIN = 74;
+          }
         }
       }
     }

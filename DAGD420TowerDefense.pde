@@ -23,7 +23,6 @@ void setup() {
   init();
   size(1080, 1080);
   TileHelper.app = this;
-  
   towers = new ArrayList<Tower>();
 
   prevMillis=0;
