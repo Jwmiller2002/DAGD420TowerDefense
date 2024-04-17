@@ -600,7 +600,10 @@ class Game {
 
     //Shop
     shop();
-    button(825, 100, 75, 75, "TEST");
+    button(825, 100, 75, 75, "BASIC");
+    button(975, 100, 75, 75, "SUPPORT");
+    button(825, 200, 75, 75, "ELECTRIC");
+    button(975, 200, 75, 75, "REPAIR");
     //UI
     UI(energy, ram, ramMax);
   }
@@ -624,8 +627,9 @@ class Game {
     //DRAW
     if (!isHovered) fill(0);
     else fill(50);
-    stroke(255);
+    stroke(0);
     strokeWeight(3);
+    rectMode(CORNER);
     rect(x, y, w, h, 3);
     fill(255);
     textAlign(CENTER, CENTER);
@@ -633,7 +637,9 @@ class Game {
     text(type, x + (w/2), y + (h/2));
     if (isHeld) {
       rectMode(CENTER);
-      rect(mouseX, mouseY, w, h, 3);
+      strokeWeight(3);
+      stroke(0);
+      rect(mouseX, mouseY, 29, 29, 3);
     }
   }
 }
