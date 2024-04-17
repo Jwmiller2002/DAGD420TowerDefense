@@ -11,7 +11,11 @@ ArrayList<Tower> towers;
 float prevMillis;
 float DeltaTime;
 
-
+//Inputs
+boolean leftMouseHeld = false;
+boolean leftMouseClick = false;
+boolean leftMouseRelease = false;
+boolean prevLeftMouseClick = false;
 
 void setup(){
   //fullScreen();
@@ -69,9 +73,19 @@ void draw(){
       end.draw();
     }
   }
-  
+  prevLeftMouseClick = leftMouseClick;
+  leftMouseRelease = false;
+}
+//INPUTS
+void mousePressed() {
+  leftMouseClick = true;
+}
+void mouseReleased() {
+  leftMouseClick = false;
+  leftMouseRelease = true;
 }
 
+//SCENES
 void switchToTitle(){
   title = new Title();
   options = null;
