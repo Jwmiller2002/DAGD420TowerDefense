@@ -61,7 +61,7 @@ class Title {
 
     textSize(40);
     fill(255);
-    text("Title of Game Here", width/2, 75);
+    text("Yeet's Tower Defense", width/2, 75);
 
     rectMode(CORNER);
     exitButton();
