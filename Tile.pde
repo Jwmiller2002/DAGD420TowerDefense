@@ -44,7 +44,8 @@ class Tile {
   }
   // DRAW THIS TILE:
   void draw() {
-    if (TERRAIN == 0) {
+    if (TERRAIN == 1000) fill(73);
+    if (TERRAIN == 0) { //Main Path
 
       if (hover) {
       } else return; // don't draw empty tiles
@@ -56,21 +57,30 @@ class Tile {
       fill(200,0,0);
       isESpawner =true;
     }
-    if(TERRAIN == 70){ //firstTower
+    if(TERRAIN == 70){ //TOWER SPOT
       fill(0,255,0);
       isTower =true;
     }
-    if(TERRAIN == 70){//SecondTower
-      fill(0,255,0);
+    if(TERRAIN == 71){//FirstTower
+      fill(0,200,0);
       isTower =true;
+      
+       println("TOWER1");
     }
-    if(TERRAIN == 70){//thirdTower
-      fill(0,255,0);
+    if(TERRAIN == 72){//SecondTower
+      fill(10,200,0);
       isTower =true;
+      println("TOWER2");
     }
-    if(TERRAIN == 70){//FourthTower
-      fill(0,255,0);
+    if(TERRAIN == 73){//thirdTower
+      fill(0,255,30);
       isTower =true;
+       println("TOWER3");
+    }
+    if(TERRAIN == 74){//FourthTower
+      fill(10,255,10);
+      isTower =true;
+       println("TOWER3");
     }
     if (hover) fill(255, 255, 0);
     
@@ -88,7 +98,7 @@ class Tile {
     return p;
   }
   boolean isPassable() {
-    return (TERRAIN != 2);
+    return (TERRAIN != 1000);
   }
 
   ///////////////////////////////////////////////////
