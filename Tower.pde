@@ -53,7 +53,7 @@ class Tower {
 
      
       ;
-    case 1: //Support Tower
+    case 1: //RAM TOWER
       firerate = 6;
       maxHealth =25;
       towerDecayRate =5;
@@ -64,7 +64,7 @@ class Tower {
 
       
       ;
-    case 2: // Oil/slow enemy tower
+    case 2: // Wall
       firerate =1;
       maxHealth =75;
       towerDecayRate =5;
@@ -73,7 +73,7 @@ class Tower {
       bulletSpeed =5;
 
       
-    case 3: // electric/aoe tower
+    case 3: // AOE tower
       firerate = 4;
       maxHealth =100;
       towerDecayRate =5;
