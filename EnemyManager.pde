@@ -11,8 +11,8 @@ class EnemyManager{
    enemies = new ArrayList<Enemy>();
    SpawnTiles = new ArrayList<Tile>();
    totalRate=0;
-   spawnTimer=0;
-   spawnLeft=0;
+   spawnTimer=1;
+   spawnLeft=15;
    MaxSpawnTimer=1;
    for (int Y = 0; Y < game.level.tiles.length; Y++) {
       for (int X = 0; X < game.level.tiles[Y].length; X++) {
@@ -40,6 +40,12 @@ class EnemyManager{
      }
     }
     
+  }
+  
+  void draw(){
+    for(int i=0; i < enemies.size();i++){
+     enemies.get(i).update();
+    }
   }
   
   
