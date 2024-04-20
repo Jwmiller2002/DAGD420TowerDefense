@@ -609,7 +609,12 @@ class Game {
       println(energyChargeTimer);
     }
     for (int i =0; i<towers.size()-1; i++) {
-      if (towers.get(i).isDead) towers.remove(i);
+      if (towers.get(i).isDead) {
+        Point g = TileHelper.pixelToGrid(new PVector(towers.get(i).x, towers.get(i).y));
+        Tile tile = level.getTile(g);
+        tile.TERRAIN =70;
+        towers.remove(i);
+      }
     }
 
 

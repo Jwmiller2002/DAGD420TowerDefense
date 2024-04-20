@@ -17,7 +17,7 @@ class Tower {
   
   private float EnergyChargeCooldown =2;
 
-  private float x, y =500;
+  public float x, y;
   private float enemyX, enemyY;
 
   private float ramCost;
@@ -66,7 +66,7 @@ class Tower {
       ;
     case 2: // Wall
       firerate =1;
-      maxHealth =75;
+      maxHealth =200;
       towerDecayRate =5;
       ramCost = 2;
       energyCost = 5;
@@ -97,7 +97,7 @@ class Tower {
 
       if (doOnce) health = maxHealth;
 
-      takeDamage();
+      
       if (!foundEnemy) foundEnemy = chooseEnemy();
 
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
@@ -122,12 +122,8 @@ class Tower {
 
     //tower shooting and supoort
   }
-  private void takeDamage() { //checkingDamage and decay damage/repairHealth
-    //health --;  //change to subtract damage from enemy attack number
-
-    if (decayDelay <=0) health--;
-    else decayDelay -= towerDecayRate;
-
+  public void takeDamage(float damage) { //checkingDamage and decay damage/repairHealth
+    health -=damage;
     if (health <=0) {
       isDead = true;
       foundEnemy =false;

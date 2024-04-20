@@ -1,17 +1,15 @@
 class TowerBullet {
 
-  EnemyManager eManager = new EnemyManager();
-
   private float x, y;
   public boolean isDead;
   private float towerType;
-  public ArrayList<Enemy> enemies;
+  
   private int target;
   private float bulletSpeed;
   private boolean hit=true;
   private float velocityX, velocityY =1;
   private float targetX, targetY;
-
+  private float  bulletSize =10;
 
   TowerBullet(float towerType, float towerX, float towerY, float targetX, float targetY, int enemyNum, float bulletSpeed) {
     this.x=towerX;
@@ -21,10 +19,14 @@ class TowerBullet {
     this.bulletSpeed = bulletSpeed;
     this.targetX=targetX;
     this.targetY=targetY;
+    
+    velocityX =x-targetX;
+    velocityY =y-targetY;
+    
   }
   void draw() {
     if (towerType ==3) rect(x, y, 20, 20);
-    else rect(x, y, 10, 10);
+    else rect(x, y, bulletSize, bulletSize);
 
     x+=velocityX * bulletSpeed * DeltaTime;
     y+=velocityY* bulletSpeed * DeltaTime;
@@ -35,12 +37,22 @@ class TowerBullet {
   }
   public void hitEnemy() {
     if (towerType ==0) {//normmattack
-      //damageEnemy
+      bulletSpeed =10;
+      float distance = sqrt(sq(x - targetX) + sq(y-targetY));
+      if (distance <=30) {
+        //e.takeDamage(20);
+      }
     } else if (towerType ==1) { //Support(damage/firespeed
+      bulletSpeed =10;
       Tower e = towers.get(target);
       e.supportBuffTimer =5;
-    } else if (towerType ==2) {//slow
     } else if (towerType ==3) {//AOE
+      bulletSize =30;
+      bulletSpeed =7;
+      float distance = sqrt(sq(x - targetX) + sq(y-targetY));
+      if (distance <=30) {
+        //e.takeDamage(20);
+      }
     }
   }
 }

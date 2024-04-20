@@ -61,23 +61,23 @@ class Tile {
       fill(0,255,0);
       isTower =true;
     }
-    if(TERRAIN == 71){//FirstTower
+    if(TERRAIN == 71){//BASICTOWER
       fill(0,200,0);
       isTower =true;
       
        println("TOWER1");
     }
-    if(TERRAIN == 72){//SecondTower
+    if(TERRAIN == 72){//RAM TOWER
       fill(10,200,0);
       isTower =true;
       println("TOWER2");
     }
-    if(TERRAIN == 73){//thirdTower
+    if(TERRAIN == 73){//Wall
       fill(0,255,30);
       isTower =true;
        println("TOWER3");
     }
-    if(TERRAIN == 74){//FourthTower
+    if(TERRAIN == 74){//POWER
       fill(10,255,10);
       isTower =true;
        println("TOWER3");
