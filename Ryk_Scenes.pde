@@ -597,6 +597,7 @@ class Game {
 
   void draw() {
     background(128);
+    println(mouseX + " " + mouseY);
 
     level.draw();
     for (Tower tower : towers) {
@@ -604,12 +605,11 @@ class Game {
       if (tower.towerType ==4 && energyChargeTimer <=0) {
         energy +=1;
         energyChargeTimer =2;
-      }
-      else energyChargeTimer -=1*DeltaTime;
+      } else energyChargeTimer -=1*DeltaTime;
       println(energyChargeTimer);
     }
-    for(int i =0;i<towers.size()-1;i++){
-     if(towers.get(i).isDead) towers.remove(i);
+    for (int i =0; i<towers.size()-1; i++) {
+      if (towers.get(i).isDead) towers.remove(i);
     }
 
 
@@ -641,7 +641,7 @@ class Game {
     if (leftMouseRelease && isHeld == true) {
       isHeld = false;
       if (type == "BASIC") {
-        if (energy >= 10) {
+        if (energy >= 10 && mouseX<800) {
           Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
           Tile tile = level.getTile(g);
           if (tile.TERRAIN ==70) {
@@ -651,7 +651,7 @@ class Game {
           }
         }
       } else if (type == "SUPPORT") {
-        if (energy >= 10) {
+        if (energy >= 10&& mouseX<800) {
           Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
           Tile tile = level.getTile(g);
           if (tile.TERRAIN ==70) {
@@ -661,7 +661,7 @@ class Game {
           }
         }
       } else if (type == "ELECTRIC") {
-        if (energy >= 10) {
+        if (energy >= 10&& mouseX<800) {
           Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
           Tile tile = level.getTile(g);
           if (tile.TERRAIN ==70) {
@@ -671,7 +671,7 @@ class Game {
           }
         }
       } else if (type == "POWER") {
-        if (energy >= 10) {
+        if (energy >= 10&& mouseX<800) {
           Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
           Tile tile = level.getTile(g);
           if (tile.TERRAIN ==70) {
