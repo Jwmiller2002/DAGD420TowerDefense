@@ -600,18 +600,35 @@ class Game {
     println(mouseX + " " + mouseY);
 
     level.draw();
-    for (Tower tower : towers) {
-      tower.draw();
-      if (tower.towerType ==4 && energyChargeTimer <=0) {
+
+    for (int i =0; i<towers.size()-1; i++) {
+      Tower t = towers.get(i);
+      t.draw();
+      if (t.towerType ==4 && energyChargeTimer <=0) { //Energy Tower
         energy +=1;
         energyChargeTimer =2;
       } else energyChargeTimer -=1*DeltaTime;
-      println(energyChargeTimer);
-    }
-    for (int i =0; i<towers.size()-1; i++) {
-      if (towers.get(i).isDead) {
-        Point g = TileHelper.pixelToGrid(new PVector(towers.get(i).x, towers.get(i).y));
+
+      if (t.towerType == 1) { //ram tower
+        if (t.ramIncreased ==false) { //ram increase
+          t.ramIncreased =true;
+          ramMax++;
+        }
+        if(ram > ramMax){ //OVER MAXIMUM
+          
+        }
+        else if(ram == ramMax){ //AT MAX
+          
+        }
+        else{ //BELOW MAX
+          
+        }
+      }
+
+      if (t.isDead) {                                          //DEATH
+        Point g = TileHelper.pixelToGrid(new PVector(t.x, t.y));
         Tile tile = level.getTile(g);
+        if (t.ramTower) ramMax--;
         tile.TERRAIN =70;
         towers.remove(i);
       }

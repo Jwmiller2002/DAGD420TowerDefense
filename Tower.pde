@@ -22,6 +22,8 @@ class Tower {
 
   private float ramCost;
   private float energyCost;
+  public boolean ramIncreased =false;
+  public boolean ramTower =false;
 
   public boolean isDead = false;
   private boolean foundEnemy =false;
@@ -61,6 +63,7 @@ class Tower {
       energyCost = 5;
       supportTower =true;
       bulletSpeed =10;
+      ramTower =true;
 
       
       ;
