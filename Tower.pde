@@ -13,7 +13,8 @@ class Tower {
   private float towerDecayRate =5;
   private float decayDelay=10;
   public float towerCost=10;
-  public boolean supportBuff =false;
+  public float supportBuffTimer =0;
+  
   private float EnergyChargeCooldown =2;
 
   private float x, y =500;
@@ -87,7 +88,7 @@ class Tower {
       towerDecayRate =5;
       ramCost = 2;
       energyCost = 5;
-      supportTower = true;
+     
 
       
       ;
@@ -102,10 +103,20 @@ class Tower {
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
         bullets.add(new TowerBullet(x, y, enemyX, enemyY, towerType, enemyToShoot, bulletSpeed));
         timeTilNextFire =firerate;
-      } else if (timeTilNextFire <=0 && supportTower) {
+      } 
+      
+      else if (timeTilNextFire <=0 && supportTower) { //SUPPORT TOWER
         helpNearTowers();
         timeTilNextFire =firerate;
-      } else timeTilNextFire -=1;//*dt;
+      } else timeTilNextFire -=1 *DeltaTime;//*dt;
+      
+      
+      if(supportBuffTimer >0){  //SUPPORT TOWER BUFF
+        timeTilNextFire -=1 * DeltaTime;
+        supportBuffTimer-= 1* DeltaTime;
+      }
+      
+      
     }
 
 

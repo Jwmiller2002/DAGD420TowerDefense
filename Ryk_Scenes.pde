@@ -646,7 +646,7 @@ class Game {
           Tile tile = level.getTile(g);
           if (tile.TERRAIN ==70) {
             energy -=10;
-            towers.add(new Tower (mouseX-16, mouseY-16, 0));
+            towers.add(new Tower (mouseX-16, mouseY-16, 4));
             tile.TERRAIN = 71;
           }
         }

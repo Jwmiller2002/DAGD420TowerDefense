@@ -38,7 +38,7 @@ class TowerBullet {
       //damageEnemy
     } else if (towerType ==1) { //Support(damage/firespeed
       Tower e = towers.get(target);
-      e.supportBuff =true;
+      e.supportBuffTimer =5;
     } else if (towerType ==2) {//slow
     } else if (towerType ==3) {//AOE
     }
