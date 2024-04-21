@@ -10,6 +10,9 @@ class Enemy{
   Tile nextTile;
   boolean findPath = false;
   
+  float attackTimer;
+  float attackCooldown;
+  
   Point gridP = new Point(); // current position
   Point gridT = new Point();
 
@@ -24,25 +27,43 @@ class Enemy{
     goalT = go;
     gridP = new Point(int(pos.x),int(pos.y));
     gridT = new Point(goalT.X,goalT.Y);
+    
+    attackCooldown=.5;
+    attackTimer=.5;
   }
   
   void update(){
+    if(attackTimer>0){
+     attackTimer-=DeltaTime; 
+    }
+    
     findPathAndSetNextStep();
     updateMove();
   }
   
   void draw(){
-    noStroke();
+    stroke(20);
+    strokeWeight(5);
     fill(230,30,30);
     ellipse(pos.x,pos.y,30,30);    
   }
   
-  void attack(){
+  void attack(Tile target){
+    attackTimer = attackCooldown;
+    
+    for(Tower t: towers){
+     if(t.x == target.X && t.y==target.Y){
+      //t.takedamage() //take damage currently does not deal a variable amount of damage 
+      t.health -=5;
+     }
+    }
     //might not be needed
+    
   }
   
   void Die(){
     // ArrayList.remove(self);
+    game.energy++;
   }
   
   void takeDamage(float d){
@@ -73,13 +94,14 @@ class Enemy{
     float snapThreshold = 1;
     PVector pixlT = game.level.getTileCenterAt(gridP);
     PVector diff = PVector.sub(pixlT, pos);
-    //if(nextTile.type == goal||nextTile.type == tower){
-    //attack thing 
-      
-   // }else{
+    if(nextTile.isTower ||nextTile.TowerInTile||nextTile.isESpawner){
+      if(attackTimer<=0){
+        attack(nextTile);
+      }
+    }else{
       pos.x += diff.x * .2;
       pos.y += diff.y * .2;
-    //}
+    }
     if (abs(diff.x) < snapThreshold) pos.x = pixlT.x;
     if (abs(diff.y) < snapThreshold) pos.y = pixlT.y;
 
