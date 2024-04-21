@@ -43,7 +43,7 @@ class Tower {
     enemies = new ArrayList<Enemy>();
   }
   void draw() {
-    println(health);
+    //println(health);
     switch(towerType) {
     case 0: //Basic Tower
       maxHealth =50;

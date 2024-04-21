@@ -311,7 +311,7 @@ class Options {
     }
     if (overMusic) {
       adjY += (sliderFunc(int (musicY)))-400;
-      //println(adjY);
+      ////println(adjY);
     }
     rect(musicX, musicY+adjY, musicW, musicH);
 
@@ -669,7 +669,7 @@ class Game {
 
   void draw() {
     background(128);
-    //println(mouseX + " " + mouseY);
+    ////println(mouseX + " " + mouseY);
 
     level.draw();
     //enemy draw
@@ -699,13 +699,7 @@ class Game {
       rectMode(CORNER);
     }
     
-    if(leftMouseClick && !prevLeftMouseClick){
-      Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
-      Tile tile = level.getTile(g);
-      if(tile.TERRAIN <70 && tile.TERRAIN <76){                          //PULL UP TOWER UPGRADE
-         
-      }
-    }
+   
     
   }
 
@@ -823,7 +817,7 @@ class Game {
     if (isHovered || isPowerHeld) {
       if (leftMouseClick) {
         isPowerHeld = true;
-        //println("PowerCLICK");
+        ////println("PowerCLICK");
       }
     }
     if (leftMouseRelease && isPowerHeld == true) { 
@@ -874,7 +868,7 @@ class Game {
     if (isHovered || isAOEHeld) {
       if (leftMouseClick) {
         isAOEHeld = true;
-        //println("PowerCLICK");
+        ////println("PowerCLICK");
       }
     }
     if (leftMouseRelease && isAOEHeld == true) { 
@@ -925,7 +919,7 @@ class Game {
     if (isHovered || isAOEHeld) {
       if (leftMouseClick) {
         isRAMHeld = true;
-        //println("PowerCLICK");
+        ////println("PowerCLICK");
       }
     }
     if (leftMouseRelease && isRAMHeld == true) { 
