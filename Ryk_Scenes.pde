@@ -408,11 +408,11 @@ class Help {
     textSize(40);
     text("How to play", width/2, 75);
     i += pageNumber(i);
-    text(helpPages[i], (width/5 + width*3/5 + width/20) + 15, mainY + 35);
-    text(helpPages.length, (width/5 + width*3/5 + width/20) + 60, mainY + 65);
+    text(helpPages[i], (width/5 + width*3/5 + width/12) + 15, mainY + 35);
+    text(helpPages.length, (width/5 + width*3/5 + width/12) + 60, mainY + 65);
 
     stroke(3);
-    line(width/5 + width*3/5 + width/20, mainY + sharedH, (width/5 + width*3/5 + width/20) + 75, mainY);
+    line(width/5 + width*3/5 + width/12, mainY + sharedH, (width/5 + width*3/5 + width/12) + 75, mainY);
     noStroke();
   }
 
