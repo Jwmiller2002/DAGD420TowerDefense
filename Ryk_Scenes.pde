@@ -582,7 +582,9 @@ class Game {
   float ram = 20;
   float ramMax = 20;
   float energy = 100;
-  float energyChargeTimer =2;
+  float energyChargeTimer =3;
+  float lackEnergyTimer = 0;
+  float lackRamTimer = 0;
   boolean isBasicHeld;
   boolean isSupportHeld;
   boolean isPowerHeld;
@@ -595,12 +597,14 @@ class Game {
   }
 
   void update() {
+    lackEnergyTimer -= DeltaTime;
+    lackRamTimer -= DeltaTime;
     for (int i =0; i<towers.size(); i++) {
       Tower t = towers.get(i);
       t.draw();
       if (t.towerType ==4 && energyChargeTimer <=0) { //Energy Tower
         energy +=1;
-        energyChargeTimer =2;
+        energyChargeTimer =3;
       } else {
         energyChargeTimer -= 1*DeltaTime;
       }
@@ -633,12 +637,28 @@ class Game {
     level.draw();
     //Shop
     shop();
-    basicButton(825, 100, 75, 75, "BASIC");
-    supportButton(975, 100, 75, 75, "WALL");
-    //button(825, 200, 75, 75, "ELECTRIC");
-    powerButton(975, 200, 75, 75, "POWER");
     //UI
     UI();
+    if (lackEnergyTimer > 0) {
+      fill(0);
+      rectMode(CENTER);
+      rect((width/2) - 130, 75, 400, 100,3);
+      textAlign(CENTER, CENTER);
+      fill(255, 255, 0);
+      textSize(30);
+      text("NOT ENOUGH ENERGY", (width/2) - 130, 75);
+      rectMode(CORNER);
+    }
+    if (lackRamTimer > 0) {
+      fill(0);
+      rectMode(CENTER);
+      rect((width/2) - 130, 75, 400, 100,3 );
+      textAlign(CENTER, CENTER);
+      fill(255, 255, 0);
+      textSize(30);
+      text("NOT ENOUGH RAM", (width/2) - 130, 75);
+      rectMode(CORNER);
+    }
   }
 
   void basicButton(float x, float y, float w, float h, String type) {
@@ -657,7 +677,7 @@ class Game {
     }
     if (leftMouseRelease && isBasicHeld == true) {
       isBasicHeld = false;
-      if (energy >= 10 && mouseX<800) {
+      if (energy >= 10 && mouseX<800 && ram >=4) {
         Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
         Tile tile = level.getTile(g);
         if (tile.TERRAIN ==70) {
@@ -666,6 +686,10 @@ class Game {
           tile.TERRAIN = 71;
           towers.add(new Tower (mouseX-16, mouseY-16, 0));
         }
+      } else if (energy < 10) {
+        lackEnergyTimer = .5;
+      } else if (ram < 4) {
+        lackRamTimer = .5;
       }
     }
 
@@ -704,7 +728,7 @@ class Game {
     }
     if (leftMouseRelease && isSupportHeld == true) {
       isSupportHeld = false;
-      if (energy >= 5 && mouseX<800) {
+      if (energy >= 5 && mouseX<800 && ram >= 1) {
         Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
         Tile tile = level.getTile(g);
         if (tile.TERRAIN ==70) {
@@ -713,6 +737,10 @@ class Game {
           tile.TERRAIN = 73;
           towers.add(new Tower (mouseX-16, mouseY-16, 2));
         }
+      } else if (energy < 5) {
+        lackEnergyTimer = .5;
+      } else if (ram < 1) {
+        lackRamTimer = .5;
       }
     }
 
@@ -752,7 +780,7 @@ class Game {
     }
     if (leftMouseRelease && isPowerHeld == true) { 
       isPowerHeld = false;
-      if (energy >= 15 && mouseX<800) {
+      if (energy >= 15 && mouseX<800 && ram >= 10) {
         Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
         Tile tile = level.getTile(g);
         if (tile.TERRAIN ==70) {
@@ -762,7 +790,9 @@ class Game {
           tile.TERRAIN = 74;
         }
       } else if (energy < 15) {
-        lackEnergy();
+        lackEnergyTimer = .5;
+      } else if (ram < 10) {
+        lackRamTimer = .5;
       }
     }
     //DRAW
@@ -790,9 +820,13 @@ class Game {
     rectMode(CORNER);
     rect(800, 0, 280, 1080);
     fill(0);
+    textSize(20);
     textAlign(CENTER, CENTER);
     text("TOWERS", 940, 50);
     text("UPGRADES", 940, 500);
+    basicButton(825, 100, 75, 75, "BASIC");
+    supportButton(975, 100, 75, 75, "WALL");
+    powerButton(975, 200, 75, 75, "POWER");
   }
 
   void UI() {
@@ -811,12 +845,6 @@ class Game {
     rect(25, 50, 150, 20);
     fill(5, 217, 255);
     rect(25, 50, barPercent, 20);
-  }
-
-  void lackEnergy() {
-    fill(0);
-    rectMode(CENTER);
-    rect(width/2, height/2, 200, 75);
   }
 }
 
