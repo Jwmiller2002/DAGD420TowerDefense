@@ -54,7 +54,7 @@ class Enemy{
     for(Tower t: towers){
      if(t.x == target.X && t.y==target.Y){
       //t.takedamage() //take damage currently does not deal a variable amount of damage 
-      t.health -=5;
+      t.health -=damage;
      }
     }
     //might not be needed
