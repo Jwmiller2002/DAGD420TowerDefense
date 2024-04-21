@@ -150,6 +150,9 @@ class Title {
     text((int) byteRand, randX, descendY);
     noFill();
     descendY++;
+    if(descendY > height){
+      descendY = 0;
+    }
   }
 
   void fillArray() {
