@@ -16,11 +16,13 @@ class EnemyManager{
    MaxSpawnTimer=1;
    for (int Y = 0; Y < game.level.tiles.length; Y++) {
       for (int X = 0; X < game.level.tiles[Y].length; X++) {
-        SpawnTiles.add(game.level.tiles[Y][X]);
+        if(game.level.tiles[Y][X].isESpawner){
+          SpawnTiles.add(game.level.tiles[Y][X]);
+        }
       }
     }
-   
-  }
+   println(SpawnTiles.size());
+  }//end constructor
   
   
   void update(){
