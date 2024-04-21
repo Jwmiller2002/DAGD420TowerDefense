@@ -427,7 +427,7 @@ class Help {
     text1W = width*3/5;
     text1H = sharedH;
 
-    text2X = text1X + text1W + width/20;
+    text2X = text1X + text1W + width/12;
     text2Y = text1Y;
     text2W = 75;
     text2H = sharedH;
