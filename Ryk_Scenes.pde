@@ -308,7 +308,7 @@ class Options {
     }
     if (overMusic) {
       adjY += (sliderFunc(int (musicY)))-400;
-      println(adjY);
+      //println(adjY);
     }
     rect(musicX, musicY+adjY, musicW, musicH);
 
@@ -581,9 +581,11 @@ class Game {
   Pathfinder pathfinder;
   float ram = 20;
   float ramMax = 20;
-  float energy = 15;
+  float energy = 100;
   float energyChargeTimer =2;
-  boolean isHeld;
+  boolean isBasicHeld;
+  boolean isSupportHeld;
+  boolean isPowerHeld;
 
 
 
@@ -593,35 +595,24 @@ class Game {
   }
 
   void update() {
-  }
-
-  void draw() {
-    background(128);
-    println(mouseX + " " + mouseY);
-
-    level.draw();
-
-    for (int i =0; i<towers.size()-1; i++) {
+    for (int i =0; i<towers.size(); i++) {
       Tower t = towers.get(i);
       t.draw();
       if (t.towerType ==4 && energyChargeTimer <=0) { //Energy Tower
         energy +=1;
         energyChargeTimer =2;
-      } else energyChargeTimer -=1*DeltaTime;
+      } else {
+        energyChargeTimer -= 1*DeltaTime;
+      }
 
       if (t.towerType == 1) { //ram tower
         if (t.ramIncreased ==false) { //ram increase
           t.ramIncreased =true;
           ramMax++;
         }
-        if(ram > ramMax){ //OVER MAXIMUM
-          
-        }
-        else if(ram == ramMax){ //AT MAX
-          
-        }
-        else{ //BELOW MAX
-          
+        if (ram > ramMax) { //OVER MAXIMUM
+        } else if (ram == ramMax) { //AT MAX
+        } else { //BELOW MAX
         }
       }
 
@@ -633,20 +624,24 @@ class Game {
         towers.remove(i);
       }
     }
+  }
 
+  void draw() {
+    background(128);
+    //println(mouseX + " " + mouseY);
 
-
+    level.draw();
     //Shop
     shop();
-    button(825, 100, 75, 75, "BASIC");
-    button(975, 100, 75, 75, "SUPPORT");
-    button(825, 200, 75, 75, "ELECTRIC");
-    button(975, 200, 75, 75, "POWER");
+    basicButton(825, 100, 75, 75, "BASIC");
+    supportButton(975, 100, 75, 75, "WALL");
+    //button(825, 200, 75, 75, "ELECTRIC");
+    powerButton(975, 200, 75, 75, "POWER");
     //UI
     UI();
   }
 
-  void button(float x, float y, float w, float h, String type) {
+  void basicButton(float x, float y, float w, float h, String type) {
     boolean isHovered = false;
     boolean wasHeld =false;
     //UPDATE
@@ -655,53 +650,119 @@ class Game {
     } else {
       isHovered = false;
     }
-    if (isHovered || isHeld) {
+    if (isHovered || isBasicHeld) {
       if (leftMouseClick) {
-        isHeld = true;
+        isBasicHeld = true;
       }
     }
-    if (leftMouseRelease && isHeld == true) {
-      isHeld = false;
-      if (type == "BASIC") {
-        if (energy >= 10 && mouseX<800) {
-          Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
-          Tile tile = level.getTile(g);
-          if (tile.TERRAIN ==70) {
-            energy -=10;
-            towers.add(new Tower (mouseX-16, mouseY-16, 4));
-            tile.TERRAIN = 71;
-          }
+    if (leftMouseRelease && isBasicHeld == true) {
+      isBasicHeld = false;
+      if (energy >= 10 && mouseX<800) {
+        Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+        Tile tile = level.getTile(g);
+        if (tile.TERRAIN ==70) {
+          energy -=10;
+          ram -=4;
+          tile.TERRAIN = 71;
+          towers.add(new Tower (mouseX-16, mouseY-16, 0));
         }
-      } else if (type == "SUPPORT") {
-        if (energy >= 10&& mouseX<800) {
-          Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
-          Tile tile = level.getTile(g);
-          if (tile.TERRAIN ==70) {
-            energy -=10;
-            towers.add(new Tower (mouseX-16, mouseY-16, 1));
-            tile.TERRAIN = 72;
-          }
+      }
+    }
+
+    //DRAW
+    if (!isHovered) fill(0);
+    else fill(50);
+    stroke(0);
+    strokeWeight(3);
+    rectMode(CORNER);
+    rect(x, y, w, h, 3);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(15);
+    text(type, x + (w/2), y + (h/2));
+    if (isBasicHeld) {
+      rectMode(CENTER);
+      strokeWeight(3);
+      stroke(0);
+      rect(mouseX, mouseY, 29, 29, 3);
+      wasHeld =true;
+    }
+  }
+  void supportButton(float x, float y, float w, float h, String type) {
+    boolean isHovered = false;
+    boolean wasHeld =false;
+    //UPDATE
+    if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
+      isHovered = true;
+    } else {
+      isHovered = false;
+    }
+    if (isHovered || isSupportHeld) {
+      if (leftMouseClick) {
+        isSupportHeld = true;
+      }
+    }
+    if (leftMouseRelease && isSupportHeld == true) {
+      isSupportHeld = false;
+      if (energy >= 5 && mouseX<800) {
+        Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+        Tile tile = level.getTile(g);
+        if (tile.TERRAIN ==70) {
+          energy -=5;
+          ram -=1;
+          tile.TERRAIN = 73;
+          towers.add(new Tower (mouseX-16, mouseY-16, 2));
         }
-      } else if (type == "ELECTRIC") {
-        if (energy >= 10&& mouseX<800) {
-          Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
-          Tile tile = level.getTile(g);
-          if (tile.TERRAIN ==70) {
-            energy -=1;
-            towers.add(new Tower (tile.X-16, tile.Y-16, 2));
-            tile.TERRAIN = 73;
-          }
+      }
+    }
+
+    //DRAW
+    if (!isHovered) fill(0);
+    else fill(50);
+    stroke(0);
+    strokeWeight(3);
+    rectMode(CORNER);
+    rect(x, y, w, h, 3);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(15);
+    text(type, x + (w/2), y + (h/2));
+    if (isSupportHeld) {
+      rectMode(CENTER);
+      strokeWeight(3);
+      stroke(0);
+      rect(mouseX, mouseY, 29, 29, 3);
+      wasHeld =true;
+    }
+  }
+  void powerButton(float x, float y, float w, float h, String type) {
+    boolean isHovered = false;
+    boolean wasHeld =false;
+    //UPDATE
+    if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
+      isHovered = true;
+    } else {
+      isHovered = false;
+    }
+    if (isHovered || isPowerHeld) {
+      if (leftMouseClick) {
+        isPowerHeld = true;
+        //println("PowerCLICK");
+      }
+    }
+    if (leftMouseRelease && isPowerHeld == true) { 
+      isPowerHeld = false;
+      if (energy >= 15 && mouseX<800) {
+        Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+        Tile tile = level.getTile(g);
+        if (tile.TERRAIN ==70) {
+          energy -=15;
+          ram -=10;
+          towers.add(new Tower (mouseX-16, mouseY-16, 4));
+          tile.TERRAIN = 74;
         }
-      } else if (type == "POWER") {
-        if (energy >= 10&& mouseX<800) {
-          Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
-          Tile tile = level.getTile(g);
-          if (tile.TERRAIN ==70) {
-            energy -=10;
-            towers.add(new Tower (mouseX-16, mouseY-16, 4));
-            tile.TERRAIN = 74;
-          }
-        }
+      } else if (energy < 15) {
+        lackEnergy();
       }
     }
     //DRAW
@@ -715,7 +776,7 @@ class Game {
     textAlign(CENTER, CENTER);
     textSize(15);
     text(type, x + (w/2), y + (h/2));
-    if (isHeld) {
+    if (isPowerHeld) {
       rectMode(CENTER);
       strokeWeight(3);
       stroke(0);
@@ -750,6 +811,12 @@ class Game {
     rect(25, 50, 150, 20);
     fill(5, 217, 255);
     rect(25, 50, barPercent, 20);
+  }
+
+  void lackEnergy() {
+    fill(0);
+    rectMode(CENTER);
+    rect(width/2, height/2, 200, 75);
   }
 }
 

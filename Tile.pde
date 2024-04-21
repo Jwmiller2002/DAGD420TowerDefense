@@ -62,25 +62,25 @@ class Tile {
       isTower =true;
     }
     if(TERRAIN == 71){//BASICTOWER
-      fill(0,200,0);
+      fill(0,200,255);
       isTower =true;
       
-       println("TOWER1");
+       //println("TOWER1");
     }
     if(TERRAIN == 72){//RAM TOWER
-      fill(10,200,0);
+      fill(255,200,0);
       isTower =true;
-      println("TOWER2");
+      //println("TOWER2");
     }
     if(TERRAIN == 73){//Wall
-      fill(0,255,30);
+      fill(0,0,139);
       isTower =true;
-       println("TOWER3");
+       //println("TOWER3");
     }
     if(TERRAIN == 74){//POWER
-      fill(10,255,10);
+      fill(255,255,10);
       isTower =true;
-       println("TOWER3");
+       //println("TOWER4");
     }
     if (hover) fill(255, 255, 0);
     
