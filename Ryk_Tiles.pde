@@ -47,9 +47,6 @@ class TileProperty{
       //Increase the towers ability
       //increase the Enemy ability
       
-      //Tower.Ability *= 1.15
-      //Enemy.Ability *= 1.15
-      
       /*tower.firerate *= 1.2;
       enemy.speed *= 1.2;
       */
@@ -58,8 +55,6 @@ class TileProperty{
     } else if (p == 1){
       //If an enemy is over the tile, slow the enemy movement
       //If a tower is over the tile, When the Tower is destroyed, cause a burst Damage effect
-      
-      //Enemy.movement *= 0.8
       //Tower.dead deals 'c' Pixel area 'b' damage
       
       //enemy.speed *= 0.8;
@@ -68,7 +63,6 @@ class TileProperty{
       
     } else if (p == 2){
       //Deals 'b' damage per tick on tile to enemies and towers
-      //
       
       //enemy.health -= 0.02 * enemy.healthMax;
       //tower.health -= 0.02 * tower.maxHealth;
