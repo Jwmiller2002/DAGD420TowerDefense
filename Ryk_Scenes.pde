@@ -52,7 +52,7 @@ class Title {
   }
 
   void draw() {
-    background(128);
+    background(0, 64, 0);
     backDrop();
     buttons();
   }
@@ -60,8 +60,8 @@ class Title {
   void buttons() {
 
     textSize(40);
-    fill(0);
-    text("Title of Game Here", width/2, 75);
+    fill(255);
+    text("Yeet's Tower Defense", width/2, 75);
 
     rectMode(CORNER);
     exitButton();
@@ -150,6 +150,9 @@ class Title {
     text((int) byteRand, randX, descendY);
     noFill();
     descendY++;
+    if(descendY > height){
+      descendY = 0;
+    }
   }
 
   void fillArray() {
@@ -408,11 +411,11 @@ class Help {
     textSize(40);
     text("How to play", width/2, 75);
     i += pageNumber(i);
-    text(helpPages[i], (width/5 + width*3/5 + width/20) + 15, mainY + 35);
-    text(helpPages.length, (width/5 + width*3/5 + width/20) + 60, mainY + 65);
+    text(helpPages[i], (width/5 + width*3/5 + width/12) + 15, mainY + 35);
+    text(helpPages.length, (width/5 + width*3/5 + width/12) + 60, mainY + 65);
 
     stroke(3);
-    line(width/5 + width*3/5 + width/20, mainY + sharedH, (width/5 + width*3/5 + width/20) + 75, mainY);
+    line(width/5 + width*3/5 + width/12, mainY + sharedH, (width/5 + width*3/5 + width/12) + 75, mainY);
     noStroke();
   }
 
@@ -427,7 +430,7 @@ class Help {
     text1W = width*3/5;
     text1H = sharedH;
 
-    text2X = text1X + text1W + width/20;
+    text2X = text1X + text1W + width/12;
     text2Y = text1Y;
     text2W = 75;
     text2H = sharedH;

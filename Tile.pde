@@ -34,6 +34,9 @@ class Tile {
   int Y; // GRID Y
   int TERRAIN = 0; // TERRAIN TYPE
   boolean hover = false;
+  
+  TileProperty property;
+  
   boolean isESpawner=false;
   boolean isTower =false;
   public boolean TowerInTile =false;
@@ -41,6 +44,8 @@ class Tile {
   Tile(int X, int Y) {
     this.X = X;
     this.Y = Y;
+    
+    property = new TileProperty(X, Y);
   }
   // DRAW THIS TILE:
   void draw() {
@@ -50,6 +55,15 @@ class Tile {
       if (hover) {
       } else return; // don't draw empty tiles
     }
+
+    /*if (TERRAIN == 1) fill(200);
+    *if (TERRAIN == 2) fill(255);
+    *if (hover) fill(255, 255, 0);
+    */
+    if(TERRAIN == 1){
+      property.setProperty(10);
+    }
+
     if (TERRAIN == 1) fill(50,205,50);
     if (TERRAIN == 2) fill(88,59,39);
     if(TERRAIN ==4) fill(33);
@@ -84,7 +98,6 @@ class Tile {
     }
     if (hover) fill(255, 255, 0);
     
-
     PVector p = TileHelper.gridToPixel(X, Y);
     rect(p.x, p.y, TileHelper.W, TileHelper.H);
 
