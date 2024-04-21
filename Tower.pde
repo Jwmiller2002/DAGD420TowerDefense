@@ -114,7 +114,7 @@ class Tower {
       if (buffed) {  //SUPPORT TOWER BUFF
         timeTilNextFire -=.5 * DeltaTime;
       } else if (slowed) {
-        timeTilNextFire +=1 * DeltaTime;
+        timeTilNextFire +=0.5 * DeltaTime;
       }
     }
 
