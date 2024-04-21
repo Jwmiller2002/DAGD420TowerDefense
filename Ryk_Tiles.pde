@@ -5,6 +5,7 @@ class TileProperty{
   boolean enemyOnTile;
   boolean towerOnTile;
   boolean goalTarget;
+  boolean enemySpawner;
   
   PImage basicTile;
   PImage overClock;
@@ -92,6 +93,8 @@ class TileProperty{
     } else if (p == 4){
       
       image(spawner, x, y);
+      
+      enemySpawner = true;
     } else if (p == 5){
       
       image(goal, x, y);
