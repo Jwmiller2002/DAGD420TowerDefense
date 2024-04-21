@@ -150,7 +150,7 @@ class Title {
     text((int) byteRand, randX, descendY);
     noFill();
     descendY++;
-    if(descendY > height){
+    if (descendY > height) {
       descendY = 0;
     }
   }
@@ -591,6 +591,8 @@ class Game {
   boolean isBasicHeld;
   boolean isSupportHeld;
   boolean isPowerHeld;
+  boolean isAOEHeld;
+  boolean isRAMHeld;
 
 
 
@@ -615,7 +617,8 @@ class Game {
       if (t.towerType == 1) { //ram tower
         if (t.ramIncreased ==false) { //ram increase
           t.ramIncreased =true;
-          ramMax++;
+          ram += 10;
+          ramMax += 10;
         }
         if (ram > ramMax) { //OVER MAXIMUM
         } else if (ram == ramMax) { //AT MAX
@@ -645,7 +648,7 @@ class Game {
     if (lackEnergyTimer > 0) {
       fill(0);
       rectMode(CENTER);
-      rect((width/2) - 130, 75, 400, 100,3);
+      rect((width/2) - 130, 75, 400, 100, 3);
       textAlign(CENTER, CENTER);
       fill(255, 255, 0);
       textSize(30);
@@ -655,7 +658,7 @@ class Game {
     if (lackRamTimer > 0) {
       fill(0);
       rectMode(CENTER);
-      rect((width/2) - 130, 75, 400, 100,3 );
+      rect((width/2) - 130, 75, 400, 100, 3 );
       textAlign(CENTER, CENTER);
       fill(255, 255, 0);
       textSize(30);
@@ -817,6 +820,105 @@ class Game {
       wasHeld =true;
     }
   }
+  void aoeButton(float x, float y, float w, float h, String type) {
+    boolean isHovered = false;
+    boolean wasHeld =false;
+    //UPDATE
+    if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
+      isHovered = true;
+    } else {
+      isHovered = false;
+    }
+    if (isHovered || isAOEHeld) {
+      if (leftMouseClick) {
+        isAOEHeld = true;
+        //println("PowerCLICK");
+      }
+    }
+    if (leftMouseRelease && isAOEHeld == true) { 
+      isAOEHeld = false;
+      if (energy >= 12 && mouseX<800 && ram >= 3) {
+        Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+        Tile tile = level.getTile(g);
+        if (tile.TERRAIN ==70) {
+          energy -=  12;
+          ram -=3;
+          towers.add(new Tower (mouseX-16, mouseY-16, 3));
+          tile.TERRAIN = 75;
+        }
+      } else if (energy < 12) {
+        lackEnergyTimer = .5;
+      } else if (ram < 3) {
+        lackRamTimer = .5;
+      }
+    }
+    //DRAW
+    if (!isHovered) fill(0);
+    else fill(50);
+    stroke(0);
+    strokeWeight(3);
+    rectMode(CORNER);
+    rect(x, y, w, h, 3);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(15);
+    text(type, x + (w/2), y + (h/2));
+    if (isAOEHeld) {
+      rectMode(CENTER);
+      strokeWeight(3);
+      stroke(0);
+      rect(mouseX, mouseY, 29, 29, 3);
+      wasHeld =true;
+    }
+  }
+  void ramButton(float x, float y, float w, float h, String type) {
+    boolean isHovered = false;
+    boolean wasHeld =false;
+    //UPDATE
+    if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
+      isHovered = true;
+    } else {
+      isHovered = false;
+    }
+    if (isHovered || isAOEHeld) {
+      if (leftMouseClick) {
+        isRAMHeld = true;
+        //println("PowerCLICK");
+      }
+    }
+    if (leftMouseRelease && isRAMHeld == true) { 
+      isRAMHeld = false;
+      if (energy >= 20 && mouseX<800) {
+        Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+        Tile tile = level.getTile(g);
+        if (tile.TERRAIN ==70) {
+          energy -=  20;
+          towers.add(new Tower (mouseX-16, mouseY-16, 1));
+          tile.TERRAIN = 72;
+        }
+      } else if (energy < 20) {
+        lackEnergyTimer = .5;
+      } 
+    }
+    //DRAW
+    if (!isHovered) fill(0);
+    else fill(50);
+    stroke(0);
+    strokeWeight(3);
+    rectMode(CORNER);
+    rect(x, y, w, h, 3);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    textSize(15);
+    text(type, x + (w/2), y + (h/2));
+    if (isRAMHeld) {
+      rectMode(CENTER);
+      strokeWeight(3);
+      stroke(0);
+      rect(mouseX, mouseY, 29, 29, 3);
+      wasHeld =true;
+    }
+  }
 
   void shop() {
     fill(80);
@@ -830,6 +932,8 @@ class Game {
     basicButton(825, 100, 75, 75, "BASIC");
     supportButton(975, 100, 75, 75, "WALL");
     powerButton(975, 200, 75, 75, "POWER");
+    aoeButton(825, 200, 75, 75, "AOE");
+    ramButton(900, 300, 75, 75, "RAM");
   }
 
   void UI() {

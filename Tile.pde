@@ -1,13 +1,13 @@
 static class TileHelper {
-Pathfinder pathfinder;
-Level level;
+  Pathfinder pathfinder;
+  Level level;
   static DAGD420TowerDefense app;
-  
+
   final static int W = 32;
   final static int H = 32;
   final static int halfW = W / 2;
   final static int halfH = H / 2;
-  
+
   public boolean isESpawner =false;
 
   static PVector gridToPixel(Point p) {
@@ -15,7 +15,7 @@ Level level;
   }
   static PVector gridToPixel(int X, int Y) {
     PVector v = new PVector(X * W, Y * H);
-    
+
     return v;
   }
   static Point pixelToGrid(PVector v) {
@@ -34,9 +34,9 @@ class Tile {
   int Y; // GRID Y
   int TERRAIN = 0; // TERRAIN TYPE
   boolean hover = false;
-  
+
   TileProperty property;
-  
+
   boolean isESpawner=false;
   boolean isTower =false;
   public boolean TowerInTile =false;
@@ -44,7 +44,7 @@ class Tile {
   Tile(int X, int Y) {
     this.X = X;
     this.Y = Y;
-    
+
     property = new TileProperty(X, Y);
   }
   // DRAW THIS TILE:
@@ -57,47 +57,52 @@ class Tile {
     }
 
     /*if (TERRAIN == 1) fill(200);
-    *if (TERRAIN == 2) fill(255);
-    *if (hover) fill(255, 255, 0);
-    */
-    if(TERRAIN == 1){
+     *if (TERRAIN == 2) fill(255);
+     *if (hover) fill(255, 255, 0);
+     */
+    if (TERRAIN == 1) {
       property.setProperty(10);
     }
 
-    if (TERRAIN == 1) fill(50,205,50);
-    if (TERRAIN == 2) fill(88,59,39);
-    if(TERRAIN ==4) fill(33);
-    if(TERRAIN == 64){
-      fill(200,0,0);
+    if (TERRAIN == 1) fill(50, 205, 50);
+    if (TERRAIN == 2) fill(88, 59, 39);
+    if (TERRAIN ==4) fill(33);
+    if (TERRAIN == 64) {
+      fill(200, 0, 0);
       isESpawner =true;
     }
-    if(TERRAIN == 70){ //TOWER SPOT
-      fill(0,255,0);
+    if (TERRAIN == 70) { //TOWER SPOT
+      fill(0, 255, 0);
       isTower =true;
     }
-    if(TERRAIN == 71){//BASICTOWER
-      fill(0,200,255);
+    if (TERRAIN == 71) {//BASICTOWER
+      fill(0, 200, 255);
       isTower =true;
-      
-       //println("TOWER1");
+
+      //println("TOWER1");
     }
-    if(TERRAIN == 72){//RAM TOWER
-      fill(255,200,0);
+    if (TERRAIN == 72) {//RAM TOWER
+      fill(255, 200, 0);
       isTower =true;
       //println("TOWER2");
     }
-    if(TERRAIN == 73){//Wall
-      fill(0,0,139);
+    if (TERRAIN == 73) {//Wall
+      fill(0, 0, 139);
       isTower =true;
-       //println("TOWER3");
+      //println("TOWER3");
     }
-    if(TERRAIN == 74){//POWER
-      fill(255,255,10);
+    if (TERRAIN == 74) {//POWER
+      fill(255, 255, 10);
       isTower =true;
-       //println("TOWER4");
+      //println("TOWER4");
+    }
+    if (TERRAIN == 75) {//AOE
+      fill(255,  0, 255);
+      isTower =true;
+      //println("TOWER4");
     }
     if (hover) fill(255, 255, 0);
-    
+
     PVector p = TileHelper.gridToPixel(X, Y);
     rect(p.x, p.y, TileHelper.W, TileHelper.H);
 
