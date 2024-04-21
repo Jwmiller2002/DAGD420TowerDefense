@@ -32,7 +32,10 @@ class EnemyAcid extends Enemy{
     stroke(20);
     strokeWeight(5);
     fill(230,30,230);
-    ellipse(pos.x,pos.y,30,30);    
+    ellipse(pos.x,pos.y,30,30); 
+    noStroke();  
+    fill(150,150,240,80);
+    ellipse(pos.x,pos.y,acidRadius*2,acidRadius*2);  
   }
   
 }

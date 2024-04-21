@@ -23,6 +23,9 @@ class EnemySlow extends Enemy{
     stroke(20);
     strokeWeight(5);
     fill(30,200,250);
-    ellipse(pos.x,pos.y,30,30);    
+    ellipse(pos.x,pos.y,30,30);  
+    noStroke();
+    fill(30,200,250,80);
+    ellipse(pos.x,pos.y,slowRadius*2,slowRadius*2);     
   }
 }
