@@ -3,7 +3,7 @@ class TowerBullet {
   private float x, y;
   public boolean isDead;
   private float towerType;
-  
+
   private int target;
   private float bulletSpeed;
   private boolean hit=true;
@@ -19,10 +19,9 @@ class TowerBullet {
     this.bulletSpeed = bulletSpeed;
     this.targetX=targetX;
     this.targetY=targetY;
-    
+
     velocityX =x-targetX;
     velocityY =y-targetY;
-    
   }
   void draw() {
     if (towerType ==3) rect(x, y, 20, 20);
@@ -42,10 +41,6 @@ class TowerBullet {
       if (distance <=30) {
         //e.takeDamage(20);
       }
-    } else if (towerType ==1) { //Support(damage/firespeed
-      bulletSpeed =10;
-      Tower e = towers.get(target);
-      e.supportBuffTimer =5;
     } else if (towerType ==3) {//AOE
       bulletSize =30;
       bulletSpeed =7;

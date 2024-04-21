@@ -10,11 +10,11 @@ class Tower {
 
   private int towerType;
   private boolean supportTower =false;
-  private float towerDecayRate =5;
+
   private float decayDelay=10;
   public float towerCost=10;
-  public float supportBuffTimer =0;
-  
+  public boolean buffed, slowed =false;
+
   private float EnergyChargeCooldown =2;
 
   public float x, y;
@@ -48,78 +48,74 @@ class Tower {
     case 0: //Basic Tower
       maxHealth =50;
       firerate =3;
-      towerDecayRate =5;
+      supportTower =false;
       ramCost = 2;
       energyCost = 5;
       bulletSpeed =10;
 
-     
+
       ;
     case 1: //RAM TOWER
       firerate = 6;
       maxHealth =25;
-      towerDecayRate =5;
+      supportTower =true;
       ramCost = 2;
       energyCost = 5;
       supportTower =true;
       bulletSpeed =10;
       ramTower =true;
 
-      
+
       ;
     case 2: // Wall
       firerate =1;
       maxHealth =200;
-      towerDecayRate =5;
+      supportTower =true;
       ramCost = 2;
       energyCost = 5;
       bulletSpeed =5;
 
-      
+
     case 3: // AOE tower
       firerate = 4;
       maxHealth =100;
-      towerDecayRate =5;
+      supportTower =false;
       ramCost = 2;
       energyCost = 5;
 
-      
+
       ;
     case 4: //SUNFLOWER/MONEY,  Limited Lifetime?
       firerate = 10;
       maxHealth =100;
-      towerDecayRate =5;
+      supportTower =true;
       ramCost = 2;
       energyCost = 5;
-     
 
-      
+
+
       ;
 
       // Code that works for all towers(checking health shooting ect.)
 
       if (doOnce) health = maxHealth;
 
-      
+
       if (!foundEnemy) foundEnemy = chooseEnemy();
 
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
         bullets.add(new TowerBullet(x, y, enemyX, enemyY, towerType, enemyToShoot, bulletSpeed));
         timeTilNextFire =firerate;
-      } 
-      
-      else if (timeTilNextFire <=0 && supportTower) { //SUPPORT TOWER
-        helpNearTowers();
-        timeTilNextFire =firerate;
-      } else timeTilNextFire -=1 *DeltaTime;//*dt;
-      
-      
-      if(supportBuffTimer >0){  //SUPPORT TOWER BUFF
-        timeTilNextFire -=1 * DeltaTime;
-        supportBuffTimer-= 1* DeltaTime;
+      } else if (supportTower !=false) { 
+        timeTilNextFire -=1 *DeltaTime;//*dt; //fire reset
       }
-      
-      
+
+
+      if (buffed) {  //SUPPORT TOWER BUFF
+        timeTilNextFire -=.5 * DeltaTime;
+      } else if (slowed) {
+        timeTilNextFire +=1 * DeltaTime;
+      }
     }
 
 
