@@ -19,4 +19,10 @@ class EnemySlow extends Enemy{
     
   }//end update
   
+  void draw(){
+    stroke(20);
+    strokeWeight(5);
+    fill(30,200,250);
+    ellipse(pos.x,pos.y,30,30);    
+  }
 }

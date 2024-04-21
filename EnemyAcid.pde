@@ -28,4 +28,11 @@ class EnemyAcid extends Enemy{
     
   }//end update
   
+  void draw(){
+    stroke(20);
+    strokeWeight(5);
+    fill(230,30,230);
+    ellipse(pos.x,pos.y,30,30);    
+  }
+  
 }

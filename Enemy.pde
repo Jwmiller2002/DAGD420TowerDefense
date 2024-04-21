@@ -42,7 +42,8 @@ class Enemy{
   }
   
   void draw(){
-    noStroke();
+    stroke(20);
+    strokeWeight(5);
     fill(230,30,30);
     ellipse(pos.x,pos.y,30,30);    
   }

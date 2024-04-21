@@ -34,5 +34,11 @@ class EnemyFlying extends Enemy{
     if (pixlT.x == pos.x && pixlT.y == pos.y) findPath = true;
   }
   
+  void draw(){
+    stroke(20);
+    strokeWeight(5);
+    fill(150,150,240);
+    ellipse(pos.x,pos.y,30,30);    
+  }
   
 }
