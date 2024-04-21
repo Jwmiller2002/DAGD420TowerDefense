@@ -665,6 +665,15 @@ class Game {
       text("NOT ENOUGH RAM", (width/2) - 130, 75);
       rectMode(CORNER);
     }
+    
+    if(leftMouseClick && !prevLeftMouseClick){
+      Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
+      Tile tile = level.getTile(g);
+      if(tile.TERRAIN <70 && tile.TERRAIN <76){                          //PULL UP TOWER UPGRADE
+         
+      }
+    }
+    
   }
 
   void basicButton(float x, float y, float w, float h, String type) {
