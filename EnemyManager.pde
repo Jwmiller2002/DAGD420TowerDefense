@@ -12,7 +12,7 @@ class EnemyManager{
    SpawnTiles = new ArrayList<Tile>();
    totalRate=0;
    spawnTimer=1;
-   spawnLeft=15;
+   spawnLeft=0;
    MaxSpawnTimer=1;
    for (int Y = 0; Y < game.level.tiles.length; Y++) {
       for (int X = 0; X < game.level.tiles[Y].length; X++) {

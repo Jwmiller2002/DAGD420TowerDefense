@@ -593,12 +593,22 @@ class Game {
   boolean isPowerHeld;
   boolean isAOEHeld;
   boolean isRAMHeld;
+  EnemyManager enemyMan;
+  int enemyCount;
+  float enemyDensity;
+  float waveTimer;
+  int waveCount;
 
 
 
   Game() {
     pathfinder = new Pathfinder();
     level = new Level();
+    enemyMan = new EnemyManager();
+    waveTimer=5;
+    enemyCount=3;
+    enemyDensity=1;
+    waveCount=1;
   }
 
   void update() {
@@ -634,6 +644,27 @@ class Game {
         towers.remove(i);
       }
     }
+    
+    //enemyManager update and check for all dead
+    enemyMan.update();
+    
+    if(enemyMan.enemies.size() <=0 && enemyMan.spawnLeft<=0){
+      waveTimer-=DeltaTime;
+      if(waveTimer<=0){
+       enemyMan.spawnLeft = enemyCount;
+       enemyCount+=2;
+       enemyMan.MaxSpawnTimer = enemyDensity;
+       if(waveCount<90){
+         enemyDensity = 1 - waveCount/100f;  
+       }else{
+        enemyDensity=.1; 
+       }
+       waveCount++;
+       waveTimer = 5;
+      }//end wave timer
+    }//end if wave done
+    
+    
   }
 
   void draw() {
@@ -641,6 +672,8 @@ class Game {
     //println(mouseX + " " + mouseY);
 
     level.draw();
+    //enemy draw
+    enemyMan.draw();
     //Shop
     shop();
     //UI
