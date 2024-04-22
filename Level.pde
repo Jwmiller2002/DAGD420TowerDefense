@@ -61,14 +61,18 @@ class Level {
             float randomPiece = random(0, 9);
             int setPiece =0;
             if (randomPiece >8 && Y<7 && X<5 || randomPiece >8 && Y>28 && X<5 || randomPiece >8 && Y<7 && X>20 || randomPiece >8 && Y>28 && X>20) setPiece =64; //ENEMY SPAWNER PLACEMENT
-            else if (randomPiece >6) setPiece =2;
+            else if (randomPiece >6) {setPiece =2;
+            //println(PCGMAP.LEVEL1[Y][X]);
+            PCGMAP.LEVEL1[Y][X] =2;
+           // println(PCGMAP.LEVEL1[Y][X]);
+            }
             else if (randomPiece >3 && Y<26 && Y>7 && X<20 && X>5) setPiece =70; //TOWERSPOT
             else if (randomPiece >0) setPiece =1;
-
-            level[Y][X] = setPiece;
+             
+            layout[Y][X] = setPiece;
           }
           if (Y == 16 && X==13) {
-            level[Y][X] = 1000; //home base
+            layout[Y][X] = 1000; //home base
           }
         }
       }
@@ -79,6 +83,7 @@ class Level {
     for (int Y = 0; Y < ROWS; Y++) {
       for (int X = 0; X < COL; X++) {
         Tile tile = new Tile(X, Y);
+        
         tile.TERRAIN = layout[Y][X];
         tiles[Y][X] = tile;
         
