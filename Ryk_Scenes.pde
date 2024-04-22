@@ -623,6 +623,13 @@ class Game {
       } else {
         energyChargeTimer -= 1*DeltaTime;
       }
+      if(leftMouseClick && !prevLeftMouseClick && mouseX<800){ //
+       Point g = TileHelper.pixelToGrid(new PVector(t.x, t.y));
+        Tile tile = level.getTile(g);
+        if(tile.TERRAIN >=70 && tile.TERRAIN <=75){  //UPGRADE TOWER
+          
+        }
+      }
 
       if (t.towerType == 1) { //ram tower
         if (t.ramIncreased ==false) { //ram increase

@@ -49,7 +49,10 @@ class Tile {
   }
   // DRAW THIS TILE:
   void draw() {
-    if (TERRAIN == 1000) fill(73);
+    if (TERRAIN == 1000){
+      fill(73);
+     PCGMAP.LEVEL1[Y][X] =1000; 
+    }
     if (TERRAIN == 0) { //Main Path
 
       if (hover) {
@@ -62,7 +65,6 @@ class Tile {
      */
     if (TERRAIN == 1) {
       property.setProperty(10);
-      
     }
 
     if (TERRAIN == 1) fill(50, 205, 50);
@@ -71,7 +73,6 @@ class Tile {
     if (TERRAIN == 64) {
       fill(200, 0, 0);
       isESpawner =true;
-      
     }
     if (TERRAIN == 70) { //TOWER SPOT
       fill(0, 255, 0);
@@ -80,26 +81,30 @@ class Tile {
     if (TERRAIN == 71) {//BASICTOWER
       fill(0, 200, 255);
       isTower =true;
-
+      PCGMAP.LEVEL1[Y][X] =71;
       ////println("TOWER1");
     }
     if (TERRAIN == 72) {//RAM TOWER
+    PCGMAP.LEVEL1[Y][X] =72;
       fill(255, 200, 0);
       isTower =true;
       ////println("TOWER2");
     }
     if (TERRAIN == 73) {//Wall
+    PCGMAP.LEVEL1[Y][X] =73;
       fill(0, 0, 139);
       isTower =true;
       ////println("TOWER3");
     }
     if (TERRAIN == 74) {//POWER
+    PCGMAP.LEVEL1[Y][X] =74;
       fill(255, 255, 10);
       isTower =true;
       ////println("TOWER4");
     }
     if (TERRAIN == 75) {//AOE
-      fill(255,  0, 255);
+    PCGMAP.LEVEL1[Y][X] =75;
+      fill(255, 0, 255);
       isTower =true;
       ////println("TOWER4");
     }
