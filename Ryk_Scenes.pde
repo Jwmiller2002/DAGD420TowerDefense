@@ -644,27 +644,25 @@ class Game {
         towers.remove(i);
       }
     }
-    
+
     //enemyManager update and check for all dead
     enemyMan.update();
-    
-    if(enemyMan.enemies.size() <=0 && enemyMan.spawnLeft<=0){
+
+    if (enemyMan.enemies.size() <=0 && enemyMan.spawnLeft<=0) {
       waveTimer-=DeltaTime;
-      if(waveTimer<=0){
-       enemyMan.spawnLeft = enemyCount;
-       enemyCount+=2;
-       enemyMan.MaxSpawnTimer = enemyDensity;
-       if(waveCount<90){
-         enemyDensity = 1 - waveCount/100f;  
-       }else{
-        enemyDensity=.1; 
-       }
-       waveCount++;
-       waveTimer = 5;
+      if (waveTimer<=0) {
+        enemyMan.spawnLeft = enemyCount;
+        enemyCount+=2;
+        enemyMan.MaxSpawnTimer = enemyDensity;
+        if (waveCount<90) {
+          enemyDensity = 1 - waveCount/100f;
+        } else {
+          enemyDensity=.1;
+        }
+        waveCount++;
+        waveTimer = 5;
       }//end wave timer
     }//end if wave done
-    
-    
   }
 
   void draw() {
@@ -698,9 +696,6 @@ class Game {
       text("NOT ENOUGH RAM", (width/2) - 130, 75);
       rectMode(CORNER);
     }
-    
-   
-    
   }
 
   void basicButton(float x, float y, float w, float h, String type) {
@@ -934,7 +929,7 @@ class Game {
         }
       } else if (energy < 20) {
         lackEnergyTimer = .5;
-      } 
+      }
     }
     //DRAW
     if (!isHovered) fill(0);
@@ -988,6 +983,10 @@ class Game {
     rect(25, 50, 150, 20);
     fill(5, 217, 255);
     rect(25, 50, barPercent, 20);
+    fill(0, 0, 139);
+    textSize(15);
+    textAlign(CENTER, CENTER);
+    text(round(ram) + "/" + round(ramMax), 100, 57);
   }
 }
 
