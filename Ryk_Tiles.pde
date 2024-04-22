@@ -97,7 +97,7 @@ class TileProperty{
     }
     else {
       //No special effect
-      image(basicTile, x, y);
+      image(basicTile, x, y, 40, 32);
     }
   }
 }
