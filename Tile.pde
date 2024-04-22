@@ -62,6 +62,7 @@ class Tile {
      */
     if (TERRAIN == 1) {
       property.setProperty(10);
+      
     }
 
     if (TERRAIN == 1) fill(50, 205, 50);
@@ -70,6 +71,7 @@ class Tile {
     if (TERRAIN == 64) {
       fill(200, 0, 0);
       isESpawner =true;
+      
     }
     if (TERRAIN == 70) { //TOWER SPOT
       fill(0, 255, 0);

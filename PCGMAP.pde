@@ -3,7 +3,7 @@ static class PCGMAP {
   // MOVEMENT COST (CORRESPONDS TO THE TERRAIN TYPE IN THE LEVELS)
   // For example terrain 0 has a movecost of 1,
   // and terrain 1 has a movecost of 0
-  static int[] MOVECOST = {0, 1, 2, 4, 8, 12, 64, 70, 1000};
+  static int[] MOVECOST = {0, 1, 2,3, 4, 8, 12, 64, 70,71,72,73,74, 1000};
   //use 0 as the position of the main base
 
   static int[][] LEVEL1 =
