@@ -107,7 +107,7 @@ class Enemy{
     float snapThreshold = 1;
     PVector pixlT = game.level.getTileCenterAt(gridP);
     PVector diff = PVector.sub(pixlT, pos);
-    if(nextTile.isTower ||nextTile.TowerInTile||nextTile.isESpawner){
+    if(nextTile.isTower){
       if(attackTimer<=0){
         attack(nextTile);
       }
