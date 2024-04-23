@@ -23,7 +23,7 @@ class Enemy{
     damage= d;
     speed = s;
     pos=p;
-    findPath = false;
+    findPath = true;
     goalT = go;
     gridP = new Point(int(pos.x),int(pos.y));
     gridT = new Point(goalT.X,goalT.Y);
@@ -37,7 +37,7 @@ class Enemy{
      attackTimer-=DeltaTime; 
     }
     
-    findPathAndSetNextStep();
+    if (findPath == true) findPathAndSetNextStep();
     updateMove();
   }
   
@@ -82,9 +82,13 @@ class Enemy{
       return;
     }
     path = game.pathfinder.findPath(start, end);
+    println(path.size());
 
     if (path != null && path.size() > 1) { 
+      
       nextTile = path.get(1);
+    }else{
+      nextTile = start;
     }
     
   }//end void
@@ -97,15 +101,18 @@ class Enemy{
     if(nextTile.isTower ||nextTile.TowerInTile||nextTile.isESpawner){
       if(attackTimer<=0){
         attack(nextTile);
+        println("attack");
       }
     }else{
-      pos.x += diff.x * .2;
-      pos.y += diff.y * .2;
+      pos.x += diff.x * .05;
+      pos.y += diff.y * .05;
     }
     if (abs(diff.x) < snapThreshold) pos.x = pixlT.x;
     if (abs(diff.y) < snapThreshold) pos.y = pixlT.y;
-
-    if (pixlT.x == pos.x && pixlT.y == pos.y) findPath = true;
+    
+    if (pixlT.x == pos.x && pixlT.y == pos.y){
+      findPath = true;
+    }
   }
   
 }
