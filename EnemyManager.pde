@@ -6,6 +6,7 @@ class EnemyManager {
   float spawnTimer;
   float MaxSpawnTimer;
   float spawnLeft;
+  boolean doOnce =true;
 
   EnemyManager() {                           //isESpawner is the variable you need
     enemies = new ArrayList<Enemy>();
@@ -25,7 +26,6 @@ class EnemyManager {
       SpawnEnemy();
       spawnLeft--;
       spawnTimer = MaxSpawnTimer;
-      
     }
     for (int i=0; i < enemies.size(); i++) {
       enemies.get(i).update();
@@ -38,13 +38,16 @@ class EnemyManager {
   }
 
   void draw() {
-    SpawnTiles.clear();
-    for (int Y = 0; Y < game.level.tiles.length; Y++) {
-      for (int X = 0; X < game.level.tiles[Y].length; X++) {
-        if (game.level.tiles[Y][X].isESpawner) {
-          SpawnTiles.add(game.level.tiles[Y][X]);
+    //SpawnTiles.clear();
+    if (doOnce) {
+      for (int Y = 0; Y < game.level.tiles.length; Y++) {
+        for (int X = 0; X < game.level.tiles[Y].length; X++) {
+          if (game.level.tiles[Y][X].isESpawner) {
+            SpawnTiles.add(game.level.tiles[Y][X]);
+          }
         }
       }
+      doOnce =false;
     }
     ////println(SpawnTiles.size());
 

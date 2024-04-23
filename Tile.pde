@@ -59,15 +59,10 @@ class Tile {
       } else return; // don't draw empty tiles
     }
 
-    /*if (TERRAIN == 1) fill(200);
-     *if (TERRAIN == 2) fill(255);
-     *if (hover) fill(255, 255, 0);
-     */
     if (TERRAIN == 1) {
-      property.setProperty(10);
+      fill(50, 205, 50);
+      property.setProperty(0);
     }
-
-    if (TERRAIN == 1) fill(50, 205, 50);
     if (TERRAIN == 2) fill(88, 59, 39);
     if (TERRAIN ==4) fill(33);
     if (TERRAIN == 64) {
