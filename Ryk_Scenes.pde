@@ -623,11 +623,10 @@ class Game {
       } else {
         energyChargeTimer -= 1*DeltaTime;
       }
-      if(leftMouseClick && !prevLeftMouseClick && mouseX<800){ //
-       Point g = TileHelper.pixelToGrid(new PVector(t.x, t.y));
+      if (leftMouseClick && !prevLeftMouseClick && mouseX<800) { //
+        Point g = TileHelper.pixelToGrid(new PVector(t.x, t.y));
         Tile tile = level.getTile(g);
-        if(tile.TERRAIN >=70 && tile.TERRAIN <=75){  //UPGRADE TOWER
-          
+        if (tile.TERRAIN >=70 && tile.TERRAIN <=75) {  //UPGRADE TOWER
         }
       }
 
@@ -715,8 +714,10 @@ class Game {
       isHovered = false;
     }
     if (isHovered || isBasicHeld) {
-      if (leftMouseClick) {
-        isBasicHeld = true;
+      if (!isSupportHeld && !isPowerHeld && !isAOEHeld && !isRAMHeld) {
+        if (leftMouseClick) {
+          isBasicHeld = true;
+        }
       }
     }
     if (leftMouseRelease && isBasicHeld == true) {
@@ -750,9 +751,10 @@ class Game {
     text(type, x + (w/2), y + (h/2));
     if (isBasicHeld) {
       rectMode(CENTER);
-      strokeWeight(3);
+      strokeWeight(0);
       stroke(0);
-      rect(mouseX, mouseY, 29, 29, 3);
+      fill(0, 200, 255);
+      rect(mouseX, mouseY, 29, 29);
       wasHeld =true;
     }
   }
@@ -766,8 +768,10 @@ class Game {
       isHovered = false;
     }
     if (isHovered || isSupportHeld) {
-      if (leftMouseClick) {
-        isSupportHeld = true;
+      if (!isBasicHeld && !isPowerHeld && !isAOEHeld && !isRAMHeld) {
+        if (leftMouseClick) {
+          isSupportHeld = true;
+        }
       }
     }
     if (leftMouseRelease && isSupportHeld == true) {
@@ -801,9 +805,10 @@ class Game {
     text(type, x + (w/2), y + (h/2));
     if (isSupportHeld) {
       rectMode(CENTER);
-      strokeWeight(3);
+      strokeWeight(0);
       stroke(0);
-      rect(mouseX, mouseY, 29, 29, 3);
+      fill(0, 0, 139);
+      rect(mouseX, mouseY, 29, 29);
       wasHeld =true;
     }
   }
@@ -817,9 +822,11 @@ class Game {
       isHovered = false;
     }
     if (isHovered || isPowerHeld) {
-      if (leftMouseClick) {
-        isPowerHeld = true;
-        ////println("PowerCLICK");
+      if (!isSupportHeld && !isBasicHeld && !isAOEHeld && !isRAMHeld) {
+        if (leftMouseClick) {
+          isPowerHeld = true;
+          ////println("PowerCLICK");
+        }
       }
     }
     if (leftMouseRelease && isPowerHeld == true) { 
@@ -852,9 +859,10 @@ class Game {
     text(type, x + (w/2), y + (h/2));
     if (isPowerHeld) {
       rectMode(CENTER);
-      strokeWeight(3);
+      strokeWeight(0);
       stroke(0);
-      rect(mouseX, mouseY, 29, 29, 3);
+      fill(255, 255, 10);
+      rect(mouseX, mouseY, 29, 29);
       wasHeld =true;
     }
   }
@@ -868,9 +876,11 @@ class Game {
       isHovered = false;
     }
     if (isHovered || isAOEHeld) {
-      if (leftMouseClick) {
-        isAOEHeld = true;
-        ////println("PowerCLICK");
+      if (!isSupportHeld && !isPowerHeld && !isBasicHeld && !isRAMHeld) {
+        if (leftMouseClick) {
+          isAOEHeld = true;
+          ////println("PowerCLICK");
+        }
       }
     }
     if (leftMouseRelease && isAOEHeld == true) { 
@@ -903,9 +913,10 @@ class Game {
     text(type, x + (w/2), y + (h/2));
     if (isAOEHeld) {
       rectMode(CENTER);
-      strokeWeight(3);
+      strokeWeight(0);
       stroke(0);
-      rect(mouseX, mouseY, 29, 29, 3);
+      fill(255, 0, 255);
+      rect(mouseX, mouseY, 29, 29);
       wasHeld =true;
     }
   }
@@ -919,9 +930,11 @@ class Game {
       isHovered = false;
     }
     if (isHovered || isAOEHeld) {
-      if (leftMouseClick) {
-        isRAMHeld = true;
-        ////println("PowerCLICK");
+      if (!isSupportHeld && !isPowerHeld && !isAOEHeld && !isBasicHeld) {
+        if (leftMouseClick) {
+          isRAMHeld = true;
+          ////println("PowerCLICK");
+        }
       }
     }
     if (leftMouseRelease && isRAMHeld == true) { 
@@ -951,9 +964,10 @@ class Game {
     text(type, x + (w/2), y + (h/2));
     if (isRAMHeld) {
       rectMode(CENTER);
-      strokeWeight(3);
+      strokeWeight(0);
       stroke(0);
-      rect(mouseX, mouseY, 29, 29, 3);
+      fill(255, 200, 0);
+      rect(mouseX, mouseY, 29, 29);
       wasHeld =true;
     }
   }
@@ -966,7 +980,7 @@ class Game {
     textSize(20);
     textAlign(CENTER, CENTER);
     text("TOWERS", 940, 50);
-    text("UPGRADES", 940, 500);
+    //text("UPGRADES", 940, 500);
     basicButton(825, 100, 75, 75, "BASIC");
     supportButton(975, 100, 75, 75, "WALL");
     powerButton(975, 200, 75, 75, "POWER");
