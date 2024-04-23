@@ -710,6 +710,19 @@ class Game {
     //UPDATE
     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
       isHovered = true;
+      rectMode(CORNER);
+      strokeWeight(3);
+      stroke(0);
+      fill(150);
+      rect(820, 800, 240, 200);
+      fill(0);
+      textSize(25);
+      textAlign(CENTER, CENTER);
+      text("ANTI VIRUS", 940, 825);
+      textSize(15);
+      text("Attacks enemies from a distance", 940, 850);
+      text("Energy Cost: 10", 940, 875);
+      text("RAM Cost: 4", 940, 900);
     } else {
       isHovered = false;
     }
@@ -764,6 +777,19 @@ class Game {
     //UPDATE
     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
       isHovered = true;
+      rectMode(CORNER);
+      strokeWeight(3);
+      stroke(0);
+      fill(150);
+      rect(820, 800, 240, 200);
+      fill(0);
+      textSize(25);
+      textAlign(CENTER, CENTER);
+      text("FIREWALL", 940, 825);
+      textSize(15);
+      text("Blocks enemies", 940, 850);
+      text("Energy Cost: 5", 940, 875);
+      text("RAM Cost: 1", 940, 900);
     } else {
       isHovered = false;
     }
@@ -818,6 +844,19 @@ class Game {
     //UPDATE
     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
       isHovered = true;
+      rectMode(CORNER);
+      strokeWeight(3);
+      stroke(0);
+      fill(150);
+      rect(820, 800, 240, 200);
+      fill(0);
+      textSize(25);
+      textAlign(CENTER, CENTER);
+      text("POWER SOURCE", 940, 825);
+      textSize(15);
+      text("Slowly generates energy", 940, 850);
+      text("Energy Cost: 15", 940, 875);
+      text("RAM Cost: 10", 940, 900);
     } else {
       isHovered = false;
     }
@@ -872,6 +911,19 @@ class Game {
     //UPDATE
     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
       isHovered = true;
+      rectMode(CORNER);
+      strokeWeight(3);
+      stroke(0);
+      fill(150);
+      rect(820, 800, 240, 200);
+      fill(0);
+      textSize(25);
+      textAlign(CENTER, CENTER);
+      text("ELECTRO VENT", 940, 825);
+      textSize(15);
+      text("Shocks all nearby enemies", 940, 850);
+      text("Energy Cost: 12", 940, 875);
+      text("RAM Cost: 3", 940, 900);
     } else {
       isHovered = false;
     }
@@ -926,10 +978,22 @@ class Game {
     //UPDATE
     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
       isHovered = true;
+      rectMode(CORNER);
+      strokeWeight(3);
+      stroke(0);
+      fill(150);
+      rect(820, 800, 240, 200);
+      fill(0);
+      textSize(25);
+      textAlign(CENTER, CENTER);
+      text("RAM STICK", 940, 825);
+      textSize(15);
+      text("Increases RAM by 10", 940, 850);
+      text("Energy Cost: 20", 940, 875);
     } else {
       isHovered = false;
     }
-    if (isHovered || isAOEHeld) {
+    if (isHovered || isRAMHeld) {
       if (!isSupportHeld && !isPowerHeld && !isAOEHeld && !isBasicHeld) {
         if (leftMouseClick) {
           isRAMHeld = true;
