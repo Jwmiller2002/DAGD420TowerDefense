@@ -10,6 +10,7 @@ class TowerBullet {
   private float velocityX, velocityY =1;
   private float targetX, targetY;
   private float  bulletSize =10;
+  
 
   TowerBullet(float towerType, float towerX, float towerY, float targetX, float targetY, int enemyNum, float bulletSpeed) {
     this.x=towerX;
@@ -43,7 +44,7 @@ class TowerBullet {
       }
     } else if (towerType ==3) {//AOE
       bulletSize =30;
-      bulletSpeed =7;
+      bulletSpeed =0;
       float distance = sqrt(sq(x - targetX) + sq(y-targetY));
       if (distance <=30) {
         //e.takeDamage(20);
