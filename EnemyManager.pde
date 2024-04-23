@@ -12,7 +12,7 @@ class EnemyManager {
     SpawnTiles = new ArrayList<Tile>();
     totalRate=0;
     spawnTimer=1;
-    spawnLeft=3;
+    spawnLeft=1;
     MaxSpawnTimer=1;
   }//end constructor
 
@@ -55,7 +55,7 @@ class EnemyManager {
 
 
   void SpawnEnemy() {
-    println("d");
+    //println("d");
     totalRate=0;
 
     for (int i =0; i < SpawnTiles.size(); i++) {
