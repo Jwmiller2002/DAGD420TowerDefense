@@ -38,7 +38,8 @@ class EnemyFlying extends Enemy{
     stroke(20);
     strokeWeight(5);
     fill(150,150,240);
-    ellipse(pos.x,pos.y,30,30);    
+    ellipse(pos.x,pos.y,30,30);
+    drawPath();
   }
   
 }

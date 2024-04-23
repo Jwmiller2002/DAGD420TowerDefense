@@ -68,13 +68,13 @@ class EnemyManager {
     for (int i = 0; i < SpawnTiles.size(); i++) {
       if (random(0, totalRate)<CalcRate(SpawnTiles.get(i))) {
         float rad = random(0, 100);
-        Enemy e = new Enemy(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[13][17]);
+        Enemy e = new Enemy(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
         if (rad>75) {
-          e = new EnemyAcid(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[13][17]);
+          e = new EnemyAcid(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
         } else if (rad>50) {
-          e = new EnemyFlying(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[13][17]);
+          e = new EnemyFlying(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
         } else if (rad>25) {
-          e = new EnemySlow(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[13][17]);
+          e = new EnemySlow(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
         } else {
           // basic enemy
         }
@@ -87,8 +87,8 @@ class EnemyManager {
   }//end function
 
   float CalcRate(Tile t) {
-    int disX = t.X-game.level.tiles[13][17].X;
-    int disY = t.Y-game.level.tiles[13][17].Y;
+    int disX = t.X-game.level.tiles[16][13].X;
+    int disY = t.Y-game.level.tiles[16][13].Y;
     return sqrt(disX*disX+disY*disY);
   }//end function
 }

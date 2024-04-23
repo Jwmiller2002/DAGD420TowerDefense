@@ -45,7 +45,8 @@ class Enemy{
     stroke(20);
     strokeWeight(5);
     fill(230,30,30);
-    ellipse(pos.x,pos.y,30,30);    
+    ellipse(pos.x,pos.y,30,30);  
+    drawPath();
   }
   
   void attack(Tile target){
@@ -65,7 +66,19 @@ class Enemy{
     // ArrayList.remove(self);
     game.energy++;
   }
-  
+  void drawPath() {
+    if (path != null && path.size() > 1) {
+      stroke(0);
+      PVector prevP = pos.get();
+      for (int i = 1; i < path.size (); i++) {
+        PVector currP = path.get(i).getCenter();
+        line(prevP.x, prevP.y, currP.x, currP.y);
+        prevP = currP;
+      }
+      noStroke();
+      ellipse(prevP.x, prevP.y, 8, 8);
+    }
+  }
   void takeDamage(float d){
     health-=d;
     if(health<=0){
