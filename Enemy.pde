@@ -9,7 +9,7 @@ class Enemy{
   Tile goalT;
   Tile nextTile;
   boolean findPath = false;
-  
+  float jankCoolDown =1;
   float attackTimer;
   float attackCooldown;
   
@@ -98,7 +98,11 @@ class Enemy{
 
     if (path != null && path.size() > 1) { 
       nextTile = path.get(1);
-       if(nextTile.isPassable()) gridP = new Point(nextTile.X, nextTile.Y);
+      if(jankCoolDown <=.3){
+        if(nextTile.isPassable()) gridP = new Point(nextTile.X, nextTile.Y);
+        jankCoolDown =0.5;
+      }
+      else jankCoolDown -=1*DeltaTime;
     }
     
   }//end void
@@ -113,8 +117,8 @@ class Enemy{
         attack(nextTile);
       }
     }else{
-      pos.x += diff.x * .2;
-      pos.y += diff.y * .2;
+      pos.x += diff.x * 1;
+      pos.y += diff.y * 1;
     }
     if (abs(diff.x) < snapThreshold) pos.x = pixlT.x;
     if (abs(diff.y) < snapThreshold) pos.y = pixlT.y;

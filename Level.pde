@@ -60,6 +60,7 @@ class Level {
           if (Y != 16 && X!=13) {
             float randomPiece = random(0, 9);
             int setPiece =0;
+            PCGMAP.LEVEL1[Y][X] =20;
             if (randomPiece >8 && Y<7 && X<5 || randomPiece >8 && Y>28 && X<5 || randomPiece >8 && Y<7 && X>20 || randomPiece >8 && Y>28 && X>20) {
               setPiece =64; //ENEMY SPAWNER PLACEMENT
               PCGMAP.LEVEL1[Y][X] =64;
@@ -67,7 +68,7 @@ class Level {
             else if (randomPiece >6) {
               setPiece =2;
               //println(PCGMAP.LEVEL1[Y][X]);
-              PCGMAP.LEVEL1[Y][X] =2;
+              PCGMAP.LEVEL1[Y][X] =40;
               // println(PCGMAP.LEVEL1[Y][X]);
             } else if (randomPiece >3 && Y<26 && Y>7 && X<20 && X>5) {
               setPiece =70; //TOWERSPOT
