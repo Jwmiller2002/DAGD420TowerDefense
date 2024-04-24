@@ -74,7 +74,7 @@ class Level {
               setPiece =70; //TOWERSPOT
               PCGMAP.LEVEL1[Y][X] =70;
             } else if (randomPiece >0) setPiece =1;
-            PCGMAP.LEVEL1[Y][X] =1;
+            PCGMAP.LEVEL1[Y][X] =31;
             layout[Y][X] = setPiece;
           }
           if (Y == 16 && X==13) {

@@ -115,10 +115,13 @@ class Enemy{
     if(nextTile.isTower){
       if(attackTimer<=0){
         attack(nextTile);
+        println(nextTile.isTower);
       }
     }else{
+      println(nextTile.isTower);
       pos.x += diff.x * 1;
       pos.y += diff.y * 1;
+      
     }
     if (abs(diff.x) < snapThreshold) pos.x = pixlT.x;
     if (abs(diff.y) < snapThreshold) pos.y = pixlT.y;
