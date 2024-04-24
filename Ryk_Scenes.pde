@@ -541,11 +541,13 @@ class Help {
       textSize(32);
       fill(0);
       textAlign(LEFT);
-      text("There are 5 towers, a basic tower that shoots the enemies", mainX + width/100, (mainY + mainH + height/18) + height/30);
-      text("A tower that does a burst AoE around the tower", mainX + width/100, (mainY + mainH + height/18) + height/30 + 40);
-      text("A tower that acts like a wall that blocks the enemies way", mainX + width/100, (mainY + mainH + height/18) + height/30 + 80);
-      text("A tower that generates Energy", mainX + width/100, (mainY + mainH + height/18) + height/30 + 120);
-      text("A tower that increases your RAM capacity", mainX + width/100, (mainY + mainH + height/18) + height/30 + 160);
+      text("There are 5 towers,", mainX + width/100, (mainY + mainH + height/18) + height/30);
+      text("A basic tower that shoots the enemies 'BASIC'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 40);
+      text("A tower that does a burst AoE around the tower 'AOE'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 80);
+      text("A tower that acts like a wall that blocks the enemies way 'WALL'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 120);
+      text("A tower that generates Energy 'POWER'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 160);
+      text("A tower that increases your RAM capacity 'RAM'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 200);
+      text("These towers can only be build on the light green squares", mainX + width/100, (mainY + mainH + height/18) + height/30 + 240);
     } else if (i == 2) {
       textSize(35);
       fill(0);
