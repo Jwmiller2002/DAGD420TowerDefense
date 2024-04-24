@@ -40,32 +40,31 @@ class Tower {
     x= pointOnGridX-2;
     y = pointOnGridY-2;
     towerType = type;
-    if(type ==0 || type ==3) supportTower =false;
-    
+    if (type ==0 || type ==3) supportTower =false;
+
     bullets = new ArrayList<TowerBullet>();
   }
   void draw() {
 
-    ////println(health);
+    //////println(health);
     switch(towerType) {
     case 0: //Basic Tower
+      fireRange =300;
       maxHealth =50;
-      firerate =3;
-      
+      firerate =.5;
       ramCost = 2;
       energyCost = 5;
-      bulletSpeed =10;
+      bulletSpeed =1;
 
 
       ;
     case 1: //RAM TOWER
       firerate = 6;
       maxHealth =25;
-      
+
       ramCost = 2;
       energyCost = 5;
-      
-      bulletSpeed =10;
+
       ramTower =true;
 
 
@@ -73,30 +72,30 @@ class Tower {
     case 2: // Wall
       firerate =1;
       maxHealth =200;
-     
-      println(supportTower);
+
+      //println(supportTower);
       ramCost = 2;
       energyCost = 5;
       bulletSpeed =5;
 
 
     case 3: // AOE tower
-      firerate = 4;
+      firerate = 2;
       maxHealth =100;
-      
+      fireRange =100;
       ramCost = 2;
       energyCost = 5;
 
 
       ;
     case 4: //SUNFLOWER/MONEY,  Limited Lifetime?
-      firerate = 10;
+
       maxHealth =100;
-      
+
       ramCost = 2;
       energyCost = 5;
       ;
-      
+
 
       // Code that works for all towers(checking health shooting ect.)
 
@@ -106,16 +105,20 @@ class Tower {
       if (!foundEnemy) foundEnemy = chooseEnemy();
 
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
-        bullets.add(new TowerBullet(x, y, enemyX, enemyY, towerType, enemyToShoot, bulletSpeed));
+        bullets.add(new TowerBullet(towerType, x, y, enemyX, enemyY, enemyToShoot, bulletSpeed));
         timeTilNextFire =firerate;
-        println("SHOT");
-      } else if(!supportTower) {
+        ////println("SHOT");
+      } else if (!supportTower) {
         timeTilNextFire -=1 *DeltaTime;//*dt; //fire reset
         println(timeTilNextFire);
       }
+      
       if (!supportTower) {
         for (int i=0; i<bullets.size(); i++) {
           bullets.get(i).draw();
+          if (bullets.get(i).isDead) {
+            bullets.remove(i);
+          }
         }
       }
 
@@ -143,12 +146,12 @@ class Tower {
     for (int i=0; i<game.enemyMan.enemies.size()-1; i++) {
       Enemy e = game.enemyMan.enemies.get(i);
       float enemyDistanceFromTower = sqrt(sq(this.x - e.pos.x) + sq(this.y - e.pos.y));
-      //println(enemyDistanceFromTower);
-      if (enemyDistanceFromTower <= 300) {
+      ////println(enemyDistanceFromTower);
+      if (enemyDistanceFromTower <= fireRange) {
         enemyToShoot = i;
         enemyX =e.pos.x;
         enemyY =e.pos.y;
-        //println("ENEMYFOUND");
+        ////println("ENEMYFOUND");
         return true; //return enemy to shoot
       }
     }

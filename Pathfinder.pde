@@ -38,12 +38,12 @@ class Pathfinder {
    * @param ArrayList<Tile> path  The path to print out.
    */
   void outputPath(ArrayList<Tile> path) {
-    //////println("BEST PATH:");
+    ////////println("BEST PATH:");
     int i = 0;
     for (Tile t : path) {
       //print("\t" + i + ": " + t.X + ", " + t.Y);
       //if (i == 0) print(" (current location)");
-      //////println(); 
+      ////////println(); 
       i++;
     }
   }

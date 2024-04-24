@@ -311,7 +311,7 @@ class Options {
     }
     if (overMusic) {
       adjY += (sliderFunc(int (musicY)))-400;
-      //////println(adjY);
+      ////////println(adjY);
     }
     rect(musicX, musicY+adjY, musicW, musicH);
 
@@ -638,7 +638,7 @@ class Game {
 
   void draw() {
     background(128);
-    //////println(mouseX + " " + mouseY);
+    ////////println(mouseX + " " + mouseY);
 
     level.draw();
     //enemy draw
@@ -866,7 +866,7 @@ class Game {
       if (!isSupportHeld && !isBasicHeld && !isAOEHeld && !isRAMHeld) {
         if (leftMouseClick) {
           isPowerHeld = true;
-          //////println("PowerCLICK");
+          ////////println("PowerCLICK");
         }
       }
     }
@@ -933,7 +933,7 @@ class Game {
       if (!isSupportHeld && !isPowerHeld && !isBasicHeld && !isRAMHeld) {
         if (leftMouseClick) {
           isAOEHeld = true;
-          //////println("PowerCLICK");
+          ////////println("PowerCLICK");
         }
       }
     }
@@ -999,7 +999,7 @@ class Game {
       if (!isSupportHeld && !isPowerHeld && !isAOEHeld && !isBasicHeld) {
         if (leftMouseClick) {
           isRAMHeld = true;
-          //////println("PowerCLICK");
+          ////////println("PowerCLICK");
         }
       }
     }

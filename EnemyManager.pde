@@ -49,7 +49,7 @@ class EnemyManager {
       }
       doOnce =false;
     }
-    //////println(SpawnTiles.size());
+    ////////println(SpawnTiles.size());
 
     for (int i=0; i < enemies.size(); i++) {
       enemies.get(i).draw();
@@ -58,7 +58,7 @@ class EnemyManager {
 
 
   void SpawnEnemy() {
-    ////println("d");
+    //////println("d");
     totalRate=0;
 
     for (int i =0; i < SpawnTiles.size(); i++) {
