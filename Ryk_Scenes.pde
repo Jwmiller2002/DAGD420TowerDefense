@@ -1169,10 +1169,11 @@ class Credits{
     textSize(48);
     text("CREDITS", width/2, 55);
     
-    back();
+    backDrop();
+    backButton();
   }
   
-  void back(){
+  void backDrop(){
     fill(78, 156, 0);
     rectMode(CORNER);
     rect(width/24, height*2/24, width*22/24, height*20/24);
@@ -1210,5 +1211,16 @@ class Credits{
       mouseX < other.x+other.w &&
       mouseY > other.y &&
       mouseY < other.y+other.h;
+  }
+  
+  void buttonPressed() {
+    if (!prevMouse && mousePressed) {
+      prevMouse = true;
+      if (overBack) {
+        switchToTitle();
+      }
+    } else if (!mousePressed) {
+      prevMouse = false;
+    }
   }
 }
