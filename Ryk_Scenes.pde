@@ -1162,6 +1162,15 @@ class Credits{
   void draw(){
     background(0, 64, 0);
     fill(255);
-    text("CREDITS", width/2, 100);
+    textSize(48);
+    text("CREDITS", width/2, 55);
+    
+    back();
+  }
+  
+  void back(){
+    fill(78, 156, 0);
+    rectMode(CORNER);
+    rect(width/24, height*2/24, width*22/24, height*20/24);
   }
 }
