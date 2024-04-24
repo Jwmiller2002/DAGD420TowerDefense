@@ -411,8 +411,8 @@ class Help {
     textSize(40);
     text("How to play", width/2, 75);
     i += pageNumber(i);
-    text(helpPages[i], (width/5 + width*3/5 + width/12) + 15, mainY + 35);
-    text(helpPages.length, (width/5 + width*3/5 + width/12) + 60, mainY + 65);
+    text(helpPages[i], (width/5 + width*3/5 + width/12), mainY + 35);
+    text(helpPages.length, (width/5 + width*3/5 + width/12) + 45, mainY + 65);
 
     stroke(3);
     line(width/5 + width*3/5 + width/12, mainY + sharedH, (width/5 + width*3/5 + width/12) + 75, mainY);
@@ -526,17 +526,31 @@ class Help {
 
   void pages() {
     if (i == 0) {
-      textSize(40);
+      textSize(32);
       fill(0);
-      text("This is page one", width/2, height/2);
+      textAlign(LEFT);
+      text("Built towers to protect the Computer from those nasty Viruses", mainX + width/100, (mainY + mainH + height/18) + height/30);
+      text("Use Energy to build towers", mainX + width/100, (mainY + mainH + height/18) + height/30 + 40);
+      text("Be careful, each tower uses a limied resource call RAM", mainX + width/100, (mainY + mainH + height/18) + height/30 + 80);
+      text("Once you run out, no tower besides RAM can be built", mainX + width/100, (mainY + mainH + height/18) + height/30 + 120);
+      text("On the top left of HUD is where your Energy and RAM", mainX + width/100, (mainY + mainH + height/18) + height/30 + 160);
+      text("are displayed", mainX + width/100, (mainY + mainH + height/18) + height/30 + 200);
+      text("The number shows your Energy for buying,", mainX + width/100, (mainY + mainH + height/18) + height/30 + 240);
+      text("and the blue bars shows your capacity to build", mainX + width/100, (mainY + mainH + height/18) + height/30 + 280);
     } else if (i == 1) {
-      textSize(40);
+      textSize(32);
       fill(0);
-      text("This is page two", width/2, height/2);
+      textAlign(LEFT);
+      text("There are 5 towers, a basic tower that shoots the enemies", mainX + width/100, (mainY + mainH + height/18) + height/30);
+      text("A tower that does a burst AoE around the tower", mainX + width/100, (mainY + mainH + height/18) + height/30 + 40);
+      text("A tower that acts like a wall that blocks the enemies way", mainX + width/100, (mainY + mainH + height/18) + height/30 + 80);
+      text("A tower that generates Energy", mainX + width/100, (mainY + mainH + height/18) + height/30 + 120);
+      text("A tower that increases your RAM capacity", mainX + width/100, (mainY + mainH + height/18) + height/30 + 160);
     } else if (i == 2) {
-      textSize(40);
+      textSize(35);
       fill(0);
-      text("This is page three", width/2, height/2);
+      textAlign(LEFT);
+      text("This is page three", mainX+width/100, height/2);
     }
     noStroke();
   }
