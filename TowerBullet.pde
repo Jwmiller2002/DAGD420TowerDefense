@@ -27,6 +27,7 @@ class TowerBullet {
   void draw() {
     if (towerType ==3) rect(x, y, 20, 20);
     else rect(x, y, bulletSize, bulletSize);
+    println("btime");
 
     x+=velocityX * bulletSpeed * DeltaTime;
     y+=velocityY* bulletSpeed * DeltaTime;

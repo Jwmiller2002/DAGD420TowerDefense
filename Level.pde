@@ -67,9 +67,9 @@ class Level {
             }
             else if (randomPiece >6) {
               setPiece =2;
-              //println(PCGMAP.LEVEL1[Y][X]);
+              ////println(PCGMAP.LEVEL1[Y][X]);
               PCGMAP.LEVEL1[Y][X] =40;
-              // println(PCGMAP.LEVEL1[Y][X]);
+              // //println(PCGMAP.LEVEL1[Y][X]);
             } else if (randomPiece >3 && Y<26 && Y>7 && X<20 && X>5) {
               setPiece =70; //TOWERSPOT
               PCGMAP.LEVEL1[Y][X] =70;

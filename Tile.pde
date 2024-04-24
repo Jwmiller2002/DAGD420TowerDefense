@@ -77,31 +77,31 @@ class Tile {
       fill(0, 200, 255);
       isTower =true;
       PCGMAP.LEVEL1[Y][X] =71;
-      ////println("TOWER1");
+      //////println("TOWER1");
     }
     if (TERRAIN == 72) {//RAM TOWER
     PCGMAP.LEVEL1[Y][X] =72;
       fill(255, 200, 0);
       isTower =true;
-      ////println("TOWER2");
+      //////println("TOWER2");
     }
     if (TERRAIN == 73) {//Wall
     PCGMAP.LEVEL1[Y][X] =73;
       fill(0, 0, 139);
       isTower =true;
-      ////println("TOWER3");
+      //////println("TOWER3");
     }
     if (TERRAIN == 74) {//POWER
     PCGMAP.LEVEL1[Y][X] =74;
       fill(255, 255, 10);
       isTower =true;
-      ////println("TOWER4");
+      //////println("TOWER4");
     }
     if (TERRAIN == 75) {//AOE
     PCGMAP.LEVEL1[Y][X] =75;
       fill(255, 0, 255);
       isTower =true;
-      ////println("TOWER4");
+      //////println("TOWER4");
     }
     if (hover) fill(255, 255, 0);
 

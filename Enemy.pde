@@ -115,10 +115,10 @@ class Enemy{
     if(nextTile.isTower){
       if(attackTimer<=0){
         attack(nextTile);
-        println(nextTile.isTower);
+        //println(nextTile.isTower);
       }
     }else{
-      println(nextTile.isTower);
+      //println(nextTile.isTower);
       pos.x += diff.x * 1;
       pos.y += diff.y * 1;
       

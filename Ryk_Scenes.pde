@@ -311,7 +311,7 @@ class Options {
     }
     if (overMusic) {
       adjY += (sliderFunc(int (musicY)))-400;
-      ////println(adjY);
+      //////println(adjY);
     }
     rect(musicX, musicY+adjY, musicW, musicH);
 
@@ -614,6 +614,39 @@ class Game {
   void update() {
     lackEnergyTimer -= DeltaTime;
     lackRamTimer -= DeltaTime;
+    
+
+    //enemyManager update and check for all dead
+    enemyMan.update();
+
+    if (enemyMan.enemies.size() <=0 && enemyMan.spawnLeft<=0) {
+      waveTimer-=DeltaTime;
+      if (waveTimer<=0) {
+        enemyMan.spawnLeft = enemyCount;
+        enemyCount+=2;
+        enemyMan.MaxSpawnTimer = enemyDensity;
+        if (waveCount<90) {
+          enemyDensity = 1 - waveCount/100f;
+        } else {
+          enemyDensity=.1;
+        }
+        waveCount++;
+        waveTimer = 5;
+      }//end wave timer
+    }//end if wave done
+  }
+
+  void draw() {
+    background(128);
+    //////println(mouseX + " " + mouseY);
+
+    level.draw();
+    //enemy draw
+    enemyMan.draw();
+    //Shop
+    shop();
+    //UI
+    UI();
     for (int i =0; i<towers.size(); i++) {
       Tower t = towers.get(i);
       t.draw();
@@ -650,38 +683,7 @@ class Game {
         towers.remove(i);
       }
     }
-
-    //enemyManager update and check for all dead
-    enemyMan.update();
-
-    if (enemyMan.enemies.size() <=0 && enemyMan.spawnLeft<=0) {
-      waveTimer-=DeltaTime;
-      if (waveTimer<=0) {
-        enemyMan.spawnLeft = enemyCount;
-        enemyCount+=2;
-        enemyMan.MaxSpawnTimer = enemyDensity;
-        if (waveCount<90) {
-          enemyDensity = 1 - waveCount/100f;
-        } else {
-          enemyDensity=.1;
-        }
-        waveCount++;
-        waveTimer = 5;
-      }//end wave timer
-    }//end if wave done
-  }
-
-  void draw() {
-    background(128);
-    ////println(mouseX + " " + mouseY);
-
-    level.draw();
-    //enemy draw
-    enemyMan.draw();
-    //Shop
-    shop();
-    //UI
-    UI();
+    
     if (lackEnergyTimer > 0) {
       fill(0);
       rectMode(CENTER);
@@ -864,7 +866,7 @@ class Game {
       if (!isSupportHeld && !isBasicHeld && !isAOEHeld && !isRAMHeld) {
         if (leftMouseClick) {
           isPowerHeld = true;
-          ////println("PowerCLICK");
+          //////println("PowerCLICK");
         }
       }
     }
@@ -931,7 +933,7 @@ class Game {
       if (!isSupportHeld && !isPowerHeld && !isBasicHeld && !isRAMHeld) {
         if (leftMouseClick) {
           isAOEHeld = true;
-          ////println("PowerCLICK");
+          //////println("PowerCLICK");
         }
       }
     }
@@ -997,7 +999,7 @@ class Game {
       if (!isSupportHeld && !isPowerHeld && !isAOEHeld && !isBasicHeld) {
         if (leftMouseClick) {
           isRAMHeld = true;
-          ////println("PowerCLICK");
+          //////println("PowerCLICK");
         }
       }
     }
