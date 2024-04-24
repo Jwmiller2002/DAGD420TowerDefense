@@ -20,14 +20,7 @@ class EnemyFlying extends Enemy{
     float snapThreshold = 1;
     PVector pixlT = new PVector(goalT.X,goalT.Y);
     PVector diff = PVector.sub(pixlT, pos);
-    if(nextTile.isESpawner){
-      if(attackTimer<=0){
-        attack(nextTile);
-      }
-    }else{
-      pos.x += diff.x * .2;
-      pos.y += diff.y * .2;
-    }
+    
     if (abs(diff.x) < snapThreshold) pos.x = pixlT.x;
     if (abs(diff.y) < snapThreshold) pos.y = pixlT.y;
 

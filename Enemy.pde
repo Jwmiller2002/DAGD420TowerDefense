@@ -98,6 +98,7 @@ class Enemy{
 
     if (path != null && path.size() > 1) { 
       nextTile = path.get(1);
+       if(nextTile.isPassable()) gridP = new Point(nextTile.X, nextTile.Y);
     }
     
   }//end void
