@@ -9,10 +9,11 @@ class Title {
   float gameX, gameY, gameW, gameH;
   float optionsX, optionsY, optionsW, optionsH;
   float helpX, helpY, helpW, helpH;
+  float creditsX, creditsY, creditsW, creditsH;
   float sharedW, sharedH;
 
-  AABB play, help, options, exit;
-  boolean overExit, overPlay, overHelp, overOptions;
+  AABB play, help, options, exit, credits;
+  boolean overExit, overPlay, overHelp, overOptions, overCredits;
 
   float randX;
   float byteRand;
@@ -30,20 +31,25 @@ class Title {
     exitH = 50;
 
     gameX = width/2;
-    gameY = height/4;
+    gameY = height/5;
     gameW = sharedW;
     gameH = sharedH;
 
     optionsX = width/2;
-    optionsY = height/2;
+    optionsY = height*2/5;
     optionsW = sharedW;
     optionsH = sharedH;
 
     helpX = width/2;
-    helpY = height*3/4;
+    helpY = height*3/5;
     helpW = sharedW;
     helpH = sharedH;
-
+    
+    creditsX = width/2;
+    creditsY = height*4/5;
+    creditsW = sharedW;
+    creditsH = sharedH;
+    
     prevMouse = false;
   }
 
@@ -69,6 +75,7 @@ class Title {
     gameButton();
     helpButton();
     optionsButton();
+    creditsButton();
   }
 
   void exitButton() {
@@ -138,6 +145,23 @@ class Title {
     fill(0);
     text("Options", optionsX, optionsY+5);
   }
+  
+  void creditsButton(){
+    credits = new AABB(creditsX - creditsW/2, creditsY - creditsH/2, creditsW, creditsH, 0, 0);
+    overCredits = mouseOverButton(credits);
+    
+    if(overCredits){
+      fill(255, 200, 0);
+    } else {
+      fill(255);
+    }
+    rect(creditsX, creditsY, creditsW, creditsH);
+    
+    textAlign(CENTER);
+    textSize(25);
+    fill(0);
+    text("Credits", creditsX, creditsY);
+  }
 
   void backDrop() {
     fillArray();
@@ -180,6 +204,8 @@ class Title {
         switchToHelp();
       } else if (overOptions) {
         switchToOptions();
+      } else if (overCredits){
+        switchToCredits();
       }
     } else if (!mousePressed) {
       prevMouse = false;
@@ -1134,6 +1160,8 @@ class Credits{
   }
   
   void draw(){
-    
+    background(0, 64, 0);
+    fill(255);
+    text("CREDITS", width/2, 100);
   }
 }

@@ -4,6 +4,7 @@ Options options;
 Help help;
 Game game;
 End end; //Game Over
+Credits credits;
 
 boolean prevMouse;
 
@@ -67,6 +68,11 @@ void draw() {
     if (end != null) {
       end.draw();
     }
+  } else if (credits != null) {
+    credits.update();
+    if (credits != null) {
+      credits.draw();
+    }
   }
   prevLeftMouseClick = leftMouseClick;
   leftMouseRelease = false;
@@ -87,6 +93,7 @@ void switchToTitle() {
   help = null;
   game = null;
   end = null;
+  credits = null;
 }
 
 void switchToOptions() {
@@ -95,6 +102,7 @@ void switchToOptions() {
   help = null;
   game = null;
   end = null;
+  credits = null;
 }
 
 void switchToHelp() {
@@ -103,6 +111,7 @@ void switchToHelp() {
   help = new Help();
   game = null;
   end = null;
+  credits = null;
 }
 
 void closeApp() {
@@ -115,6 +124,7 @@ void switchToGame() {
   help = null;
   game = new Game();
   end = null;
+  credits = null;
 }
 
 void switchToEnd() {
@@ -123,8 +133,17 @@ void switchToEnd() {
   help = null;
   game = null;
   end = new End();
+  credits = null;
 }
 
+void switchToCredits() {
+  title = null;
+  options = null;
+  help = null;
+  game = null;
+  end = null;
+  credits = new Credits();
+}
 
 void CalcDeltaTime() {
   DeltaTime=(millis()-prevMillis)/1000f;
