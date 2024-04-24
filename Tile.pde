@@ -71,7 +71,7 @@ class Tile {
     }
     if (TERRAIN == 70) { //TOWER SPOT
       fill(0, 255, 0);
-      isTower =true;
+      //isTower =false;
     }
     if (TERRAIN == 71) {//BASICTOWER
       fill(0, 200, 255);
