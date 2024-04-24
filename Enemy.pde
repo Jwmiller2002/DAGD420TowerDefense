@@ -9,7 +9,7 @@ class Enemy{
   Tile goalT;
   Tile nextTile;
   boolean findPath = false;
-  
+  float jankCoolDown =1;
   float attackTimer;
   float attackCooldown;
   
@@ -23,7 +23,7 @@ class Enemy{
     damage= d;
     speed = s;
     pos=p;
-    findPath = true;
+    findPath = false;
     goalT = go;
     gridP = new Point(int(pos.x),int(pos.y));
     gridT = new Point(goalT.X,goalT.Y);
@@ -37,7 +37,7 @@ class Enemy{
      attackTimer-=DeltaTime; 
     }
     
-    if (findPath == true) findPathAndSetNextStep();
+    findPathAndSetNextStep();
     updateMove();
   }
   
@@ -95,13 +95,14 @@ class Enemy{
       return;
     }
     path = game.pathfinder.findPath(start, end);
-    println(path.size());
 
     if (path != null && path.size() > 1) { 
-      
       nextTile = path.get(1);
-    }else{
-      nextTile = start;
+      if(jankCoolDown <=.3){
+        if(nextTile.isPassable()) gridP = new Point(nextTile.X, nextTile.Y);
+        jankCoolDown =0.5;
+      }
+      else jankCoolDown -=1*DeltaTime;
     }
     
   }//end void
@@ -114,18 +115,18 @@ class Enemy{
     if(nextTile.isTower){
       if(attackTimer<=0){
         attack(nextTile);
-        println("attack");
+        println(nextTile.isTower);
       }
     }else{
-      pos.x += diff.x * .05;
-      pos.y += diff.y * .05;
+      println(nextTile.isTower);
+      pos.x += diff.x * 1;
+      pos.y += diff.y * 1;
+      
     }
     if (abs(diff.x) < snapThreshold) pos.x = pixlT.x;
     if (abs(diff.y) < snapThreshold) pos.y = pixlT.y;
-    
-    if (pixlT.x == pos.x && pixlT.y == pos.y){
-      findPath = true;
-    }
+
+    if (pixlT.x == pos.x && pixlT.y == pos.y) findPath = true;
   }
   
 }
