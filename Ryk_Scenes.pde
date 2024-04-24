@@ -311,7 +311,7 @@ class Options {
     }
     if (overMusic) {
       adjY += (sliderFunc(int (musicY)))-400;
-      ////println(adjY);
+      ////////println(adjY);
     }
     rect(musicX, musicY+adjY, musicW, musicH);
 
@@ -411,8 +411,8 @@ class Help {
     textSize(40);
     text("How to play", width/2, 75);
     i += pageNumber(i);
-    text(helpPages[i], (width/5 + width*3/5 + width/12) + 15, mainY + 35);
-    text(helpPages.length, (width/5 + width*3/5 + width/12) + 60, mainY + 65);
+    text(helpPages[i], (width/5 + width*3/5 + width/12), mainY + 35);
+    text(helpPages.length, (width/5 + width*3/5 + width/12) + 45, mainY + 65);
 
     stroke(3);
     line(width/5 + width*3/5 + width/12, mainY + sharedH, (width/5 + width*3/5 + width/12) + 75, mainY);
@@ -526,17 +526,33 @@ class Help {
 
   void pages() {
     if (i == 0) {
-      textSize(40);
+      textSize(32);
       fill(0);
-      text("This is page one", width/2, height/2);
+      textAlign(LEFT);
+      text("Built towers to protect the Computer from those nasty Viruses", mainX + width/100, (mainY + mainH + height/18) + height/30);
+      text("Use Energy to build towers", mainX + width/100, (mainY + mainH + height/18) + height/30 + 40);
+      text("Be careful, each tower uses a limied resource call RAM", mainX + width/100, (mainY + mainH + height/18) + height/30 + 80);
+      text("Once you run out, no tower besides RAM can be built", mainX + width/100, (mainY + mainH + height/18) + height/30 + 120);
+      text("On the top left of HUD is where your Energy and RAM", mainX + width/100, (mainY + mainH + height/18) + height/30 + 160);
+      text("are displayed", mainX + width/100, (mainY + mainH + height/18) + height/30 + 200);
+      text("The number shows your Energy for buying,", mainX + width/100, (mainY + mainH + height/18) + height/30 + 240);
+      text("and the blue bars shows your capacity to build", mainX + width/100, (mainY + mainH + height/18) + height/30 + 280);
     } else if (i == 1) {
-      textSize(40);
+      textSize(32);
       fill(0);
-      text("This is page two", width/2, height/2);
+      textAlign(LEFT);
+      text("There are 5 towers,", mainX + width/100, (mainY + mainH + height/18) + height/30);
+      text("A basic tower that shoots the enemies 'BASIC'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 40);
+      text("A tower that does a burst AoE around the tower 'AOE'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 80);
+      text("A tower that acts like a wall that blocks the enemies way 'WALL'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 120);
+      text("A tower that generates Energy 'POWER'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 160);
+      text("A tower that increases your RAM capacity 'RAM'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 200);
+      text("These towers can only be build on the light green squares", mainX + width/100, (mainY + mainH + height/18) + height/30 + 240);
     } else if (i == 2) {
-      textSize(40);
+      textSize(35);
       fill(0);
-      text("This is page three", width/2, height/2);
+      textAlign(LEFT);
+      text("This is page three", mainX+width/100, height/2);
     }
     noStroke();
   }
@@ -614,6 +630,39 @@ class Game {
   void update() {
     lackEnergyTimer -= DeltaTime;
     lackRamTimer -= DeltaTime;
+    
+
+    //enemyManager update and check for all dead
+    enemyMan.update();
+
+    if (enemyMan.enemies.size() <=0 && enemyMan.spawnLeft<=0) {
+      waveTimer-=DeltaTime;
+      if (waveTimer<=0) {
+        enemyMan.spawnLeft = enemyCount;
+        enemyCount+=2;
+        enemyMan.MaxSpawnTimer = enemyDensity;
+        if (waveCount<90) {
+          enemyDensity = 1 - waveCount/100f;
+        } else {
+          enemyDensity=.1;
+        }
+        waveCount++;
+        waveTimer = 5;
+      }//end wave timer
+    }//end if wave done
+  }
+
+  void draw() {
+    background(128);
+    ////////println(mouseX + " " + mouseY);
+
+    level.draw();
+    //enemy draw
+    enemyMan.draw();
+    //Shop
+    shop();
+    //UI
+    UI();
     for (int i =0; i<towers.size(); i++) {
       Tower t = towers.get(i);
       t.draw();
@@ -650,38 +699,7 @@ class Game {
         towers.remove(i);
       }
     }
-
-    //enemyManager update and check for all dead
-    enemyMan.update();
-
-    if (enemyMan.enemies.size() <=0 && enemyMan.spawnLeft<=0) {
-      waveTimer-=DeltaTime;
-      if (waveTimer<=0) {
-        enemyMan.spawnLeft = enemyCount;
-        enemyCount+=2;
-        enemyMan.MaxSpawnTimer = enemyDensity;
-        if (waveCount<90) {
-          enemyDensity = 1 - waveCount/100f;
-        } else {
-          enemyDensity=.1;
-        }
-        waveCount++;
-        waveTimer = 5;
-      }//end wave timer
-    }//end if wave done
-  }
-
-  void draw() {
-    background(128);
-    ////println(mouseX + " " + mouseY);
-
-    level.draw();
-    //enemy draw
-    enemyMan.draw();
-    //Shop
-    shop();
-    //UI
-    UI();
+    
     if (lackEnergyTimer > 0) {
       fill(0);
       rectMode(CENTER);
@@ -864,7 +882,7 @@ class Game {
       if (!isSupportHeld && !isBasicHeld && !isAOEHeld && !isRAMHeld) {
         if (leftMouseClick) {
           isPowerHeld = true;
-          ////println("PowerCLICK");
+          ////////println("PowerCLICK");
         }
       }
     }
@@ -931,7 +949,7 @@ class Game {
       if (!isSupportHeld && !isPowerHeld && !isBasicHeld && !isRAMHeld) {
         if (leftMouseClick) {
           isAOEHeld = true;
-          ////println("PowerCLICK");
+          ////////println("PowerCLICK");
         }
       }
     }
@@ -997,7 +1015,7 @@ class Game {
       if (!isSupportHeld && !isPowerHeld && !isAOEHeld && !isBasicHeld) {
         if (leftMouseClick) {
           isRAMHeld = true;
-          ////println("PowerCLICK");
+          ////////println("PowerCLICK");
         }
       }
     }
