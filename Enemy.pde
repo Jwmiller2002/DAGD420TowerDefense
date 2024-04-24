@@ -30,6 +30,8 @@ class Enemy{
     
     attackCooldown=.5;
     attackTimer=.5;
+    
+    findPathAndSetNextStep();
   }
   
   void update(){
@@ -37,7 +39,7 @@ class Enemy{
      attackTimer-=DeltaTime; 
     }
     
-    findPathAndSetNextStep();
+    if(findPath == true) findPathAndSetNextStep();
     updateMove();
   }
   
