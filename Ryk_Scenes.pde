@@ -233,7 +233,7 @@ class Options {
 
   void draw() {
     background(0, 64, 0);
-    fill(0);
+    fill(255);
     textSize(40);
     text("Options", width/2, 75);
     
@@ -247,10 +247,10 @@ class Options {
   }
   
   void backDrop(){
-    fill(156, 78, 0);
+    fill(78, 156, 0);
     rectMode(CORNER);
     rect(soundX-80, soundY-300, 160, 600);
-    rect(musicX-80, soundY-300, 160, 600);
+    rect(musicX-80, musicY-300, 160, 600);
   }
 
   void buttons() {
@@ -451,8 +451,8 @@ class Help {
     text3W = (text2X + text2W) - mainX;
     text3H = height*3/5;
 
-    background(128);
-    fill(255, 176, 102);
+    background(0, 64, 0);
+    fill(78, 156, 0);
     rect(text1X, text1Y, text1W, text1H);
     rect(text2X, text2Y, text2W, text2H);
     rect(text3X, text3Y, text3W, text3H);
