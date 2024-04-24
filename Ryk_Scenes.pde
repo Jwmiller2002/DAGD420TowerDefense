@@ -61,7 +61,7 @@ class Title {
 
     textSize(40);
     fill(255);
-    text("Yeet's Tower Defense", width/2, 75);
+    text("Yeet the Virus TD", width/2, 75);
 
     rectMode(CORNER);
     exitButton();
@@ -232,16 +232,25 @@ class Options {
   }
 
   void draw() {
-    background(128);
+    background(0, 64, 0);
     fill(0);
     textSize(40);
     text("Options", width/2, 75);
-
+    
+    backDrop();
+    
     rectMode(CORNER);
     buttons();
     rectMode(CENTER);
     soundLever();
     musicLever();
+  }
+  
+  void backDrop(){
+    fill(156, 78, 0);
+    rectMode(CORNER);
+    rect(soundX-80, soundY-300, 160, 600);
+    rect(musicX-80, soundY-300, 160, 600);
   }
 
   void buttons() {
@@ -409,8 +418,10 @@ class Help {
 
     fill(0);
     textSize(40);
+    textAlign(CENTER);
     text("How to play", width/2, 75);
     i += pageNumber(i);
+    textAlign(LEFT);
     text(helpPages[i], (width/5 + width*3/5 + width/12), mainY + 35);
     text(helpPages.length, (width/5 + width*3/5 + width/12) + 45, mainY + 65);
 
@@ -548,6 +559,7 @@ class Help {
       text("A tower that generates Energy 'POWER'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 160);
       text("A tower that increases your RAM capacity 'RAM'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 200);
       text("These towers can only be build on the light green squares", mainX + width/100, (mainY + mainH + height/18) + height/30 + 240);
+      text("Wall towers can be built nearly any", mainX + width/100, (mainY + mainH + height/18) + height/30 + 280);
     } else if (i == 2) {
       textSize(35);
       fill(0);
@@ -1100,8 +1112,28 @@ class End {
   }
 
   void draw() {
+    fill(200, 100, 0);
+    rect(width/20, height/20, width*18/20, height*18/20);
+    
+    buttons();
   }
 
   void buttons() {
+    fill(255);
+    rect(width/20+10, height/20+10, 100, 100);
+    line(width/20+10, height/20+110, width/20+110, height/20+10);
+    line(width/20+10, height/20+10, width/20+110, height/20+110);
+  }
+}
+
+//CREDITS CLASS---------------------------------------------------
+class Credits{
+
+  void update(){
+    
+  }
+  
+  void draw(){
+    
   }
 }
