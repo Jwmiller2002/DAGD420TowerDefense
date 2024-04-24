@@ -1154,7 +1154,11 @@ class End {
 
 //CREDITS CLASS---------------------------------------------------
 class Credits{
-
+  
+  float backX, backY, backW, backH;
+  AABB back;
+  boolean overBack;
+  
   void update(){
     
   }
@@ -1172,5 +1176,39 @@ class Credits{
     fill(78, 156, 0);
     rectMode(CORNER);
     rect(width/24, height*2/24, width*22/24, height*20/24);
+  }
+  
+  void backButton() {
+    float triX1, triX2, triX3;
+    float triY1, triY2, triY3;
+
+    triX1 = backX + backW/4;
+    triX2 = backX + backW/2;
+    triX3 = triX2;
+
+    triY1 = backY + backH/2;
+    triY2 = backY + backH/4;
+    triY3 = backY + backH*3/4;
+
+    back = new AABB(backX, backY, backW, backH, 0, 0);
+    overBack = mouseOverButton(back);
+
+    if (overBack) {
+      fill(255, 200, 0);
+    } else {
+      fill(255);
+    }
+    rect(backX, backY, backW, backH, 10);
+
+    fill(0);
+    triangle(triX1, triY1, triX2, triY2, triX3, triY3);
+    rect(triX2, (triY1+triY2)/2, backW/3, backH/4);
+  }
+  
+  boolean mouseOverButton(AABB other) {
+    return mouseX > other.x &&
+      mouseX < other.x+other.w &&
+      mouseY > other.y &&
+      mouseY < other.y+other.h;
   }
 }
