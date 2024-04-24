@@ -40,10 +40,11 @@ class TowerBullet {
     hitEnemy();
   }
   public void hitEnemy() {
+    if(game.enemyMan.enemies.size() <1) return;
     float distance = sqrt(sq(x - targetX) + sq(y-targetY));
     if (towerType ==0) {//normmattack
       bulletSpeed =10;
-      if (distance <=30 && game.enemyMan.enemies.get(target) != null) {
+      if (distance <=30) {
         game.enemyMan.enemies.get(target).takeDamage(25);
         isDead = true;
       }

@@ -107,6 +107,7 @@ class Tower {
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
         bullets.add(new TowerBullet(towerType, x, y, enemyX, enemyY, enemyToShoot, bulletSpeed));
         timeTilNextFire =firerate;
+         foundEnemy =false;
         ////println("SHOT");
       } else if (!supportTower) {
         timeTilNextFire -=1 *DeltaTime;//*dt; //fire reset

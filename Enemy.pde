@@ -46,7 +46,7 @@ class Enemy{
     strokeWeight(5);
     fill(230,30,30);
     ellipse(pos.x,pos.y,30,30);  
-    drawPath();
+    //drawPath();
   }
   
   void attack(Tile target){
