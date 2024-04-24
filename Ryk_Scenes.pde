@@ -805,7 +805,7 @@ class Game {
       if (energy >= 5 && mouseX<800 && ram >= 1) {
         Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
         Tile tile = level.getTile(g);
-        if (tile.TERRAIN ==70 || tile.TERRAIN == 1) {
+        if (tile.TERRAIN ==70 || tile.TERRAIN == 1 || tile.TERRAIN == 0) {
           energy -=5;
           ram -=1;
           tile.TERRAIN = 73;
