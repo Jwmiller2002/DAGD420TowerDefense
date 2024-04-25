@@ -1,3 +1,9 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
 
 Title title;
 Options options;
@@ -5,6 +11,10 @@ Help help;
 Game game;
 End end; //Game Over
 Credits credits;
+
+Minim minim;
+AudioPlayer bgm;
+FFT bgmFFT;
 
 boolean prevMouse;
 
@@ -28,6 +38,10 @@ void setup() {
 
   prevMillis=0;
   DeltaTime=0;
+  
+  minim = new Minim(this);
+  bgm = minim.loadFile("DigitalBackground.mp3", 1024);
+  bgmFFT = new FFT(bgm.bufferSize(), bgm.sampleRate());
 }
 
 void init() {
@@ -60,6 +74,7 @@ void draw() {
     }
   } else if (game != null) {
     game.update();
+    bgm.play();
     if (game != null) {
       game.draw();
     }
