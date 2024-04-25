@@ -1,8 +1,9 @@
-//Title
-//Options
-//Help
-//Game
-//End
+//Title 7-218
+//Options 218-386
+//Help 386-634
+//Game 634-1135
+//End 1135-11??
+//Credits 1156-1200
 
 class Title {
   float exitX, exitY, exitW, exitH;
@@ -1158,6 +1159,13 @@ class Credits{
   float backX, backY, backW, backH;
   AABB back;
   boolean overBack;
+  
+  Credits(){
+    backX = 25;
+    backY = 25;
+    backW = 50;
+    backH = 50;
+  }
   
   void update(){
     
