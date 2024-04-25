@@ -1198,6 +1198,9 @@ class Credits{
     
     text("Ryk Sacha - Title, Options, Help, and Credits Scenes",width/24+10, height*3/24 + 240);
     text("Screen Animations, Audio",width/24+10, height*3/24 + 280);
+    
+    text("Music Credits - The Alex Digital Project Alien by Alex Kegler",width/24+10, height*3/24 + 320);
+    text("Screen Animations, Audio",width/24+10, height*3/24 + 280);
   }
   
   void backDrop(){
