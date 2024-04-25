@@ -1179,6 +1179,24 @@ class Credits{
     
     backDrop();
     backButton();
+    textBox();
+  }
+  
+  void textBox(){
+    textSize(30);
+    textAlign(LEFT);
+    fill(0);
+    text("Ethan Prindle", width/24+10, height*3/24);
+    text("",width/24+10, height*3/24 + 40);
+    
+    text("Lawrence Simons",width/24+10, height*3/24 + 80);
+    text("",width/24+10, height*3/24 + 120);
+    
+    text("Jon Miller",width/24+10, height*3/24 + 160);
+    text("",width/24+10, height*3/24 + 200);
+    
+    text("Ryk Sacha",width/24+10, height*3/24 + 240);
+    text("",width/24+10, height*3/24 + 280);
   }
   
   void backDrop(){
