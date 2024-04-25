@@ -1175,6 +1175,7 @@ class Credits{
     background(0, 64, 0);
     fill(255);
     textSize(48);
+    textAlign(CENTER);
     text("CREDITS", width/2, 55);
     
     backDrop();
@@ -1186,17 +1187,17 @@ class Credits{
     textSize(30);
     textAlign(LEFT);
     fill(0);
-    text("Ethan Prindle", width/24+10, height*3/24);
-    text("",width/24+10, height*3/24 + 40);
+    text("Ethan Prindle - Towers, Procedural Generation, Primary Bug Fixer,", width/24+10, height*3/24);
+    text("Pathfinding",width/24+10, height*3/24 + 40);
     
-    text("Lawrence Simons",width/24+10, height*3/24 + 80);
+    text("Lawrence Simons - Enemies",width/24+10, height*3/24 + 80);
     text("",width/24+10, height*3/24 + 120);
     
-    text("Jon Miller",width/24+10, height*3/24 + 160);
+    text("Jon Miller - Shop, UI elements, RAM and Energy, Main HUD",width/24+10, height*3/24 + 160);
     text("",width/24+10, height*3/24 + 200);
     
-    text("Ryk Sacha",width/24+10, height*3/24 + 240);
-    text("",width/24+10, height*3/24 + 280);
+    text("Ryk Sacha - Title, Options, Help, and Credits Scenes",width/24+10, height*3/24 + 240);
+    text("Screen Animations, Audio",width/24+10, height*3/24 + 280);
   }
   
   void backDrop(){
