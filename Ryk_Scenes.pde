@@ -1168,7 +1168,7 @@ class Credits{
   }
   
   void update(){
-    
+    buttonPressed();
   }
   
   void draw(){
