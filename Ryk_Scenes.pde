@@ -1151,10 +1151,10 @@ class End {
     backW = 100;
     backH = 100;
     
-    restartX 
-    restartY
-    restartW 
-    restartH 
+    restartX = width*19/20-10;
+    restartY = height/20+10;
+    restartW = 100;
+    restartH = 100;
     
   }
   
@@ -1167,13 +1167,36 @@ class End {
     rect(width/20, height/20, width*18/20, height*18/20);
     
     buttons();
+    restart();
   }
 
   void buttons() {
-    fill(255);
-    rect(width/20+10, height/20+10, 100, 100);
+    back = new AABB(backX, backY, backW, backH, 0, 0);
+    overBack = mouseOverButton(back);
+    
+    if (overBack) {
+      fill(255, 200, 0);
+    } else {
+      fill(255);
+    }
+    rect(backX, backY, backW, backH);
+    
     line(width/20+10, height/20+110, width/20+110, height/20+10);
     line(width/20+10, height/20+10, width/20+110, height/20+110);
+  }
+  
+  void restart(){
+    restart = new AABB(restartX, restartY, restartW, restartH, 0, 0);
+    overRestart = mouseOverButton(restart);
+    
+    if(overRestart){
+      fill(255, 200, 0);
+    } else {
+      fill(255);
+    }
+    rect(restartX, restartY, restartW, restartH);
+    
+    arc(restartX + restartW/2, restartY + restartH/2, 50, 50, PI, PI/2);
   }
   
   boolean mouseOverButton(AABB other) {
@@ -1183,9 +1206,10 @@ class End {
       mouseY < other.y+other.h;
   }
   
-  if(!prevMouse && mousePressed){
-    prevMouse = true;
-    if (overBack) {
+  void buttonPressed() {
+    if (!prevMouse && mousePressed) {
+      prevMouse = true;
+      if (overBack) {
         switchToTitle();
       }
     } else if (!mousePressed) {
