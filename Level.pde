@@ -79,6 +79,7 @@ class Level {
           }
           if (Y == 16 && X==13) {
             layout[Y][X] = 1000; //home base
+            towers.add(new Tower (418, 514, 5));
           }
         }
       }

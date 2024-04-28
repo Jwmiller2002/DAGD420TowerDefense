@@ -94,6 +94,14 @@ class Tower {
 
       ramCost = 2;
       energyCost = 5;
+     
+      ;
+
+    case 5:
+      maxHealth =500;
+      fill(111);
+       rect(x,y,32,32);
+
       ;
 
 
@@ -107,14 +115,14 @@ class Tower {
 
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
         bullets.add(new TowerBullet(towerType, x, y, enemyX, enemyY, enemyToShoot, bulletSpeed));
-        timeTilNextFire = random(firerate-1,firerate);
-         
+        timeTilNextFire = random(firerate-1, firerate);
+
         ////println("SHOT");
       } else if (!supportTower) {
         timeTilNextFire -=1 *DeltaTime;//*dt; //fire reset
         //println(timeTilNextFire);
       }
-      
+
       if (!supportTower) {
         for (int i=0; i<bullets.size(); i++) {
           bullets.get(i).draw();
