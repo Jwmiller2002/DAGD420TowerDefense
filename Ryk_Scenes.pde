@@ -198,8 +198,10 @@ class Title {
     if (!prevMouse && mousePressed) {
       prevMouse = true;
       if (overExit) {
+        sfx1.play();
         closeApp();
       } else if (overPlay) {
+        sfx1.play();
         switchToGame();
       } else if (overHelp) {
         switchToHelp();
@@ -1136,6 +1138,7 @@ class Game {
 class End {
 
   void update() {
+    buttonPressed();
   }
 
   void draw() {
@@ -1150,6 +1153,17 @@ class End {
     rect(width/20+10, height/20+10, 100, 100);
     line(width/20+10, height/20+110, width/20+110, height/20+10);
     line(width/20+10, height/20+10, width/20+110, height/20+110);
+  }
+  
+  boolean mouseOverButton(AABB other) {
+    return mouseX > other.x &&
+      mouseX < other.x+other.w &&
+      mouseY > other.y &&
+      mouseY < other.y+other.h;
+  }
+  
+  if(!prevMouse && mousePressed){
+    prevMouse = true;
   }
 }
 
@@ -1200,7 +1214,8 @@ class Credits{
     text("Screen Animations, Audio",width/24+10, height*3/24 + 280);
     
     text("Music Credits - The Alex Digital Project Alien by Alex Kegler",width/24+10, height*3/24 + 320);
-    text("Screen Animations, Audio",width/24+10, height*3/24 + 280);
+    
+    text("Sound Credits - Clicks for Game menu by UniversField",width/24+10, height*3/24 + 360);
   }
   
   void backDrop(){

@@ -51,7 +51,7 @@ void setup() {
 
 void init() {
   //Switch this code to choose the scene that first appears when booting the program up
-  switchToTitle();
+  switchToEnd();
 }
 
 void draw() {
