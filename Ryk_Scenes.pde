@@ -1151,7 +1151,7 @@ class End {
     backW = 100;
     backH = 100;
     
-    restartX = width*19/20-10;
+    restartX = width*17/20-10;
     restartY = height/20+10;
     restartW = 100;
     restartH = 100;
@@ -1196,7 +1196,11 @@ class End {
     }
     rect(restartX, restartY, restartW, restartH);
     
-    arc(restartX + restartW/2, restartY + restartH/2, 50, 50, PI, PI/2);
+    fill(0);
+    noFill();
+    arc(restartX + restartW/2, restartY + restartH/2, 50, 50, PI/4, PI*2-PI/4);
+    line();
+    line();
   }
   
   boolean mouseOverButton(AABB other) {
