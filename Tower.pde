@@ -100,7 +100,7 @@ class Tower {
     case 5:
       maxHealth =500;
       fill(111);
-       rect(x,y,32,32);
+       //rect(x,y,32,32);
 
       ;
 
