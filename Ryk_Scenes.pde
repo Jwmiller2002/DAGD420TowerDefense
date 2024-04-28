@@ -1136,7 +1136,28 @@ class Game {
 
 //END CLASS---------------------------------------------------------
 class End {
-
+  
+  float backX, backY, backW, backH;
+  AABB back;
+  boolean overBack;
+  
+  float restartX, restartY, restartW, restartH;
+  AABB restart;
+  boolean overRestart;
+  
+  End(){
+    backX = width/20+10;
+    backY = height/20+10;
+    backW = 100;
+    backH = 100;
+    
+    restartX 
+    restartY
+    restartW 
+    restartH 
+    
+  }
+  
   void update() {
     buttonPressed();
   }
@@ -1164,6 +1185,12 @@ class End {
   
   if(!prevMouse && mousePressed){
     prevMouse = true;
+    if (overBack) {
+        switchToTitle();
+      }
+    } else if (!mousePressed) {
+      prevMouse = false;
+    }
   }
 }
 
