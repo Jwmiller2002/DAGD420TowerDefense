@@ -145,7 +145,7 @@ class Tower {
     }
   }
   private boolean chooseEnemy() { //get array of enemies and shoot neerest or the most leathal one
-    for (int i=0; i<game.enemyMan.enemies.size()-1; i++) {
+    for (int i=0; i<game.enemyMan.enemies.size(); i++) {
       Enemy e = game.enemyMan.enemies.get(i);
       float enemyDistanceFromTower = sqrt(sq(this.x - e.pos.x) + sq(this.y - e.pos.y));
       ////println(enemyDistanceFromTower);

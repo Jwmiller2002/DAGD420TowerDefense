@@ -32,10 +32,10 @@ class EnemyManager {
       if (enemies.get(i).health <=0) {
         enemies.get(i).isDead =true;
         for(int t =0; t<towers.size();t++){
-          if(i == towers.get(t).enemyToShoot) towers.get(t).foundEnemy =false;
+           towers.get(t).foundEnemy =false;
           
         }
-        println("d");
+        
         enemies.get(i).Die();
         enemies.remove(i);
         i--;
