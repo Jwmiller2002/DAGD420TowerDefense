@@ -15,6 +15,8 @@ Credits credits;
 Minim minim;
 AudioPlayer bgm;
 FFT bgmFFT;
+AudioPlayer sfx1; //Menubutton click
+FFT fxFFT;
 
 boolean prevMouse;
 
@@ -42,6 +44,9 @@ void setup() {
   minim = new Minim(this);
   bgm = minim.loadFile("DigitalBackground.mp3", 1024);
   bgmFFT = new FFT(bgm.bufferSize(), bgm.sampleRate());
+  
+  sfx1 = minim.loadFile("MenuSFX.mp3", 1024);
+  fxFFT = new FFT(sfx1.bufferSize(), sfx1.sampleRate());
 }
 
 void init() {
