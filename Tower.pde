@@ -103,15 +103,16 @@ class Tower {
 
 
       if (!foundEnemy) foundEnemy = chooseEnemy();
+      //if(game.enemyMan.enemies.size()>0 )if(game.enemyMan.enemies.get(enemyToShoot).isDead)foundEnemy =false;
 
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
         bullets.add(new TowerBullet(towerType, x, y, enemyX, enemyY, enemyToShoot, bulletSpeed));
-        timeTilNextFire =firerate;
-         foundEnemy =false;
+        timeTilNextFire = random(firerate-1,firerate);
+         
         ////println("SHOT");
       } else if (!supportTower) {
         timeTilNextFire -=1 *DeltaTime;//*dt; //fire reset
-        println(timeTilNextFire);
+        //println(timeTilNextFire);
       }
       
       if (!supportTower) {

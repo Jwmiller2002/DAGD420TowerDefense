@@ -30,6 +30,12 @@ class EnemyManager {
     for (int i=0; i < enemies.size(); i++) {
       enemies.get(i).update();
       if (enemies.get(i).health <=0) {
+        enemies.get(i).isDead =true;
+        for(int t =0; t<towers.size();t++){
+          if(i == towers.get(t).enemyToShoot) towers.get(t).foundEnemy =false;
+          
+        }
+        println("d");
         enemies.get(i).Die();
         enemies.remove(i);
         i--;
@@ -71,15 +77,15 @@ class EnemyManager {
         Enemy e = new Enemy(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
         /*
         if (rad>75) {
-          e = new EnemyAcid(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
-        } else if (rad>50) {
-          e = new EnemyFlying(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
-        } else if (rad>25) {
-          e = new EnemySlow(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
-        } else {
-          // basic enemy
-        }
-        */
+         e = new EnemyAcid(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
+         } else if (rad>50) {
+         e = new EnemyFlying(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
+         } else if (rad>25) {
+         e = new EnemySlow(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
+         } else {
+         // basic enemy
+         }
+         */
         enemies.add(e);
         i = SpawnTiles.size()+1;
       } else {
