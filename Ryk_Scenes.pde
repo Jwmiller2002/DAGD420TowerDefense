@@ -671,7 +671,7 @@ class Game {
   void update() {
     lackEnergyTimer -= DeltaTime;
     lackRamTimer -= DeltaTime;
-    if(!gameOver) timeLasted =millis()/1000;
+    if (!gameOver) timeLasted =millis()/1000;
 
 
     //enemyManager update and check for all dead
@@ -738,12 +738,14 @@ class Game {
         Tile tile = level.getTile(g);
         if (t.ramTower) ramMax--;
         if (t.towerType !=5) {
-          if (t.towerType ==2) {
+          if (tile.TERRAIN ==73) {
             tile.TERRAIN =1;
             //PCGMAP.LEVEL1[tile.Y][tile.X] =1;
+          } else {
+            tile.TERRAIN =70;
+            PCGMAP.LEVEL1[tile.Y][tile.X] =70;
+            
           }
-          tile.TERRAIN =70;
-          PCGMAP.LEVEL1[tile.Y][tile.X] =70;
           towers.remove(i);
         } else {
           gameOver =true;
