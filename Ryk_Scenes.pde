@@ -671,6 +671,7 @@ class Game {
   void update() {
     lackEnergyTimer -= DeltaTime;
     lackRamTimer -= DeltaTime;
+    if(!gameOver) timeLasted =millis()/1000;
 
 
     //enemyManager update and check for all dead
@@ -744,7 +745,10 @@ class Game {
           tile.TERRAIN =70;
           PCGMAP.LEVEL1[tile.Y][tile.X] =70;
           towers.remove(i);
-        } else switchToEnd(); // CHANGE TO GAME OVER SCREEEN
+        } else {
+          gameOver =true;
+          switchToEnd(); // CHANGE TO GAME OVER SCREEEN
+        }
       }
     }
 
@@ -1200,7 +1204,7 @@ class End {
 
     textSize(30);
     textAlign(CENTER);
-    text("Time lasted: " + millis()/1000, width/2, backY + 300);
+    text("Time lasted: " + timeLasted, width/2, backY + 300);
     text("Dead on wave: NaN", width/2, backY + 350);
   }
 

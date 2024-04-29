@@ -56,7 +56,7 @@ class Enemy {
     println("hit");
     for (Tower t : towers) {
       float distance = sqrt(sq(pos.x - t.x) + sq(pos.y-t.y));
-      if (distance <= 50) {
+      if (distance <= 40) {
        
         t.takeDamage(damage);
          println(t.health);

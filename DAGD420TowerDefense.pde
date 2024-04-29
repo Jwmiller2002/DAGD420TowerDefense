@@ -19,6 +19,8 @@ AudioPlayer sfx1; //Menubutton click
 FFT fxFFT;
 
 boolean prevMouse;
+float timeLasted =0;
+boolean gameOver;
 
 ArrayList<Tower> towers;
 float prevMillis;

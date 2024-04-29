@@ -10,7 +10,7 @@ class Tower {
   public float bulletSpeed;
 
   private int towerType;
-  private boolean supportTower =true;
+  private boolean supportTower =false;
 
   private float decayDelay=10;
   public float towerCost=10;
@@ -41,7 +41,7 @@ class Tower {
     x= pointOnGridX-2;
     y = pointOnGridY-2;
     towerType = type;
-    if (type ==0 || type ==3) supportTower =false;
+    
 
     bullets = new ArrayList<TowerBullet>();
   }
@@ -54,7 +54,7 @@ class Tower {
 
       maxHealth =50;
       health = maxHealth;
-      firerate =.5;
+      firerate =1.5;
       ramCost = 2;
       energyCost = 5;
       bulletSpeed =1;
@@ -68,6 +68,7 @@ class Tower {
       energyCost = 5;
       ramTower =true;
       doOnce =false;
+      supportTower =true;
     } else if (towerType ==2 && doOnce) {
       // Wall
       firerate =1;
@@ -78,6 +79,7 @@ class Tower {
       energyCost = 5;
       bulletSpeed =5;
       doOnce =false;
+      supportTower =true;
     } else if (towerType ==3 && doOnce) {
       // AOE tower
       firerate = 3;
@@ -112,7 +114,7 @@ class Tower {
     //println(health);
 
 
-    if (!foundEnemy) foundEnemy = chooseEnemy();
+    if (!foundEnemy && !supportTower) foundEnemy = chooseEnemy();
     //if(game.enemyMan.enemies.size()>0 )if(game.enemyMan.enemies.get(enemyToShoot).isDead)foundEnemy =false;
 
     if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
