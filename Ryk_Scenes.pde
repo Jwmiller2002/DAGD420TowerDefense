@@ -671,7 +671,7 @@ class Game {
   void update() {
     lackEnergyTimer -= DeltaTime;
     lackRamTimer -= DeltaTime;
-    
+
 
     //enemyManager update and check for all dead
     enemyMan.update();
@@ -740,7 +740,7 @@ class Game {
         towers.remove(i);
       }
     }
-    
+
     if (lackEnergyTimer > 0) {
       fill(0);
       rectMode(CENTER);
@@ -821,6 +821,10 @@ class Game {
     textAlign(CENTER, CENTER);
     textSize(15);
     text(type, x + (w/2), y + (h/2));
+    fill(255, 255, 0);
+    text("10", x + 12, y +10);
+    fill(5, 217, 255);
+    text("4", x + (w-12), y +10);
     if (isBasicHeld) {
       rectMode(CENTER);
       strokeWeight(0);
@@ -888,6 +892,10 @@ class Game {
     textAlign(CENTER, CENTER);
     textSize(15);
     text(type, x + (w/2), y + (h/2));
+    fill(255, 255, 0);
+    text("5", x + 12, y +10);
+    fill(5, 217, 255);
+    text("1", x + (w-12), y +10);
     if (isSupportHeld) {
       rectMode(CENTER);
       strokeWeight(0);
@@ -955,6 +963,10 @@ class Game {
     textAlign(CENTER, CENTER);
     textSize(15);
     text(type, x + (w/2), y + (h/2));
+    fill(255, 255, 0);
+    text("15", x + 12, y +10);
+    fill(5, 217, 255);
+    text("10", x + (w-12), y +10);
     if (isPowerHeld) {
       rectMode(CENTER);
       strokeWeight(0);
@@ -1022,6 +1034,10 @@ class Game {
     textAlign(CENTER, CENTER);
     textSize(15);
     text(type, x + (w/2), y + (h/2));
+    fill(255, 255, 0);
+    text("12", x + 12, y +10);
+    fill(5, 217, 255);
+    text("3", x + (w-12), y +10);
     if (isAOEHeld) {
       rectMode(CENTER);
       strokeWeight(0);
@@ -1085,6 +1101,8 @@ class Game {
     textAlign(CENTER, CENTER);
     textSize(15);
     text(type, x + (w/2), y + (h/2));
+    fill(255, 255, 0);
+    text("20", x + 12, y +10);
     if (isRAMHeld) {
       rectMode(CENTER);
       strokeWeight(0);
