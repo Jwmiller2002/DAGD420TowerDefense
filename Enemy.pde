@@ -55,7 +55,7 @@ class Enemy{
     attackTimer = attackCooldown;
     
     for(Tower t: towers){
-     if(t.x == target.X && t.y==target.Y){
+     if(t.x == target.X*32-16 && t.y==target.Y*32-16){
       //t.takedamage() //take damage currently does not deal a variable amount of damage 
       t.health -=damage;
      }
