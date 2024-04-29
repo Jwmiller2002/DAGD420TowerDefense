@@ -78,9 +78,9 @@ class EnemyManager {
         
         if (rad>75) {
          e = new EnemyAcid(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
-         } else if (rad>50) {
+         } /*else if (rad>50) {
          e = new EnemyFlying(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
-         } else if (rad>25) {
+         }*/ else if (rad>25) {
          e = new EnemySlow(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
          } else {
          // basic enemy

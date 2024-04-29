@@ -26,6 +26,6 @@ class EnemySlow extends Enemy {
     noStroke();
     fill(30, 200, 250, 80);
     ellipse(pos.x, pos.y, slowRadius*2, slowRadius*2);
-    drawPath();
+    //drawPath();
   }
 }
