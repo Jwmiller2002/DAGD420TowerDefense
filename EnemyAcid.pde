@@ -36,7 +36,7 @@ class EnemyAcid extends Enemy{
     noStroke();  
     fill(150,150,240,80);
     ellipse(pos.x,pos.y,acidRadius*2,acidRadius*2);  
-    drawPath();
+    //drawPath();
   }
   
 }
