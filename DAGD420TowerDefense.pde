@@ -1,9 +1,22 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
 
 Title title;
 Options options;
 Help help;
 Game game;
 End end; //Game Over
+Credits credits;
+
+Minim minim;
+AudioPlayer bgm;
+FFT bgmFFT;
+AudioPlayer sfx1; //Menubutton click
+FFT fxFFT;
 
 boolean prevMouse;
 
@@ -27,11 +40,18 @@ void setup() {
 
   prevMillis=0;
   DeltaTime=0;
+  
+  minim = new Minim(this);
+  bgm = minim.loadFile("DigitalBackground.mp3", 1024);
+  bgmFFT = new FFT(bgm.bufferSize(), bgm.sampleRate());
+  
+  sfx1 = minim.loadFile("MenuSFX.mp3", 1024);
+  fxFFT = new FFT(sfx1.bufferSize(), sfx1.sampleRate());
 }
 
 void init() {
   //Switch this code to choose the scene that first appears when booting the program up
-  switchToTitle();
+  switchToEnd();
 }
 
 void draw() {
@@ -59,6 +79,7 @@ void draw() {
     }
   } else if (game != null) {
     game.update();
+    bgm.play();
     if (game != null) {
       game.draw();
     }
@@ -66,6 +87,11 @@ void draw() {
     end.update();
     if (end != null) {
       end.draw();
+    }
+  } else if (credits != null) {
+    credits.update();
+    if (credits != null) {
+      credits.draw();
     }
   }
   prevLeftMouseClick = leftMouseClick;
@@ -87,6 +113,7 @@ void switchToTitle() {
   help = null;
   game = null;
   end = null;
+  credits = null;
 }
 
 void switchToOptions() {
@@ -95,6 +122,7 @@ void switchToOptions() {
   help = null;
   game = null;
   end = null;
+  credits = null;
 }
 
 void switchToHelp() {
@@ -103,6 +131,7 @@ void switchToHelp() {
   help = new Help();
   game = null;
   end = null;
+  credits = null;
 }
 
 void closeApp() {
@@ -115,6 +144,7 @@ void switchToGame() {
   help = null;
   game = new Game();
   end = null;
+  credits = null;
 }
 
 void switchToEnd() {
@@ -123,8 +153,17 @@ void switchToEnd() {
   help = null;
   game = null;
   end = new End();
+  credits = null;
 }
 
+void switchToCredits() {
+  title = null;
+  options = null;
+  help = null;
+  game = null;
+  end = null;
+  credits = new Credits();
+}
 
 void CalcDeltaTime() {
   DeltaTime=(millis()-prevMillis)/1000f;

@@ -1,18 +1,20 @@
-//Title
-//Options
-//Help
-//Game
-//End
+//Title 7-218
+//Options 218-386
+//Help 386-634
+//Game 634-1135
+//End 1135-11??
+//Credits 1156-1200
 
 class Title {
   float exitX, exitY, exitW, exitH;
   float gameX, gameY, gameW, gameH;
   float optionsX, optionsY, optionsW, optionsH;
   float helpX, helpY, helpW, helpH;
+  float creditsX, creditsY, creditsW, creditsH;
   float sharedW, sharedH;
 
-  AABB play, help, options, exit;
-  boolean overExit, overPlay, overHelp, overOptions;
+  AABB play, help, options, exit, credits;
+  boolean overExit, overPlay, overHelp, overOptions, overCredits;
 
   float randX;
   float byteRand;
@@ -30,20 +32,25 @@ class Title {
     exitH = 50;
 
     gameX = width/2;
-    gameY = height/4;
+    gameY = height/5;
     gameW = sharedW;
     gameH = sharedH;
 
     optionsX = width/2;
-    optionsY = height/2;
+    optionsY = height*2/5;
     optionsW = sharedW;
     optionsH = sharedH;
 
     helpX = width/2;
-    helpY = height*3/4;
+    helpY = height*3/5;
     helpW = sharedW;
     helpH = sharedH;
-
+    
+    creditsX = width/2;
+    creditsY = height*4/5;
+    creditsW = sharedW;
+    creditsH = sharedH;
+    
     prevMouse = false;
   }
 
@@ -61,7 +68,7 @@ class Title {
 
     textSize(40);
     fill(255);
-    text("Yeet's Tower Defense", width/2, 75);
+    text("Yeet the Virus TD", width/2, 75);
 
     rectMode(CORNER);
     exitButton();
@@ -69,6 +76,7 @@ class Title {
     gameButton();
     helpButton();
     optionsButton();
+    creditsButton();
   }
 
   void exitButton() {
@@ -138,6 +146,23 @@ class Title {
     fill(0);
     text("Options", optionsX, optionsY+5);
   }
+  
+  void creditsButton(){
+    credits = new AABB(creditsX - creditsW/2, creditsY - creditsH/2, creditsW, creditsH, 0, 0);
+    overCredits = mouseOverButton(credits);
+    
+    if(overCredits){
+      fill(255, 200, 0);
+    } else {
+      fill(255);
+    }
+    rect(creditsX, creditsY, creditsW, creditsH);
+    
+    textAlign(CENTER);
+    textSize(25);
+    fill(0);
+    text("Credits", creditsX, creditsY);
+  }
 
   void backDrop() {
     fillArray();
@@ -173,13 +198,17 @@ class Title {
     if (!prevMouse && mousePressed) {
       prevMouse = true;
       if (overExit) {
+        sfx1.play();
         closeApp();
       } else if (overPlay) {
+        sfx1.play();
         switchToGame();
       } else if (overHelp) {
         switchToHelp();
       } else if (overOptions) {
         switchToOptions();
+      } else if (overCredits){
+        switchToCredits();
       }
     } else if (!mousePressed) {
       prevMouse = false;
@@ -232,16 +261,25 @@ class Options {
   }
 
   void draw() {
-    background(128);
-    fill(0);
+    background(0, 64, 0);
+    fill(255);
     textSize(40);
     text("Options", width/2, 75);
-
+    
+    backDrop();
+    
     rectMode(CORNER);
     buttons();
     rectMode(CENTER);
     soundLever();
     musicLever();
+  }
+  
+  void backDrop(){
+    fill(78, 156, 0);
+    rectMode(CORNER);
+    rect(soundX-80, soundY-300, 160, 600);
+    rect(musicX-80, musicY-300, 160, 600);
   }
 
   void buttons() {
@@ -409,8 +447,10 @@ class Help {
 
     fill(0);
     textSize(40);
+    textAlign(CENTER);
     text("How to play", width/2, 75);
     i += pageNumber(i);
+    textAlign(LEFT);
     text(helpPages[i], (width/5 + width*3/5 + width/12), mainY + 35);
     text(helpPages.length, (width/5 + width*3/5 + width/12) + 45, mainY + 65);
 
@@ -440,8 +480,8 @@ class Help {
     text3W = (text2X + text2W) - mainX;
     text3H = height*3/5;
 
-    background(128);
-    fill(255, 176, 102);
+    background(0, 64, 0);
+    fill(78, 156, 0);
     rect(text1X, text1Y, text1W, text1H);
     rect(text2X, text2Y, text2W, text2H);
     rect(text3X, text3Y, text3W, text3H);
@@ -548,6 +588,7 @@ class Help {
       text("A tower that generates Energy 'POWER'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 160);
       text("A tower that increases your RAM capacity 'RAM'", mainX + width/100, (mainY + mainH + height/18) + height/30 + 200);
       text("These towers can only be build on the light green squares", mainX + width/100, (mainY + mainH + height/18) + height/30 + 240);
+      text("Wall towers can be built nearly any", mainX + width/100, (mainY + mainH + height/18) + height/30 + 280);
     } else if (i == 2) {
       textSize(35);
       fill(0);
@@ -1095,13 +1136,203 @@ class Game {
 
 //END CLASS---------------------------------------------------------
 class End {
-
+  
+  float backX, backY, backW, backH;
+  AABB back;
+  boolean overBack;
+  
+  float restartX, restartY, restartW, restartH;
+  AABB restart;
+  boolean overRestart;
+  
+  End(){
+    backX = width/20+10;
+    backY = height/20+10;
+    backW = 100;
+    backH = 100;
+    
+    restartX = width*17/20-10;
+    restartY = height/20+10;
+    restartW = 100;
+    restartH = 100;
+    
+  }
+  
   void update() {
+    buttonPressed();
   }
 
   void draw() {
+    background(0, 64, 0);
+    fill(78, 156, 0);
+    rect(width/20, height/20, width*18/20, height*18/20);
+    
+    buttons();
+    restart();
+    
+    fill(255);
+    textSize(50);
+    text("Game Over!", width/2, backY+100);
+    
+    textSize(30);
+    textAlign(CENTER);
+    text("Time lasted: " + millis()/1000, width/2, backY + 300);
+    text("Dead on wave: NaN", width/2, backY + 350);
   }
 
   void buttons() {
+    back = new AABB(backX, backY, backW, backH, 0, 0);
+    overBack = mouseOverButton(back);
+    
+    if (overBack) {
+      fill(255, 200, 0);
+    } else {
+      fill(255);
+    }
+    rect(backX, backY, backW, backH);
+    
+    line(width/20+10, height/20+110, width/20+110, height/20+10);
+    line(width/20+10, height/20+10, width/20+110, height/20+110);
+  }
+  
+  void restart(){
+    restart = new AABB(restartX, restartY, restartW, restartH, 0, 0);
+    overRestart = mouseOverButton(restart);
+    
+    if(overRestart){
+      fill(255, 200, 0);
+    } else {
+      fill(255);
+    }
+    rect(restartX, restartY, restartW, restartH);
+    
+    fill(0);
+    noFill();
+    arc(restartX + restartW/2, restartY + restartH/2, 50, 50, PI/4, PI*2-PI/4);
+    line((restartX + restartW/2) + 8, (restartY + restartH/2) - 12, width*18/20+3, height*2/23+2);
+    line(width*18/20+3, height*2/23+2, width*18/20, height/12-6);
+  }
+  
+  boolean mouseOverButton(AABB other) {
+    return mouseX > other.x &&
+      mouseX < other.x+other.w &&
+      mouseY > other.y &&
+      mouseY < other.y+other.h;
+  }
+  
+  void buttonPressed() {
+    if (!prevMouse && mousePressed) {
+      prevMouse = true;
+      if (overBack) {
+        switchToTitle();
+      } else if (overRestart){
+        switchToGame();
+      }
+    } else if (!mousePressed) {
+      prevMouse = false;
+    }
+  }
+}
+
+//CREDITS CLASS---------------------------------------------------
+class Credits{
+  
+  float backX, backY, backW, backH;
+  AABB back;
+  boolean overBack;
+  
+  Credits(){
+    backX = 25;
+    backY = 25;
+    backW = 50;
+    backH = 50;
+  }
+  
+  void update(){
+    buttonPressed();
+  }
+  
+  void draw(){
+    background(0, 64, 0);
+    fill(255);
+    textSize(48);
+    textAlign(CENTER);
+    text("CREDITS", width/2, 55);
+    
+    backDrop();
+    backButton();
+    textBox();
+  }
+  
+  void textBox(){
+    textSize(30);
+    textAlign(LEFT);
+    fill(0);
+    text("Ethan Prindle - Towers, Procedural Generation, Primary Bug Fixer,", width/24+10, height*3/24);
+    text("Pathfinding",width/24+10, height*3/24 + 40);
+    
+    text("Lawrence Simons - Enemies",width/24+10, height*3/24 + 80);
+    text("",width/24+10, height*3/24 + 120);
+    
+    text("Jon Miller - Shop, UI elements, RAM and Energy, Main HUD",width/24+10, height*3/24 + 160);
+    text("",width/24+10, height*3/24 + 200);
+    
+    text("Ryk Sacha - Title, Options, Help, and Credits Scenes",width/24+10, height*3/24 + 240);
+    text("Screen Animations, Audio",width/24+10, height*3/24 + 280);
+    
+    text("Music Credits - The Alex Digital Project Alien by Alex Kegler",width/24+10, height*3/24 + 320);
+    
+    text("Sound Credits - Clicks for Game menu by UniversField",width/24+10, height*3/24 + 360);
+  }
+  
+  void backDrop(){
+    fill(78, 156, 0);
+    rectMode(CORNER);
+    rect(width/24, height*2/24, width*22/24, height*20/24);
+  }
+  
+  void backButton() {
+    float triX1, triX2, triX3;
+    float triY1, triY2, triY3;
+
+    triX1 = backX + backW/4;
+    triX2 = backX + backW/2;
+    triX3 = triX2;
+
+    triY1 = backY + backH/2;
+    triY2 = backY + backH/4;
+    triY3 = backY + backH*3/4;
+
+    back = new AABB(backX, backY, backW, backH, 0, 0);
+    overBack = mouseOverButton(back);
+
+    if (overBack) {
+      fill(255, 200, 0);
+    } else {
+      fill(255);
+    }
+    rect(backX, backY, backW, backH, 10);
+
+    fill(0);
+    triangle(triX1, triY1, triX2, triY2, triX3, triY3);
+    rect(triX2, (triY1+triY2)/2, backW/3, backH/4);
+  }
+  
+  boolean mouseOverButton(AABB other) {
+    return mouseX > other.x &&
+      mouseX < other.x+other.w &&
+      mouseY > other.y &&
+      mouseY < other.y+other.h;
+  }
+  
+  void buttonPressed() {
+    if (!prevMouse && mousePressed) {
+      prevMouse = true;
+      if (overBack) {
+        switchToTitle();
+      }
+    } else if (!mousePressed) {
+      prevMouse = false;
+    }
   }
 }
