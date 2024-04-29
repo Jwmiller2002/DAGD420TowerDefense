@@ -75,7 +75,7 @@ class EnemyManager {
       if (random(0, totalRate)<CalcRate(SpawnTiles.get(i))) {
         float rad = random(0, 100);
         Enemy e = new Enemy(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
-        /*
+        
         if (rad>75) {
          e = new EnemyAcid(50, 5, 7, new PVector(SpawnTiles.get(i).X, SpawnTiles.get(i).Y), game.level.tiles[16][13]);
          } else if (rad>50) {
@@ -85,7 +85,7 @@ class EnemyManager {
          } else {
          // basic enemy
          }
-         */
+         
         enemies.add(e);
         i = SpawnTiles.size()+1;
       } else {
