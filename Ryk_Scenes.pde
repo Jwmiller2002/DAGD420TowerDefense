@@ -1163,11 +1163,21 @@ class End {
   }
 
   void draw() {
-    fill(200, 100, 0);
+    background(0, 64, 0);
+    fill(78, 156, 0);
     rect(width/20, height/20, width*18/20, height*18/20);
     
     buttons();
     restart();
+    
+    fill(255);
+    textSize(50);
+    text("Game Over!", width/2, backY+100);
+    
+    textSize(30);
+    textAlign(CENTER);
+    text("Time lasted: " + millis()/1000, width/2, backY + 300);
+    text("Dead on wave: NaN", width/2, backY + 350);
   }
 
   void buttons() {
@@ -1199,8 +1209,8 @@ class End {
     fill(0);
     noFill();
     arc(restartX + restartW/2, restartY + restartH/2, 50, 50, PI/4, PI*2-PI/4);
-    line();
-    line();
+    line((restartX + restartW/2) + 8, (restartY + restartH/2) - 12, width*18/20+3, height*2/23+2);
+    line(width*18/20+3, height*2/23+2, width*18/20, height/12-6);
   }
   
   boolean mouseOverButton(AABB other) {
@@ -1215,6 +1225,8 @@ class End {
       prevMouse = true;
       if (overBack) {
         switchToTitle();
+      } else if (overRestart){
+        switchToGame();
       }
     } else if (!mousePressed) {
       prevMouse = false;
