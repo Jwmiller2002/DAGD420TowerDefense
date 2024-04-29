@@ -80,7 +80,7 @@ class Tower {
 
 
     case 3: // AOE tower
-      firerate = 2;
+      firerate = 3;
       maxHealth =100;
       fireRange =100;
       ramCost = 2;
@@ -115,7 +115,7 @@ class Tower {
 
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
         bullets.add(new TowerBullet(towerType, x, y, enemyX, enemyY, enemyToShoot, bulletSpeed));
-        timeTilNextFire = random(firerate-1, firerate);
+        timeTilNextFire = random(firerate-0.5, firerate+0.5);
 
         ////println("SHOT");
       } else if (!supportTower) {
