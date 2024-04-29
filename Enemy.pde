@@ -1,5 +1,5 @@
 class Enemy{
-  
+  boolean isDead;
   float health;
   float healthMax;
   float damage;
@@ -67,6 +67,7 @@ class Enemy{
   void Die(){
     // ArrayList.remove(self);
     game.energy++;
+   
   }
   void drawPath() {
     if (path != null && path.size() > 1) {

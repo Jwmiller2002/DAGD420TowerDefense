@@ -736,8 +736,11 @@ class Game {
         Point g = TileHelper.pixelToGrid(new PVector(t.x, t.y));
         Tile tile = level.getTile(g);
         if (t.ramTower) ramMax--;
-        tile.TERRAIN =70;
-        towers.remove(i);
+        if (t.towerType !=5) {
+          tile.TERRAIN =70;
+          towers.remove(i);
+        }
+        else switchToEnd(); // CHANGE TO GAME OVER SCREEEN
       }
     }
 
@@ -935,7 +938,7 @@ class Game {
         }
       }
     }
-    if (leftMouseRelease && isPowerHeld == true) { 
+    if (leftMouseRelease && isPowerHeld == true) {
       isPowerHeld = false;
       if (energy >= 15 && mouseX<800 && ram >= 10) {
         Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
@@ -1006,7 +1009,7 @@ class Game {
         }
       }
     }
-    if (leftMouseRelease && isAOEHeld == true) { 
+    if (leftMouseRelease && isAOEHeld == true) {
       isAOEHeld = false;
       if (energy >= 12 && mouseX<800 && ram >= 3) {
         Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));
@@ -1076,7 +1079,7 @@ class Game {
         }
       }
     }
-    if (leftMouseRelease && isRAMHeld == true) { 
+    if (leftMouseRelease && isRAMHeld == true) {
       isRAMHeld = false;
       if (energy >= 20 && mouseX<800) {
         Point g = TileHelper.pixelToGrid(new PVector(mouseX, mouseY));

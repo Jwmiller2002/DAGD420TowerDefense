@@ -50,6 +50,7 @@ class Tile {
   // DRAW THIS TILE:
   void draw() {
     if (TERRAIN == 1000){
+
       fill(73);
      PCGMAP.LEVEL1[Y][X] =1000; 
     }

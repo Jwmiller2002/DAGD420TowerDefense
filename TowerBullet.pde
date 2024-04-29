@@ -5,7 +5,7 @@ class TowerBullet {
   private float towerType;
   private float bulletLifetime =5;
   private float aoeLifetime =1;
-
+  private boolean canShoot =true;
   private int target;
   private float bulletSpeed;
   private boolean hit=true;
@@ -22,6 +22,7 @@ class TowerBullet {
     this.bulletSpeed = bulletSpeed;
     this.targetX=targetX;
     this.targetY=targetY;
+
 
     velocityX =targetX-x;
     velocityY =targetY-y;
@@ -40,29 +41,32 @@ class TowerBullet {
     hitEnemy();
   }
   public void hitEnemy() {
-    if(game.enemyMan.enemies.size() <1) return;
+    //if(game.enemyMan.enemies.size() <1) return;
     float distance = sqrt(sq(x - targetX) + sq(y-targetY));
     if (towerType ==0) {//normmattack
-      bulletSpeed =10;
-      if (distance <=30) {
-        game.enemyMan.enemies.get(target).takeDamage(25);
+      bulletSpeed = random(8, 10);
+      if (distance <=bulletSize/2 && game.enemyMan.enemies.size() >target) {
+        game.enemyMan.enemies.get(target).takeDamage(12.5);
         isDead = true;
       }
       if (bulletLifetime <=0) isDead =true;
       else bulletLifetime -=1*DeltaTime;
-    } else if (towerType ==3) {//AOE
-      bulletSize =90;
+    } else if (towerType ==3 ) {//AOE
+      bulletSize =180;
       bulletSpeed =0;
-      for (int i=0; i<game.enemyMan.enemies.size(); i++) {
-        distance = sqrt(sq(x - game.enemyMan.enemies.get(i).pos.x) + sq(y-game.enemyMan.enemies.get(i).pos.y));
-        if (distance <=90 && game.enemyMan.enemies.get(i) != null) {
-          //println("HITT");
-          game.enemyMan.enemies.get(target).takeDamage(50);
+      if (canShoot) {
+        for (int i=0; i<game.enemyMan.enemies.size(); i++) {
+          if (game.enemyMan.enemies.size() < i) return;
+          distance = sqrt(sq(x - game.enemyMan.enemies.get(i).pos.x) + sq(y-game.enemyMan.enemies.get(i).pos.y));
+          if (distance <=bulletSize/2) {
+            game.enemyMan.enemies.get(i).takeDamage(25);
+          }
         }
+        canShoot =false;
       }
       if (aoeLifetime <=0) {
         isDead =true;
-        aoeLifetime =1;
+        aoeLifetime =0.5;
       } else aoeLifetime -=1*DeltaTime;
     }
   }

@@ -80,7 +80,7 @@ class Tower {
 
 
     case 3: // AOE tower
-      firerate = 2;
+      firerate = 3;
       maxHealth =100;
       fireRange =100;
       ramCost = 2;
@@ -94,6 +94,14 @@ class Tower {
 
       ramCost = 2;
       energyCost = 5;
+     
+      ;
+
+    case 5:
+      maxHealth =500;
+      fill(111);
+       //rect(x,y,32,32);
+
       ;
 
 
@@ -103,17 +111,18 @@ class Tower {
 
 
       if (!foundEnemy) foundEnemy = chooseEnemy();
+      //if(game.enemyMan.enemies.size()>0 )if(game.enemyMan.enemies.get(enemyToShoot).isDead)foundEnemy =false;
 
       if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
         bullets.add(new TowerBullet(towerType, x, y, enemyX, enemyY, enemyToShoot, bulletSpeed));
-        timeTilNextFire =firerate;
-         foundEnemy =false;
+        timeTilNextFire = random(firerate-0.5, firerate+0.5);
+
         ////println("SHOT");
       } else if (!supportTower) {
         timeTilNextFire -=1 *DeltaTime;//*dt; //fire reset
-        println(timeTilNextFire);
+        //println(timeTilNextFire);
       }
-      
+
       if (!supportTower) {
         for (int i=0; i<bullets.size(); i++) {
           bullets.get(i).draw();
@@ -144,7 +153,7 @@ class Tower {
     }
   }
   private boolean chooseEnemy() { //get array of enemies and shoot neerest or the most leathal one
-    for (int i=0; i<game.enemyMan.enemies.size()-1; i++) {
+    for (int i=0; i<game.enemyMan.enemies.size(); i++) {
       Enemy e = game.enemyMan.enemies.get(i);
       float enemyDistanceFromTower = sqrt(sq(this.x - e.pos.x) + sq(this.y - e.pos.y));
       ////println(enemyDistanceFromTower);
