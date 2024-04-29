@@ -17,6 +17,8 @@ AudioPlayer bgm;
 FFT bgmFFT;
 AudioPlayer sfx1; //Menubutton click
 FFT fxFFT;
+AudioPlayer menu;
+FFT menuFFT;
 
 boolean prevMouse;
 float timeLasted =0;
@@ -49,6 +51,11 @@ void setup() {
   
   sfx1 = minim.loadFile("MenuSFX.mp3", 1024);
   fxFFT = new FFT(sfx1.bufferSize(), sfx1.sampleRate());
+  
+  menu = minim.loadFile("MenuMusic.mp3", 1024);
+  menuFFT = new FFT(menu.bufferSize(), menu.sampleRate());
+  
+  menu.setGain(-17.5);
 }
 
 void init() {
@@ -66,6 +73,7 @@ void draw() {
 
   if (title != null) {
     title.update();
+    menu.play();
     if (title != null) {
       title.draw();
     }

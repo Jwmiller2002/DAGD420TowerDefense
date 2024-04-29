@@ -1,23 +1,23 @@
-class Enemy {
+class Enemy{
   boolean isDead;
   float health;
   float healthMax;
   float damage;
   float speed;
   PVector pos;//pixel position
-  ArrayList<Tile> path;
+  ArrayList<Tile> path; 
   Tile goalT;
   Tile nextTile;
   boolean findPath = false;
   float jankCoolDown =1;
   float attackTimer;
   float attackCooldown;
-
+  
   Point gridP = new Point(); // current position
   Point gridT = new Point();
 
-
-  Enemy(float h, float d, float s, PVector p, Tile go) {
+  
+  Enemy(float h,float d, float s, PVector p, Tile go){
     healthMax=h;
     health=healthMax;
     damage= d;
@@ -25,49 +25,49 @@ class Enemy {
     pos=p;
     findPath = false;
     goalT = go;
-    gridP = new Point(int(pos.x), int(pos.y));
-    gridT = new Point(goalT.X, goalT.Y);
-
+    gridP = new Point(int(pos.x),int(pos.y));
+    gridT = new Point(goalT.X,goalT.Y);
+    
     attackCooldown=.5;
     attackTimer=.5;
-
+    
     findPathAndSetNextStep();
   }
-
-  void update() {
-    if (attackTimer>0) {
-      attackTimer-=DeltaTime;
+  
+  void update(){
+    if(attackTimer>0){
+     attackTimer-=DeltaTime; 
     }
-
-    if (findPath == true) findPathAndSetNextStep();
+    
+    if(findPath == true) findPathAndSetNextStep();
     updateMove();
   }
-
-  void draw() {
+  
+  void draw(){
     stroke(20);
     strokeWeight(5);
-    fill(230, 30, 30);
-    ellipse(pos.x, pos.y, 30, 30);
+    fill(230,30,30);
+    ellipse(pos.x,pos.y,30,30);  
     //drawPath();
   }
-
-  void attack(Tile target) {
+  
+  void attack(Tile target){
     attackTimer = attackCooldown;
-    println("hit");
-    for (Tower t : towers) {
-      float distance = sqrt(sq(pos.x - t.x) + sq(pos.y-t.y));
-      if (distance <= 50) {
-       
-        t.takeDamage(damage);
-         println(t.health);
-      }
+    
+    for(Tower t: towers){
+     if(t.x == target.X*32-16 && t.y==target.Y*32-16){
+      //t.takedamage() //take damage currently does not deal a variable amount of damage 
+      t.health -=damage;
+     }
     }
     //might not be needed
+    
   }
-
-  void Die() {
+  
+  void Die(){
     // ArrayList.remove(self);
     game.energy++;
+   
   }
   void drawPath() {
     if (path != null && path.size() > 1) {
@@ -82,14 +82,14 @@ class Enemy {
       ellipse(prevP.x, prevP.y, 8, 8);
     }
   }
-  void takeDamage(float d) {
+  void takeDamage(float d){
     health-=d;
-    if (health<=0) {
-      Die();
+    if(health<=0){
+     Die(); 
     }
   }
-
-  void findPathAndSetNextStep() {
+  
+  void findPathAndSetNextStep(){
     findPath = false;
     Tile start = game.level.getTile(gridP);
     Tile end = game.level.getTile(gridT);
@@ -99,33 +99,37 @@ class Enemy {
     }
     path = game.pathfinder.findPath(start, end);
 
-    if (path != null && path.size() > 1) {
+    if (path != null && path.size() > 1) { 
       nextTile = path.get(1);
-      if (jankCoolDown <=.3) {
-        if (nextTile.isPassable()) gridP = new Point(nextTile.X, nextTile.Y);
+      if(jankCoolDown <=.3){
+        if(nextTile.isPassable()) gridP = new Point(nextTile.X, nextTile.Y);
         jankCoolDown =0.5;
-      } else jankCoolDown -=1*DeltaTime;
+      }
+      else jankCoolDown -=1*DeltaTime;
     }
+    
   }//end void
-
+  
   void updateMove() {
-
+    
     float snapThreshold = 1;
     PVector pixlT = game.level.getTileCenterAt(gridP);
     PVector diff = PVector.sub(pixlT, pos);
-    if (nextTile.isTower) {
-      if (attackTimer<=0) {
+    if(nextTile.isTower){
+      if(attackTimer<=0){
         attack(nextTile);
         ////println(nextTile.isTower);
       }
-    } else {
+    }else{
       ////println(nextTile.isTower);
       pos.x += diff.x * 1;
       pos.y += diff.y * 1;
+      
     }
     if (abs(diff.x) < snapThreshold) pos.x = pixlT.x;
     if (abs(diff.y) < snapThreshold) pos.y = pixlT.y;
 
     if (pixlT.x == pos.x && pixlT.y == pos.y) findPath = true;
   }
+  
 }
