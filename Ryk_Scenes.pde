@@ -1313,6 +1313,8 @@ class Credits {
     text("Music Credits - The Alex Digital Project Alien by Alex Kegler", width/24+10, height*3/24 + 320);
 
     text("Sound Credits - Clicks for Game menu by UniversField", width/24+10, height*3/24 + 360);
+    
+    text("Digital Pop by Luzsantoni", width/24+10, height*3/24 + 400);
   }
 
   void backDrop() {
