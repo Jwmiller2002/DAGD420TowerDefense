@@ -99,7 +99,7 @@ class Tower {
       doOnce =false;
     } else if (towerType ==5 && doOnce) {
       //CENTER PLACE
-      maxHealth =100;
+      maxHealth =1000;
       health = maxHealth;
       supportTower =true;
       fill(111);

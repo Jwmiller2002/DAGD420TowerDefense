@@ -734,13 +734,13 @@ class Game {
       }
 
       if (t.isDead) {                                          //DEATH
-        Point g = TileHelper.pixelToGrid(new PVector(t.x, t.y));
+        Point g = TileHelper.pixelToGrid(new PVector(t.x+16, t.y+16));
         Tile tile = level.getTile(g);
         if (t.ramTower) ramMax--;
         if (t.towerType !=5) {
-          if (t.towerType ==4) {
+          if (t.towerType ==2) {
             tile.TERRAIN =1;
-            PCGMAP.LEVEL1[tile.Y][tile.X] =1;
+            //PCGMAP.LEVEL1[tile.Y][tile.X] =1;
           }
           tile.TERRAIN =70;
           PCGMAP.LEVEL1[tile.Y][tile.X] =70;

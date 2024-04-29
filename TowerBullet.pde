@@ -45,7 +45,7 @@ class TowerBullet {
     float distance = sqrt(sq(x - targetX) + sq(y-targetY));
     if (towerType ==0) {//normmattack
       bulletSpeed = random(8, 10);
-      if (distance <=bulletSize/2 && game.enemyMan.enemies.size() >target) {
+      if (distance <=bulletSize && game.enemyMan.enemies.size() >target) {
         game.enemyMan.enemies.get(target).takeDamage(12.5);
         isDead = true;
       }
