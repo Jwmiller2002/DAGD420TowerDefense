@@ -2,6 +2,7 @@ class Tower {
   private float health;
   private float maxHealth;
   private boolean doOnce =true;
+ 
 
   private float firerate;
   private float timeTilNextFire;
@@ -47,99 +48,100 @@ class Tower {
   void draw() {
 
     //////println(health);
-    switch(towerType) {
-    case 0: //Basic Tower
+    if (towerType ==0 && doOnce) {
+      //Basic Tower
       fireRange =300;
+
       maxHealth =50;
+      health = maxHealth;
       firerate =.5;
       ramCost = 2;
       energyCost = 5;
       bulletSpeed =1;
+    } else if (towerType ==1 && doOnce) {
 
-
-      ;
-    case 1: //RAM TOWER
+      //RAM TOWER
       firerate = 6;
       maxHealth =25;
-
+      health = maxHealth;
       ramCost = 2;
       energyCost = 5;
-
       ramTower =true;
-
-
-      ;
-    case 2: // Wall
+      doOnce =false;
+    } else if (towerType ==2 && doOnce) {
+      // Wall
       firerate =1;
-      maxHealth =200;
-
+      maxHealth =150;
+      health = maxHealth;
       //println(supportTower);
       ramCost = 2;
       energyCost = 5;
       bulletSpeed =5;
-
-
-    case 3: // AOE tower
+      doOnce =false;
+    } else if (towerType ==3 && doOnce) {
+      // AOE tower
       firerate = 3;
-      maxHealth =100;
+      maxHealth =20;
+      health = maxHealth;
       fireRange =100;
       ramCost = 2;
       energyCost = 5;
-
-
-      ;
-    case 4: //SUNFLOWER/MONEY,  Limited Lifetime?
-
-      maxHealth =100;
-
+      doOnce =false;
+    } else if (towerType ==4 && doOnce) {
+      //SUNFLOWER/MONEY,  Limited Lifetime?
+      supportTower =true;
+      maxHealth =30;
+      health = maxHealth;
       ramCost = 2;
       energyCost = 5;
-     
-      ;
-
-    case 5:
-      maxHealth =500;
+      doOnce =false;
+    } else if (towerType ==5 && doOnce) {
+      //CENTER PLACE
+      maxHealth =100;
+      health = maxHealth;
+      supportTower =true;
       fill(111);
-       //rect(x,y,32,32);
-
-      ;
-
-
-      // Code that works for all towers(checking health shooting ect.)
-
-      if (doOnce) health = maxHealth;
+      //rect(x,y,32,32);
+      doOnce =false;
+    }
 
 
-      if (!foundEnemy) foundEnemy = chooseEnemy();
-      //if(game.enemyMan.enemies.size()>0 )if(game.enemyMan.enemies.get(enemyToShoot).isDead)foundEnemy =false;
+    // Code that works for all towers(checking health shooting ect.)
 
-      if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
-        bullets.add(new TowerBullet(towerType, x, y, enemyX, enemyY, enemyToShoot, bulletSpeed));
-        timeTilNextFire = random(firerate-0.5, firerate+0.5);
 
-        ////println("SHOT");
-      } else if (!supportTower) {
-        timeTilNextFire -=1 *DeltaTime;//*dt; //fire reset
-        //println(timeTilNextFire);
-      }
+    //println(health);
 
-      if (!supportTower) {
-        for (int i=0; i<bullets.size(); i++) {
-          bullets.get(i).draw();
-          if (bullets.get(i).isDead) {
-            bullets.remove(i);
-          }
+
+    if (!foundEnemy) foundEnemy = chooseEnemy();
+    //if(game.enemyMan.enemies.size()>0 )if(game.enemyMan.enemies.get(enemyToShoot).isDead)foundEnemy =false;
+
+    if (timeTilNextFire <=0 && foundEnemy && !supportTower) {                //shootEnemy
+      bullets.add(new TowerBullet(towerType, x, y, enemyX, enemyY, enemyToShoot, bulletSpeed));
+      timeTilNextFire = random(firerate-0.5, firerate+0.5);
+
+      ////println("SHOT");
+    } else if (!supportTower) {
+      timeTilNextFire -=1 *DeltaTime;//*dt; //fire reset
+      //println(timeTilNextFire);
+    }
+
+    if (!supportTower) {
+      for (int i=0; i<bullets.size(); i++) {
+        bullets.get(i).draw();
+        if (bullets.get(i).isDead) {
+          bullets.remove(i);
         }
       }
-
-
-
-      if (buffed) {  //SUPPORT TOWER BUFF
-        timeTilNextFire -=.5 * DeltaTime;
-      } else if (slowed) {
-        timeTilNextFire +=0.5 * DeltaTime;
-      }
     }
+
+
+
+    if (buffed) {  //SUPPORT TOWER BUFF
+      timeTilNextFire -=.5 * DeltaTime;
+    } else if (slowed) {
+      timeTilNextFire +=0.5 * DeltaTime;
+    }
+
 
 
 

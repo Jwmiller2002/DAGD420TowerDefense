@@ -45,12 +45,12 @@ class Title {
     helpY = height*3/5;
     helpW = sharedW;
     helpH = sharedH;
-    
+
     creditsX = width/2;
     creditsY = height*4/5;
     creditsW = sharedW;
     creditsH = sharedH;
-    
+
     prevMouse = false;
   }
 
@@ -146,18 +146,18 @@ class Title {
     fill(0);
     text("Options", optionsX, optionsY+5);
   }
-  
-  void creditsButton(){
+
+  void creditsButton() {
     credits = new AABB(creditsX - creditsW/2, creditsY - creditsH/2, creditsW, creditsH, 0, 0);
     overCredits = mouseOverButton(credits);
-    
-    if(overCredits){
+
+    if (overCredits) {
       fill(255, 200, 0);
     } else {
       fill(255);
     }
     rect(creditsX, creditsY, creditsW, creditsH);
-    
+
     textAlign(CENTER);
     textSize(25);
     fill(0);
@@ -207,7 +207,7 @@ class Title {
         switchToHelp();
       } else if (overOptions) {
         switchToOptions();
-      } else if (overCredits){
+      } else if (overCredits) {
         switchToCredits();
       }
     } else if (!mousePressed) {
@@ -265,17 +265,17 @@ class Options {
     fill(255);
     textSize(40);
     text("Options", width/2, 75);
-    
+
     backDrop();
-    
+
     rectMode(CORNER);
     buttons();
     rectMode(CENTER);
     soundLever();
     musicLever();
   }
-  
-  void backDrop(){
+
+  void backDrop() {
     fill(78, 156, 0);
     rectMode(CORNER);
     rect(soundX-80, soundY-300, 160, 600);
@@ -737,10 +737,14 @@ class Game {
         Tile tile = level.getTile(g);
         if (t.ramTower) ramMax--;
         if (t.towerType !=5) {
+          if (t.towerType ==4) {
+            tile.TERRAIN =1;
+            PCGMAP.LEVEL1[tile.Y][tile.X] =1;
+          }
           tile.TERRAIN =70;
+          PCGMAP.LEVEL1[tile.Y][tile.X] =70;
           towers.remove(i);
-        }
-        else switchToEnd(); // CHANGE TO GAME OVER SCREEEN
+        } else switchToEnd(); // CHANGE TO GAME OVER SCREEEN
       }
     }
 
@@ -1157,28 +1161,27 @@ class Game {
 
 //END CLASS---------------------------------------------------------
 class End {
-  
+
   float backX, backY, backW, backH;
   AABB back;
   boolean overBack;
-  
+
   float restartX, restartY, restartW, restartH;
   AABB restart;
   boolean overRestart;
-  
-  End(){
+
+  End() {
     backX = width/20+10;
     backY = height/20+10;
     backW = 100;
     backH = 100;
-    
+
     restartX = width*17/20-10;
     restartY = height/20+10;
     restartW = 100;
     restartH = 100;
-    
   }
-  
+
   void update() {
     buttonPressed();
   }
@@ -1187,14 +1190,14 @@ class End {
     background(0, 64, 0);
     fill(78, 156, 0);
     rect(width/20, height/20, width*18/20, height*18/20);
-    
+
     buttons();
     restart();
-    
+
     fill(255);
     textSize(50);
     text("Game Over!", width/2, backY+100);
-    
+
     textSize(30);
     textAlign(CENTER);
     text("Time lasted: " + millis()/1000, width/2, backY + 300);
@@ -1204,49 +1207,49 @@ class End {
   void buttons() {
     back = new AABB(backX, backY, backW, backH, 0, 0);
     overBack = mouseOverButton(back);
-    
+
     if (overBack) {
       fill(255, 200, 0);
     } else {
       fill(255);
     }
     rect(backX, backY, backW, backH);
-    
+
     line(width/20+10, height/20+110, width/20+110, height/20+10);
     line(width/20+10, height/20+10, width/20+110, height/20+110);
   }
-  
-  void restart(){
+
+  void restart() {
     restart = new AABB(restartX, restartY, restartW, restartH, 0, 0);
     overRestart = mouseOverButton(restart);
-    
-    if(overRestart){
+
+    if (overRestart) {
       fill(255, 200, 0);
     } else {
       fill(255);
     }
     rect(restartX, restartY, restartW, restartH);
-    
+
     fill(0);
     noFill();
     arc(restartX + restartW/2, restartY + restartH/2, 50, 50, PI/4, PI*2-PI/4);
     line((restartX + restartW/2) + 8, (restartY + restartH/2) - 12, width*18/20+3, height*2/23+2);
     line(width*18/20+3, height*2/23+2, width*18/20, height/12-6);
   }
-  
+
   boolean mouseOverButton(AABB other) {
     return mouseX > other.x &&
       mouseX < other.x+other.w &&
       mouseY > other.y &&
       mouseY < other.y+other.h;
   }
-  
+
   void buttonPressed() {
     if (!prevMouse && mousePressed) {
       prevMouse = true;
       if (overBack) {
         switchToTitle();
-      } else if (overRestart){
+      } else if (overRestart) {
         switchToGame();
       }
     } else if (!mousePressed) {
@@ -1256,62 +1259,62 @@ class End {
 }
 
 //CREDITS CLASS---------------------------------------------------
-class Credits{
-  
+class Credits {
+
   float backX, backY, backW, backH;
   AABB back;
   boolean overBack;
-  
-  Credits(){
+
+  Credits() {
     backX = 25;
     backY = 25;
     backW = 50;
     backH = 50;
   }
-  
-  void update(){
+
+  void update() {
     buttonPressed();
   }
-  
-  void draw(){
+
+  void draw() {
     background(0, 64, 0);
     fill(255);
     textSize(48);
     textAlign(CENTER);
     text("CREDITS", width/2, 55);
-    
+
     backDrop();
     backButton();
     textBox();
   }
-  
-  void textBox(){
+
+  void textBox() {
     textSize(30);
     textAlign(LEFT);
     fill(0);
     text("Ethan Prindle - Towers, Procedural Generation, Primary Bug Fixer,", width/24+10, height*3/24);
-    text("Pathfinding",width/24+10, height*3/24 + 40);
-    
-    text("Lawrence Simons - Enemies",width/24+10, height*3/24 + 80);
-    text("",width/24+10, height*3/24 + 120);
-    
-    text("Jon Miller - Shop, UI elements, RAM and Energy, Main HUD",width/24+10, height*3/24 + 160);
-    text("",width/24+10, height*3/24 + 200);
-    
-    text("Ryk Sacha - Title, Options, Help, and Credits Scenes",width/24+10, height*3/24 + 240);
-    text("Screen Animations, Audio",width/24+10, height*3/24 + 280);
-    
-    text("Music Credits - The Alex Digital Project Alien by Alex Kegler",width/24+10, height*3/24 + 320);
-    
-    text("Sound Credits - Clicks for Game menu by UniversField",width/24+10, height*3/24 + 360);
+    text("Pathfinding", width/24+10, height*3/24 + 40);
+
+    text("Lawrence Simons - Enemies", width/24+10, height*3/24 + 80);
+    text("", width/24+10, height*3/24 + 120);
+
+    text("Jon Miller - Shop, UI elements, RAM and Energy, Main HUD", width/24+10, height*3/24 + 160);
+    text("", width/24+10, height*3/24 + 200);
+
+    text("Ryk Sacha - Title, Options, Help, and Credits Scenes", width/24+10, height*3/24 + 240);
+    text("Screen Animations, Audio", width/24+10, height*3/24 + 280);
+
+    text("Music Credits - The Alex Digital Project Alien by Alex Kegler", width/24+10, height*3/24 + 320);
+
+    text("Sound Credits - Clicks for Game menu by UniversField", width/24+10, height*3/24 + 360);
   }
-  
-  void backDrop(){
+
+  void backDrop() {
     fill(78, 156, 0);
     rectMode(CORNER);
     rect(width/24, height*2/24, width*22/24, height*20/24);
   }
-  
+
   void backButton() {
     float triX1, triX2, triX3;
     float triY1, triY2, triY3;
@@ -1338,14 +1341,14 @@ class Credits{
     triangle(triX1, triY1, triX2, triY2, triX3, triY3);
     rect(triX2, (triY1+triY2)/2, backW/3, backH/4);
   }
-  
+
   boolean mouseOverButton(AABB other) {
     return mouseX > other.x &&
       mouseX < other.x+other.w &&
       mouseY > other.y &&
       mouseY < other.y+other.h;
   }
-  
+
   void buttonPressed() {
     if (!prevMouse && mousePressed) {
       prevMouse = true;

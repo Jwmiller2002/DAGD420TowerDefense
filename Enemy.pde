@@ -58,7 +58,7 @@ class Enemy {
       float distance = sqrt(sq(pos.x - t.x) + sq(pos.y-t.y));
       if (distance <= 50) {
        
-        t.health -= damage;
+        t.takeDamage(damage);
          println(t.health);
       }
     }

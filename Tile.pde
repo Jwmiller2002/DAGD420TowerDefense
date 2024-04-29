@@ -49,10 +49,10 @@ class Tile {
   }
   // DRAW THIS TILE:
   void draw() {
-    if (TERRAIN == 1000){
-
+    if (TERRAIN == 1000) {
+      isTower =true;
       fill(73);
-     PCGMAP.LEVEL1[Y][X] =1000; 
+      PCGMAP.LEVEL1[Y][X] =1000;
     }
     if (TERRAIN == 0) { //Main Path
 
@@ -81,25 +81,25 @@ class Tile {
       ////////println("TOWER1");
     }
     if (TERRAIN == 72) {//RAM TOWER
-    PCGMAP.LEVEL1[Y][X] =72;
+      PCGMAP.LEVEL1[Y][X] =72;
       fill(255, 200, 0);
       isTower =true;
       ////////println("TOWER2");
     }
     if (TERRAIN == 73) {//Wall
-    PCGMAP.LEVEL1[Y][X] =73;
+      PCGMAP.LEVEL1[Y][X] =73;
       fill(0, 0, 139);
       isTower =true;
       ////////println("TOWER3");
     }
     if (TERRAIN == 74) {//POWER
-    PCGMAP.LEVEL1[Y][X] =74;
+      PCGMAP.LEVEL1[Y][X] =74;
       fill(255, 255, 10);
       isTower =true;
       ////////println("TOWER4");
     }
     if (TERRAIN == 75) {//AOE
-    PCGMAP.LEVEL1[Y][X] =75;
+      PCGMAP.LEVEL1[Y][X] =75;
       fill(255, 0, 255);
       isTower =true;
       ////////println("TOWER4");
